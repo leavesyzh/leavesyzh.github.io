@@ -36,7 +36,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-05-12T15:42:11.000Z">
-<meta property="article:modified_time" content="2025-05-12T15:42:51.110Z">
+<meta property="article:modified_time" content="2025-05-12T15:48:39.974Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="LLM">
@@ -96,8 +96,7 @@
     
     
     
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-<style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -209,7 +208,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style></head>
+</style><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
 
 
 
@@ -609,8 +609,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-05-12 23:42:51</span>
-            <span class="mobile">2025-05-12 23:42:51</span>
+            <span class="desktop">2025-05-12 23:48:39</span>
+            <span class="mobile">2025-05-12 23:48:39</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -678,7 +678,7 @@ mjx-container[display="true"] + br {
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<h1 id="面向开发者的提示工程"><a href="#面向开发者的提示工程" class="headerlink" title="面向开发者的提示工程"></a>面向开发者的提示工程</h1><p>​	随着 ChatGPT 等 LLM (大语言模型) 的出现,自然语言处理的范式正在由 Pretrain-Finetune (预训练微调) 向 Prompt Engineering (提示工程) 演变。对于具有较强自然语言理解、生成能力，能够实现多样化任务处理的 LLM 来说，一个合理的 Prompt 设计极大地决定了其能力的上限与下限。Prompt  Engineering，即是针对特定任务构造能充分发挥大模型能力的 Prompt 的技巧。要充分、高效地使用  LLM，Prompt Engineering 是必不可少的技能。</p>
 <p>​	本部分的主要内容包括：书写 Prompt 的原则与技巧；文本总结 (如总结用户评论)；文本推断 (如情感分类、主题提取)；文本转换 (翻译、自动纠错)；扩展 (如书写邮件) 等。</p>
-<h2 id="一、提示原则"><a href="#一、提示原则" class="headerlink" title="一、提示原则"></a>一、提示原则</h2><h3 id="（一）编写清晰、具体的指令"><a href="#（一）编写清晰、具体的指令" class="headerlink" title="（一）编写清晰、具体的指令"></a>（一）编写清晰、具体的指令</h3><h4 id="1-使用分隔符清晰地表示输入的不同部分"><a href="#1-使用分隔符清晰地表示输入的不同部分" class="headerlink" title="1.使用分隔符清晰地表示输入的不同部分"></a>1.使用分隔符清晰地表示输入的不同部分</h4><p>在编写 Prompt 时，我们可以使用各种标点符号作为<strong>分隔符</strong>，将不同的文本部分区分开来，避免混淆指令、上下文、输入输出等。分隔符包括```,”””,&lt; &gt;,<tag> </tag>,:`，只需要起到明确的隔断作用。</p>
+<h2 id="一、提示原则"><a href="#一、提示原则" class="headerlink" title="一、提示原则"></a>一、提示原则</h2><h3 id="（一）编写清晰、具体的指令"><a href="#（一）编写清晰、具体的指令" class="headerlink" title="（一）编写清晰、具体的指令"></a>（一）编写清晰、具体的指令</h3><h4 id="1-使用分隔符清晰地表示输入的不同部分"><a href="#1-使用分隔符清晰地表示输入的不同部分" class="headerlink" title="1.使用分隔符清晰地表示输入的不同部分"></a>1.使用分隔符清晰地表示输入的不同部分</h4><p>在编写 Prompt 时，我们可以使用各种标点符号作为<strong>分隔符</strong>，将不同的文本部分区分开来，避免混淆指令、上下文、输入输出等。分隔符包括<code>"""</code>，<code>&lt; &gt;</code>，<code>&lt;tag&gt; &lt;/tag&gt;</code>，<code>:</code>，只需要起到明确的隔断作用。</p>
 <p>分隔符还可以防止<strong>提示词注入（Prompt Rejection）</strong>。提示词注入是用户输入的文本可能包含与预设的 Prompt 冲突的内容，导致模型产生毫无关联的输出。</p>
 <h4 id="2-寻求结构化的输出"><a href="#2-寻求结构化的输出" class="headerlink" title="2.寻求结构化的输出"></a>2.寻求结构化的输出</h4><p>可以让模型按照要求生成结构化的输出，例如 <strong>JSON</strong>、<strong>HTML</strong> 等，结构化输出有利于在代码中进一步解析和处理，例如在 Python 中将其读入字典或列表中进行处理。</p>
 <h4 id="3-要求模型检查是否满足条件"><a href="#3-要求模型检查是否满足条件" class="headerlink" title="3.要求模型检查是否满足条件"></a>3.要求模型检查是否满足条件</h4><p>如果任务包含不一定能满足的假设(条件)，我们可以告诉模型先检查这些假设，如果不满足，则会指出并停止执行后续的完整流程。还可以考虑可能出现的边缘情况及模型的应对，以避免意外的结果或错误发生。这样做可以使模型按照假设对输入进行判断和分析，有利于模型理解输入内容并按照假设输出预期内容。</p>
@@ -947,7 +947,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-05-12 23:42:51
+                    :</strong> 2025-05-12 23:48:39
             </li>
         
         <li>
