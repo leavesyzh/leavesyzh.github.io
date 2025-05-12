@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="寻觅之境">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/05/22/langchain学习指南/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《面向开发者的LLM入门教程》阅读笔记">
+<meta property="og:url" content="http://example.com/2024/05/22/LangChain%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2024-05-22T08:04:11.000Z">
+<meta property="article:modified_time" content="2025-05-12T15:38:41.429Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/sakana.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/sakana.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/sakana.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            《面向开发者的LLM入门教程》阅读笔记 | StoryWriter
+        
+    </title>
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/54140687_p0.jpg","dark":"/images/wallhaven-z8lgwg_5830x2492.png"},"title":"。","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":"github:https://github.com/leavesyzh fa-regular fa-tv-music:https://music.163.com/#/user/home?id=1444634100","qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Ambient","artist":"Kevin MacLeod","url":"http://music.163.com/song/media/outer/url?id=33207576.mp3","cover":"/images/Ambient.jpg","lrc":"/images/none.lrc"},{"name":"Cleaning out the Rooms (Wandering Horn)","artist":"Sea Power","url":"http://music.163.com/song/media/outer/url?id=26690256.mp3","cover":"/images/Cleaning-out-the-Rooms-(Wandering-Horn).jpg","lrc":"/images/none.lrc"},{"name":"万物流転","artist":"頭脳警察","url":"http://music.163.com/song/media/outer/url?id=22723043.mp3","cover":"/images/万物流転.png","lrc":"/images/none.lrc"},{"name":"Happy End","artist":"Flare","url":"http://music.163.com/song/media/outer/url?id=35307891.mp3","cover":"/images/Happy-End.jpg","lrc":"/images/none.lrc"},{"name":"21 grams ft. Fei Lin (Cikado)","artist":"Triodust","url":"http://music.163.com/song/media/outer/url?id=1381395883.mp3","cover":"/images/21-grams-ft.jpg","lrc":"/images/none.lrc"}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"Masonry":{"icon":"fa-solid fa-image","path":"/masonry/"},"About":{"icon":"fa-regular fa-user","submenus":{"CloudMusic":"https://music.163.com/#/user/home?id=1444634100","Github":"https://github.com/leavesyzh","Blog":"https://leavesyzh.github.io/"}}},"search":{"enable":true,"preload":false}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"今天晚上做了什么.","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/sakana.png" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                StoryWriter
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    MASONRY
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=1444634100">
+                                                    CLOUDMUSIC
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/leavesyzh">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://leavesyzh.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                MASONRY
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=1444634100">CLOUDMUSIC</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/leavesyzh">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://leavesyzh.github.io/">BLOG</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">17</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">《面向开发者的LLM入门教程》阅读笔记</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/blueroom.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">寻觅之境</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-05-22 16:04:11</span>
+        <span class="mobile">2024-05-22 16:04:11</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-05-12 23:38:41</span>
+            <span class="mobile">2025-05-12 23:38:41</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/LLM/">LLM</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>16k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>59 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="面向开发者的提示工程"><a href="#面向开发者的提示工程" class="headerlink" title="面向开发者的提示工程"></a>面向开发者的提示工程</h1><p>​	随着 ChatGPT 等 LLM (大语言模型) 的出现,自然语言处理的范式正在由 Pretrain-Finetune (预训练微调) 向 Prompt Engineering (提示工程) 演变。对于具有较强自然语言理解、生成能力，能够实现多样化任务处理的 LLM 来说，一个合理的 Prompt 设计极大地决定了其能力的上限与下限。Prompt  Engineering，即是针对特定任务构造能充分发挥大模型能力的 Prompt 的技巧。要充分、高效地使用  LLM，Prompt Engineering 是必不可少的技能。</p>
+<p>​	本部分的主要内容包括：书写 Prompt 的原则与技巧；文本总结 (如总结用户评论)；文本推断 (如情感分类、主题提取)；文本转换 (翻译、自动纠错)；扩展 (如书写邮件) 等。</p>
+<h2 id="一、提示原则"><a href="#一、提示原则" class="headerlink" title="一、提示原则"></a>一、提示原则</h2><h3 id="（一）编写清晰、具体的指令"><a href="#（一）编写清晰、具体的指令" class="headerlink" title="（一）编写清晰、具体的指令"></a>（一）编写清晰、具体的指令</h3><h4 id="1-使用分隔符清晰地表示输入的不同部分"><a href="#1-使用分隔符清晰地表示输入的不同部分" class="headerlink" title="1.使用分隔符清晰地表示输入的不同部分"></a>1.使用分隔符清晰地表示输入的不同部分</h4><p>在编写 Prompt 时，我们可以使用各种标点符号作为<strong>分隔符</strong>，将不同的文本部分区分开来，避免混淆指令、上下文、输入输出等。分隔符包括```,”””,&lt; &gt;,<tag> </tag>,:`，只需要起到明确的隔断作用。</p>
+<p>分隔符还可以防止<strong>提示词注入（Prompt Rejection）</strong>。提示词注入是用户输入的文本可能包含与预设的 Prompt 冲突的内容，导致模型产生毫无关联的输出。</p>
+<h4 id="2-寻求结构化的输出"><a href="#2-寻求结构化的输出" class="headerlink" title="2.寻求结构化的输出"></a>2.寻求结构化的输出</h4><p>可以让模型按照要求生成结构化的输出，例如 <strong>JSON</strong>、<strong>HTML</strong> 等，结构化输出有利于在代码中进一步解析和处理，例如在 Python 中将其读入字典或列表中进行处理。</p>
+<h4 id="3-要求模型检查是否满足条件"><a href="#3-要求模型检查是否满足条件" class="headerlink" title="3.要求模型检查是否满足条件"></a>3.要求模型检查是否满足条件</h4><p>如果任务包含不一定能满足的假设(条件)，我们可以告诉模型先检查这些假设，如果不满足，则会指出并停止执行后续的完整流程。还可以考虑可能出现的边缘情况及模型的应对，以避免意外的结果或错误发生。这样做可以使模型按照假设对输入进行判断和分析，有利于模型理解输入内容并按照假设输出预期内容。</p>
+<h4 id="4-提供少量示例"><a href="#4-提供少量示例" class="headerlink" title="4.提供少量示例"></a>4.提供少量示例</h4><p><code>Few-shot prompting</code>，即在要求模型执行实际任务之前，给模型一两个已完成的样例，让模型了解我们的要求和期望的输出样式。利用少样本样例，可以让模型按照期望的结构输出内容。</p>
+<h3 id="（二）给模型时间去思考"><a href="#（二）给模型时间去思考" class="headerlink" title="（二）给模型时间去思考"></a>（二）给模型时间去思考</h3><p>我们通过 <strong>Prompt</strong> 指引语言模型进行深入思考。可以要求其先列出对问题的各种看法，说明推理依据，然后再得出最终结论。在 <strong>Prompt</strong> 中添加逐步推理的要求，能让语言模型投入更多时间逻辑思维，输出结果也将更可靠准确。</p>
+<h4 id="1-指定完成任务所需的步骤"><a href="#1-指定完成任务所需的步骤" class="headerlink" title="1.指定完成任务所需的步骤"></a>1.指定完成任务所需的步骤</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">f"""  </span></span><br><span class="line"><span class="string">在一个迷人的村庄里,兄妹杰克和吉尔出发去一个山顶井里打水。\  </span></span><br><span class="line"><span class="string">他们一边唱着欢乐的歌,一边往上爬,\  </span></span><br><span class="line"><span class="string">然而不幸降临——杰克绊了一块石头,从山上滚了下来,吉尔紧随其后。\  </span></span><br><span class="line"><span class="string">虽然略有些摔伤,但他们还是回到了温馨的家中。\  </span></span><br><span class="line"><span class="string">尽管出了这样的意外,他们的冒险精神依然没有减弱,继续充满愉悦地探索。  """</span>  </span><br><span class="line"> </span><br><span class="line">prompt_1 = <span class="string">f"""  </span></span><br><span class="line"><span class="string">执行以下操作:  </span></span><br><span class="line"><span class="string">1-用一句话概括下面用三个反引号括起来的文本。  </span></span><br><span class="line"><span class="string">2-将摘要翻译成英语。  </span></span><br><span class="line"><span class="string">3-在英语摘要中列出每个人名。  </span></span><br><span class="line"><span class="string">4-输出一个 JSON 对象,其中包含以下键:english_summary,num_names。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请使用以下格式:  </span></span><br><span class="line"><span class="string">文本:&lt;要总结的文本&gt;  </span></span><br><span class="line"><span class="string">摘要:&lt;摘要&gt;  </span></span><br><span class="line"><span class="string">翻译:&lt;摘要的翻译&gt;  </span></span><br><span class="line"><span class="string">名称:&lt;英语摘要中的名称列表&gt;  </span></span><br><span class="line"><span class="string">输出 JSON:&lt;带有 English_summary 和 num_names 的 JSON&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Text:  </span></span><br><span class="line"><span class="string">```<span class="subst">{text}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-指导模型在下结论之前找出一个自己的解法"><a href="#2-指导模型在下结论之前找出一个自己的解法" class="headerlink" title="2.指导模型在下结论之前找出一个自己的解法"></a>2.指导模型在下结论之前找出一个自己的解法</h4><p>假设我们要语言模型判断一个数学问题的解答是否正确。仅仅提供问题和解答是不够的，语言模型可能会匆忙做出错误判断。 相反，我们可以在 <strong>Prompt</strong> 中先要求语言模型自己尝试解决这个问题，思考出自己的解法，然后再与提供的解答进行对比，判断正确性。这种先让语言模型自主思考的方式,能帮助它更深入理解问题，做出更准确的判断。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">请判断学生的解决方案是否正确,请通过如下步骤解决这个问题:  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">步骤:  </span></span><br><span class="line"><span class="string">	首先,自己解决问题。  </span></span><br><span class="line"><span class="string">	然后将您的解决方案与学生的解决方案进行比较,对比计算得到的总费用与学生计算的总费用是否一致,  并评估学生的解决方案是否正确。  </span></span><br><span class="line"><span class="string">	在自己完成问题之前,请勿决定学生的解决方案是否正确。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">使用以下格式:  </span></span><br><span class="line"><span class="string">	问题:问题文本  </span></span><br><span class="line"><span class="string">	学生的解决方案:学生的解决方案文本  </span></span><br><span class="line"><span class="string">	实际解决方案和步骤:实际解决方案和步骤文本  </span></span><br><span class="line"><span class="string">	学生计算的总费用:学生计算得到的总费用  </span></span><br><span class="line"><span class="string">	实际计算的总费用:实际计算出的总费用  </span></span><br><span class="line"><span class="string">	学生计算的费用和实际计算的费用是否相同:是或否  </span></span><br><span class="line"><span class="string">	学生的解决方案和实际解决方案是否相同:是或否  </span></span><br><span class="line"><span class="string">	学生的成绩:正确或不正确  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">问题:  </span></span><br><span class="line"><span class="string">	我正在建造一个太阳能发电站,需要帮助计算财务。  </span></span><br><span class="line"><span class="string">	- 土地费用为每平方英尺100美元  </span></span><br><span class="line"><span class="string">	- 我可以以每平方英尺250美元的价格购买太阳能电池板  </span></span><br><span class="line"><span class="string">	- 我已经谈判好了维护合同,每年需要支付固定的10万美元,并额外支付每平方英尺10美元;  </span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">	作为平方英尺数的函数,首年运营的总费用是多少。  </span></span><br><span class="line"><span class="string">	</span></span><br><span class="line"><span class="string">学生的解决方案:  </span></span><br><span class="line"><span class="string">	设x为发电站的大小,单位为平方英尺。  </span></span><br><span class="line"><span class="string">	费用:  </span></span><br><span class="line"><span class="string">	1. 土地费用:100x美元  </span></span><br><span class="line"><span class="string">	2. 太阳能电池板费用:250x美元  </span></span><br><span class="line"><span class="string">	3. 维护费用:100,000+100x=10万美元+10x美元  </span></span><br><span class="line"><span class="string">	总费用:100x美元+250x美元+10万美元+100x美元=450x+10万美元  </span></span><br><span class="line"><span class="string">实际解决方案和步骤:  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（三）局限性"><a href="#（三）局限性" class="headerlink" title="（三）局限性"></a>（三）局限性</h3><p>虚假知识：模型偶尔会生成一些看似真实实则编造的知识。在开发与应用语言模型时，需要注意它们可能生成虚假信息的风险。尽管模型经过大规模预训练，掌握了丰富知识，但它实际上并没有完全记住所见的信息，难以准确判断自己的知识边界，可能做出错误推断。若让语言模型描述一个不存在的产品，它可能会自行构造出似是而非的细节。这被称为<strong>幻觉 (Hallucination)</strong>，是语言模型的一大缺陷。</p>
+<p>语言模型生成虚假信息的<strong>幻觉问题</strong>，是使用与开发语言模型时需要高度关注的风险。由于幻觉信息往往令人无法辨别真伪，开发者必须警惕并尽量避免它的产生。</p>
+<p>目前 OpenAI 等公司正在积极研究解决语言模型的幻觉问题。在技术得以进一步改进之前，开发者可以通过 <strong>Prompt 设计</strong>减少幻觉发生的可能。例如，可以先让语言模型直接引用文本中的原句，然后再进行解答。这可以追踪信息来源，降低虚假内容的风险。</p>
+<p>综上，语言模型的幻觉问题事关应用的可靠性与安全性。开发者有必要认识到这一缺陷（注:截至2023  年7月），并采取 <strong>Prompt 优化</strong>等措施予以缓解，以开发出更加可信赖的语言模型应用。这也将是未来语言模型进化的重要方向之一。</p>
+<h2 id="二、迭代优化"><a href="#二、迭代优化" class="headerlink" title="二、迭代优化"></a>二、迭代优化</h2><p>与训练机器学习模型类似，设计高效  <strong>Prompt</strong> 也需要多个版本的试错调整。具体来说，<strong>第一版 Prompt</strong> 应该满足<strong>要求明确</strong>和<strong>给模型思考时间</strong>两个原则。在此基础上，一般的迭代流程是：首先尝试一个初版，分析结果，然后继续改进 Prompt，逐步逼近最优。许多成功的 Prompt 都是通过这种多轮调整得出的。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">您的任务是帮助营销团队基于技术说明书创建一个产品的零售网站描述。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">根据```标记的技术说明书中提供的信息,编写一个产品描述。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">该描述面向家具零售商,因此应具有技术性质,并侧重于产品的材料构造。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">在描述末尾,包括技术规格中每个7个字符的产品ID。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">在描述之后,包括一个表格,提供产品的尺寸。表格应该有两列。第一列包括尺寸的名称。第二列只包括英寸的测量值。  </span></span><br><span class="line"><span class="string">给表格命名为“产品尺寸”。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">将所有内容格式化为可用于网站的HTML格式。将描述放在&lt;div&gt;元素中。  </span></span><br><span class="line"><span class="string">技术规格:```<span class="subst">{fact_sheet_chair}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="三、文本概况"><a href="#三、文本概况" class="headerlink" title="三、文本概况"></a>三、文本概况</h2><h3 id="（一）单一文本概况"><a href="#（一）单一文本概况" class="headerlink" title="（一）单一文本概况"></a>（一）单一文本概况</h3><p>以商品评论的总结任务为例：对于电商平台来说，网站上往往存在着海量的商品评论，这些评论反映了所有客户的想法。如果我们拥有一个工具去概括这些海量、冗长的评论，便能够快速地浏览更多评论，洞悉客户的偏好，从而指导平台与商家提供更优质的服务。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prod_review = <span class="string">"""  </span></span><br><span class="line"><span class="string">这个熊猫公仔是我给女儿的生日礼物,她很喜欢,去哪都带着。  公仔很软,超级可爱,面部表情也很和善。但是相比于价钱来说,  它有点小,我感觉在别的地方用同样的价钱能买到更大的。  快递比预期提前了一天到货,所以在送给女儿之前,我自己玩了会。  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="1-限制输出文本长度"><a href="#1-限制输出文本长度" class="headerlink" title="1.限制输出文本长度"></a>1.限制输出文本长度</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">您的任务是从电子商务网站上生成一个产品评论的简短摘要。 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请对三个反引号之间的评论文本进行概括,最多30个字。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论: ```<span class="subst">{prod_review}</span>```  </span></span><br><span class="line"><span class="string">"""</span>  </span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">熊猫公仔软可爱,女儿喜欢,但有点小。快递提前一天到货。</span><br></pre></td></tr></table></figure></div>
+
+<p>当在 <strong>Prompt</strong> 中设置长度限制要求时，语言模型生成的输出长度不总能精确符合要求，但基本能控制在可接受的误差范围内。比如要求生成 50 词的文本，语言模型有时会生成 60 词左右的输出，但总体接近预定长度。 </p>
+<p> 这是因为语言模型在计算和判断文本长度时依赖于分词器，而分词器在字符统计方面不具备完美精度。目前存在多种方法可以尝试控制语言模型生成输出的长度，比如指定语句数、词数、汉字数等。</p>
+<h4 id="2-侧重于价格与质量"><a href="#2-侧重于价格与质量" class="headerlink" title="2.侧重于价格与质量"></a>2.侧重于价格与质量</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">您的任务是从电子商务网站上生成一个产品评论的简短摘要。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请对三个反引号之间的评论文本进行概括,最多30个词汇,并且侧重在产品价格和质量上。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论: ```<span class="subst">{prod_review}</span>```  </span></span><br><span class="line"><span class="string">"""</span>  </span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可爱的熊猫公仔,质量好但有点小,价格稍高。快递提前到货。</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="3-关键信息提取"><a href="#3-关键信息提取" class="headerlink" title="3.关键信息提取"></a>3.关键信息提取</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">您的任务是从电子商务网站上的产品评论中提取相关信息。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请从以下三个反引号之间的评论文本中提取产品运输相关的信息,最多30个词汇。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论: ```<span class="subst">{prod_review}</span>```  </span></span><br><span class="line"><span class="string">"""</span>  </span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">产品运输相关的信息:快递提前一天到货。</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（二）同时概况多条文本"><a href="#（二）同时概况多条文本" class="headerlink" title="（二）同时概况多条文本"></a>（二）同时概况多条文本</h3><p>在实际的工作流中，我们往往要处理大量的评论文本，文档中的示例将多条用户评价集合在一个列表中，并利用 <strong>for 循环</strong>和**文本概括（Summarize）**提示词，将评价概括至小于 20 个词以下，并按顺序打印。</p>
+<p>在实际生产中，对于不同规模的评论文本。除了使用 for 循环以外。还可能需要考虑整合评论、分布式等方法提升运算效率。</p>
+<h2 id="四、推断"><a href="#四、推断" class="headerlink" title="四、推断"></a>四、推断</h2><h3 id="（一）情感推断"><a href="#（一）情感推断" class="headerlink" title="（一）情感推断"></a>（一）情感推断</h3><h4 id="1-情感倾向分析"><a href="#1-情感倾向分析" class="headerlink" title="1.情感倾向分析"></a>1.情感倾向分析</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">以下用三个反引号分隔的产品评论的情感是什么?  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">用一个单词回答:「正面」或「负面」。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论文本: ```<span class="subst">{lamp_review}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<p>2.识别情感类型</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">识别以下评论的作者表达的情感。包含不超过五个项目。将答案格式化为以逗号分隔的单词列表。 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">用一个单词回答:「正面」或「负面」。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论文本: ```<span class="subst">{lamp_review}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<p>3.识别愤怒</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">以下评论的作者是否表达了愤怒?评论用三个反引号分隔。给出是或否的答案。 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">用一个单词回答:「正面」或「负面」。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论文本: ```<span class="subst">{lamp_review}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（二）信息提取"><a href="#（二）信息提取" class="headerlink" title="（二）信息提取"></a>（二）信息提取</h3><h4 id="1-商品信息提取"><a href="#1-商品信息提取" class="headerlink" title="1.商品信息提取"></a>1.商品信息提取</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">从评论文本中识别以下项目:  </span></span><br><span class="line"><span class="string">- 评论者购买的物品  </span></span><br><span class="line"><span class="string">- 制造该物品的公司  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论文本用三个反引号分隔。将你的响应格式化为以 “物品” 和 “品牌” 为键的 JSON 对象。  </span></span><br><span class="line"><span class="string">如果信息不存在,请使用 “未知” 作为值。  </span></span><br><span class="line"><span class="string">让你的回应尽可能简短。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论文本: ```<span class="subst">{lamp_review}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-综合情感推断和信息提取"><a href="#2-综合情感推断和信息提取" class="headerlink" title="2.综合情感推断和信息提取"></a>2.综合情感推断和信息提取</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">从评论文本中识别以下项目:  </span></span><br><span class="line"><span class="string">- 情绪(正面或负面) </span></span><br><span class="line"><span class="string">- 审稿人是否表达了愤怒?(是或否)  </span></span><br><span class="line"><span class="string">- 评论者购买的物品  </span></span><br><span class="line"><span class="string">- 制造该物品的公司  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论用三个反引号分隔。将你的响应格式化为 JSON 对象,以 “情感倾向”、“是否生气”、“物品类型” 和  “品牌” 作为键。  </span></span><br><span class="line"><span class="string">如果信息不存在,请使用 “未知” 作为值。  </span></span><br><span class="line"><span class="string">让你的回应尽可能简短。  </span></span><br><span class="line"><span class="string">将 “是否生气” 值格式化为布尔值。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">评论文本: ```<span class="subst">{lamp_review}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">{  </span><br><span class="line">   "情感倾向": "正面",  </span><br><span class="line">   "是否生气": false,  </span><br><span class="line">   "物品类型": "卧室灯",  </span><br><span class="line">   "品牌": "Lumina"  </span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（三）主题推断"><a href="#（三）主题推断" class="headerlink" title="（三）主题推断"></a>（三）主题推断</h3><h4 id="1-推断讨论主题"><a href="#1-推断讨论主题" class="headerlink" title="1.推断讨论主题"></a>1.推断讨论主题</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">确定以下给定文本中讨论的五个主题。 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">每个主题用1-2个词概括。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请输出一个可解析的Python列表,每个元素是一个字符串,展示了一个主题。  </span></span><br><span class="line"><span class="string">给定文本: ```<span class="subst">{story}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">['NASA', '满意度', '评论', '管理团队', '社会保障管理局']</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-为特定主题制作新闻提醒"><a href="#2-为特定主题制作新闻提醒" class="headerlink" title="2.为特定主题制作新闻提醒"></a>2.为特定主题制作新闻提醒</h4><p>假设我们有一个新闻网站或类似的平台，这是我们感兴趣的主题：美国航空航天局、当地政府、工程、员工满意度、联邦政府等。我们想要分析一篇新闻文章，理解其包含了哪些主题。可以使用这样的  Prompt：确定以下主题列表中的每个项目是否是以下文本中的主题。以 0 或 1 的形式给出答案列表。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">判断主题列表中的每一项是否是给定文本中的一个话题,  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">以列表的形式给出答案,每个元素是一个Json对象,键为对应主题,值为对应的 0 或 1。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">主题列表:美国航空航天局、当地政府、工程、员工满意度、联邦政府  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">给定文本: ```<span class="subst">{story}</span>```  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[  </span><br><span class="line">	{"美国航空航天局": 1},  </span><br><span class="line">	{"当地政府": 1},  </span><br><span class="line">	{"工程": 0},  </span><br><span class="line">	{"员工满意度": 1},  </span><br><span class="line">	{"联邦政府": 1}  </span><br><span class="line">]</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="五、文本转换"><a href="#五、文本转换" class="headerlink" title="五、文本转换"></a>五、文本转换</h2><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f"""  </span></span><br><span class="line"><span class="string">针对以下三个反引号之间的英文评论文本,  </span></span><br><span class="line"><span class="string">首先进行拼写及语法纠错,  </span></span><br><span class="line"><span class="string">然后将其转化成中文,  </span></span><br><span class="line"><span class="string">再将其转化成优质淘宝评论的风格,从各种角度出发,分别说明产品的优点与缺点,并进行总结。  润色一下描述,使评论更具有吸引力。  </span></span><br><span class="line"><span class="string">输出结果格式为:  </span></span><br><span class="line"><span class="string">【优点】xxx  </span></span><br><span class="line"><span class="string">【缺点】xxx  </span></span><br><span class="line"><span class="string">【总结】xxx  </span></span><br><span class="line"><span class="string">注意,只需填写xxx部分,并分段输出。  </span></span><br><span class="line"><span class="string">将结果输出成Markdown格式。  </span></span><br><span class="line"><span class="string">```<span class="subst">{text}</span>```</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="六、文本扩展"><a href="#六、文本扩展" class="headerlink" title="六、文本扩展"></a>六、文本扩展</h2><p>文本扩展是大语言模型的一个重要应用方向，它可以输入简短文本，生成更加丰富的长文。 本章基于 <strong>OpenAI API</strong> 实现一个客户邮件自动生成的示例，用于根据客户反馈优化客服邮件。同时介绍了**温度（temperature）**这一超参数，它可以控制文本生成的多样性。</p>
+<h3 id="（一）定制客户邮件"><a href="#（一）定制客户邮件" class="headerlink" title="（一）定制客户邮件"></a>（一）定制客户邮件</h3><p>在这个客户邮件自动生成的示例中，我们将根据客户的评价和其中的情感倾向,使用大语言模型针对性地生成回复邮件。 具体来说，我们先输入客户的评论文本和对应的情感分析结果（正面或者负面）。然后构造一个 <strong>Prompt</strong>，要求大语言模型基于这些信息来生成一封定制的回复电子邮件。  下面先给出一个实例，包括一条客户评价和这个评价表达的情感。这为后续的语言模型生成回复邮件提供了关键输入信息。通过输入客户反馈的具体内容和情感态度，语言模型可以生成针对这个特定客户、考虑其具体情感因素的个性化回复。</p>
+<h3 id="（二）引入温度系数"><a href="#（二）引入温度系数" class="headerlink" title="（二）引入温度系数"></a>（二）引入温度系数</h3><p>大语言模型中的温度（temperature）参数可以控制生成文本的随机性和多样性。<strong>temperature</strong> 的值越大，语言模型输出的多样性越大；<strong>temperature</strong> 的值越小，输出越倾向高概率的文本。</p>
+<p>**温度（temperature）**参数可以控制语言模型生成文本的随机性。温度为 0时，每次使用同样的  Prompt，得到的结果总是一致的。而在上面的样例中，当温度设为 0.7 时，则每次执行都会生成不同的文本。</p>
+<h1 id="搭建基于-ChatGPT-的问答系统"><a href="#搭建基于-ChatGPT-的问答系统" class="headerlink" title="搭建基于 ChatGPT 的问答系统"></a>搭建基于 ChatGPT 的问答系统</h1><h2 id="一、语言模型"><a href="#一、语言模型" class="headerlink" title="一、语言模型"></a>一、语言模型</h2><p>大语言模型（LLM）是通过预测下一个词的监督学习方式进行训练的。具体来说，首先准备一个包含数百亿甚至更多词的大规模文本数据集。然后，可以从这些文本中提取句子或句子片段作为模型输入。模型会根据当前输入 <strong>Context</strong> 预测下一个词的概率分布。通过不断比较模型预测和实际的下一个词，并更新模型参数最小化两者差异，语言模型逐步掌握了语言的规律，学会了预测下一个词。训练过程中，研究人员会准备大量句子或句子片段作为训练样本，要求模型一次次预测下一个词，通过反复训练促使模型参数收敛，使其预测能力不断提高。经过在海量文本数据集上的训练，语言模型可以达到十分准确地预测下一个词的效果。这种以预测下一个词为训练目标的方法使得语言模型获得强大的语言生成能力。</p>
+<p>大型语言模型主要可以分为两类：<strong>基础语言模型</strong>和<strong>指令调优语言模型</strong>。</p>
+<p>**基础语言模型（Base LLM）**通过反复预测下一个词来训练的方式进行训练，没有明确的目标导向。因此，如果给它一个开放式的 prompt，它可能会通过自由联想生成戏剧化的内容。而对于具体的问题，基础语言模型也可能给出与问题无关的回答。例如,给它一个 Prompt，比如“中国的首都是哪里?”，很可能它数据中有一段互联网上关于中国的测验问题列表。这时，它可能会用“中国最大的城市是什么?中国的人口是多少?”等等来回答这个问题。</p>
+<p>相比之下，**指令微调的语言模型（Instruction Tuned LLM）**则进行了专门的训练，以便更好地理解问题并给出符合指令的回答。例如，对“中国的首都是哪里?”这个问题，经过微调的语言模型很可能直接回答“中国的首都是北京”，而不是生硬地列出一系列相关问题。指令微调使语言模型更加适合任务导向的对话应用。它可以生成遵循指令的语义准确的回复，而非自由联想。因此，许多实际应用已经采用指令调优语言模型。熟练掌握指令微调的工作机制，是开发者实现语言模型应用的重要一步。</p>
+<h5 id="基础语言模型转换到指令微调语言模型的步骤："><a href="#基础语言模型转换到指令微调语言模型的步骤：" class="headerlink" title="基础语言模型转换到指令微调语言模型的步骤："></a>基础语言模型转换到指令微调语言模型的步骤：</h5><p>首先，在大规模文本数据集上进行无监督预训练，获得基础语言模型。这一步需要使用数千亿词甚至更多的数据，在大型超级计算系统上可能需要数月时间。</p>
+<p>之后，使用包含指令及对应回复示例的小数据集对基础模型进行<strong>有监督 fine-tune</strong>，这让模型逐步学会遵循指令生成输出，可以通过雇佣承包商构造适合的训练示例。</p>
+<p>接下来，为了提高语言模型输出的质量，常见的方法是让人类对许多不同输出进行评级，例如是否有用、是否真实、是否无害等。  </p>
+<p>然后，可以进一步调整语言模型，增加生成高评级输出的概率。这通常使用**基于人类反馈的强化学习（RLHF）**技术来实现。</p>
+<p>相较于训练基础语言模型可能需要数月的时间，从基础语言模型到指令微调语言模型的转变过程可能只需要数天时间，使用较小规模的数据集和计算资源。</p>
+<h2 id="二、Tokens"><a href="#二、Tokens" class="headerlink" title="二、Tokens"></a>二、Tokens</h2><p>LLM 实际上并不是重复预测下一个单词，而是重复预测下一个 <strong>token</strong> 。对于一个句子，语言模型会先使用<strong>分词器</strong>将其拆分为一个个 <strong>token</strong>，而不是原始的单词。对于生僻词，可能会拆分为多个 <strong>token</strong> 。这样可以大幅降低字典规模，提高模型训练和推断的效率。例如，对于 “Learning new things is fun!” 这句话，每个单词都被转换为一个 token，而对于较少使用的单词，如 “Prompting as powerful  developer tool”，单词 “prompting” 会被拆分为三个 token，即”prom”、”pt”和”ing”。</p>
+<p>对于<strong>英文输入</strong>，<strong>一个 token 一般对应 4 个字符或者四分之三个单词</strong>；对于<strong>中文输入</strong>，<strong>一个  token 一般对应一个或半个词</strong>。不同模型有不同的 token 限制，需要注意的是，这里的 <strong>token 限制</strong>是<strong>输入的 Prompt 和输出的 completion 的 token 数之和</strong>，<code>因此输入的 Prompt 越长，能输出的  completion 的上限就越低</code>。 ChatGPT3.5-turbo 的 token 上限是 4096。</p>
+<h2 id="三、Helper-Function-辅助函数"><a href="#三、Helper-Function-辅助函数" class="headerlink" title="三、Helper Function 辅助函数"></a>三、Helper Function 辅助函数</h2><p>在AI应用开发领域，Prompt 技术的出现无疑是一场革命性的变革。然而，这种变革的重要性并未得到广泛的认知和重视。传统的监督机器学习工作流程中，构建一个能够分类餐厅评论为正面或负面的分类器，需要耗费大量的时间和资源。</p>
+<p>首先，我们需要收集并标注大量带有标签的数据。这可能需要数周甚至数月的时间才能完成。接着，我们需要选择合适的开源模型，并进行模型的调整和评估。这个过程可能需要几天、几周，甚至几个月的时间。最后，我们还需要将模型部署到云端，并让它运行起来，才能最终调用您的模型。整个过程通常需要一个团队数月时间才能完成。相比之下，基于 Prompt 的机器学习方法大大简化了这个过程。当我们有一个文本应用时，只需要提供一个简单的 Prompt，这个过程可能只需要几分钟，如果需要多次迭代来得到有效的 Prompt 的话，最多几个小时即可完成。在几天内我们就可以通过 API 调用来运行模型并开始使用。一旦我们达到了这个步骤，只需几分钟或几个小时，就可以开始调用模型进行推理。因此，以前可能需要花费六个月甚至一年时间才能构建的应用，现在只需要几分钟或几个小时，最多是几天的时间，就可以使用Prompt构建起来。这种方法正在极大地改变AI应用的快速构建方式。需要注意的是，这种方法适用于许多非结构化数据应用，特别是文本应用，以及越来越多的视觉应用，尽管目前的视觉技术仍在发展中。但它并不适用于结构化数据应用，也就是那些处理 Excel 电子表格中大量数值的机器学习应用。然而，对于适用于这种方法的应用，AI组件可以被快速构建，并且正在改变整个系统的构建工作流。构建整个系统可能仍然需要几天、几周或更长时间，但至少这部分可以更快地完成。总的来说，Prompt 技术的出现正在改变 AI 应用开发的范式，使得开发者能够更快速、更高效地构建和部署应用。然而，我们也需要认识到这种技术的局限性，以便更好地利用它来推动AI应用的发展。</p>
+<h2 id="三、处理输入——思维链推理"><a href="#三、处理输入——思维链推理" class="headerlink" title="三、处理输入——思维链推理"></a>三、处理输入——思维链推理</h2><h3 id="（一）思维链提示设计"><a href="#（一）思维链提示设计" class="headerlink" title="（一）思维链提示设计"></a>（一）思维链提示设计</h3><p>思维链提示是一种引导语言模型进行逐步推理的 Prompt 设计技巧。它通过在 Prompt 中设置系统消息，要求语言模型在给出最终结论之前，先明确各个推理步骤。</p>
+<p>具体来说，Prompt 可以先请语言模型陈述对问题的初步理解，然后列出需要考虑的方方面面，最后再逐个分析这些因素，给出支持或反对的论据，才得出整体的结论。这种逐步推理的方式，更接近人类处理复杂问题的思维过程，可以减少语言模型匆忙得出错误结论的情况。因为它必须逐步论证自己的观点，而不是直接输出結论。通过详细的思维链提示，开发者可以获得语言模型生成的结论更加可靠，理由更加充分。这种提示设计技巧值得在需要语言模型进行复杂推理时加以运用。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">delimiter = <span class="string">"===="</span>  </span><br><span class="line"></span><br><span class="line">system_message = <span class="string">f"""  </span></span><br><span class="line"><span class="string">请按照以下步骤回答客户的提问。客户的提问将以<span class="subst">{delimiter}</span>分隔。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">步骤 1:<span class="subst">{delimiter}</span>首先确定用户是否正在询问有关特定产品或产品的问题。产品类别不计入范围。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">步骤 2:<span class="subst">{delimiter}</span>如果用户询问特定产品,请确认产品是否在以下列表中。所有可用产品:  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">产品:TechPro 超极本  </span></span><br><span class="line"><span class="string">类别:计算机和笔记本电脑  </span></span><br><span class="line"><span class="string">品牌:TechPro  </span></span><br><span class="line"><span class="string">型号:TP-UB100  </span></span><br><span class="line"><span class="string">保修期:1 年  </span></span><br><span class="line"><span class="string">评分:4.5  </span></span><br><span class="line"><span class="string">特点:13.3 </span></span><br><span class="line"><span class="string">英寸显示屏,8GB RAM,256GB SSD,Intel Core i5 处理器  </span></span><br><span class="line"><span class="string">描述:一款适用于日常使用的时尚轻便的超极本。  </span></span><br><span class="line"><span class="string">价格:$799.99  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">产品:BlueWave 游戏笔记本电脑  </span></span><br><span class="line"><span class="string">类别:计算机和笔记本电脑  </span></span><br><span class="line"><span class="string">品牌:BlueWave  </span></span><br><span class="line"><span class="string">型号:BW-GL200  </span></span><br><span class="line"><span class="string">保修期:2 年 </span></span><br><span class="line"><span class="string">评分:4.7  </span></span><br><span class="line"><span class="string">特点:15.6 英寸显示屏,16GB RAM,512GB SSD,NVIDIA GeForce RTX 3060  </span></span><br><span class="line"><span class="string">描述:一款高性能的游戏笔记本电脑,提供沉浸式体验。  </span></span><br><span class="line"><span class="string">价格:$1199.99  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">产品:PowerLite 可转换笔记本电脑  </span></span><br><span class="line"><span class="string">类别:计算机和笔记本电脑  </span></span><br><span class="line"><span class="string">品牌:PowerLite  </span></span><br><span class="line"><span class="string">型号:PL-CV300  </span></span><br><span class="line"><span class="string">保修期:1年  </span></span><br><span class="line"><span class="string">评分:4.3  </span></span><br><span class="line"><span class="string">特点:14 英寸触摸屏,8GB RAM,256GB SSD,360 度铰链  </span></span><br><span class="line"><span class="string">描述:一款多功能可转换笔记本电脑,具有响应触摸屏。  </span></span><br><span class="line"><span class="string">价格:$699.99  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">产品:TechPro 台式电脑  </span></span><br><span class="line"><span class="string">类别:计算机和笔记本电脑  </span></span><br><span class="line"><span class="string">品牌:TechPro  </span></span><br><span class="line"><span class="string">型号:TP-DT500  </span></span><br><span class="line"><span class="string">保修期:1年  </span></span><br><span class="line"><span class="string">评分:4.4  </span></span><br><span class="line"><span class="string">特点:Intel Core i7 处理器,16GB RAM,1TB HDD,NVIDIA GeForce GTX 1660  </span></span><br><span class="line"><span class="string">描述:一款功能强大的台式电脑,适用于工作和娱乐。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">价格:$999.99  </span></span><br><span class="line"><span class="string">产品:BlueWave Chromebook  </span></span><br><span class="line"><span class="string">类别:计算机和笔记本电脑  </span></span><br><span class="line"><span class="string">品牌:BlueWave  </span></span><br><span class="line"><span class="string">型号:BW-CB100  </span></span><br><span class="line"><span class="string">保修期:1 年  </span></span><br><span class="line"><span class="string">评分:4.1  特点:11.6 英寸显示屏,4GB RAM,32GB eMMC,Chrome OS  描述:一款紧凑而价格实惠的 Chromebook,适用于日常任务。  </span></span><br><span class="line"><span class="string">价格:$249.99  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">步骤 3:<span class="subst">{delimiter}</span> 如果消息中包含上述列表中的产品,请列出用户在消息中做出的任何假设,\  </span></span><br><span class="line"><span class="string">例如笔记本电脑 X 比笔记本电脑 Y 大,或者笔记本电脑 Z 有 2 年保修期。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">步骤 4:<span class="subst">{delimiter}</span> 如果用户做出了任何假设,请根据产品信息确定假设是否正确。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">步骤 5:<span class="subst">{delimiter}</span> 如果用户有任何错误的假设,请先礼貌地纠正客户的错误假设(如果适用)。\  只提及或引用可用产品列表中的产品,因为这是商店销售的唯一五款产品。以友好的口吻回答客户。  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">使用以下格式回答问题:  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">步骤 1: <span class="subst">{delimiter}</span> &lt;步骤 1 的推理&gt;  </span></span><br><span class="line"><span class="string">步骤 2: <span class="subst">{delimiter}</span> &lt;步骤 2 的推理&gt;  </span></span><br><span class="line"><span class="string">步骤 3: <span class="subst">{delimiter}</span> &lt;步骤 3 的推理&gt;  </span></span><br><span class="line"><span class="string">步骤 4: <span class="subst">{delimiter}</span> &lt;步骤 4 的推理&gt;  </span></span><br><span class="line"><span class="string">回复客户: <span class="subst">{delimiter}</span> &lt;回复客户的内容&gt;  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">请确保每个步骤上面的回答中中使用 <span class="subst">{delimiter}</span> 对步骤和步骤的推理进行分隔。  </span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（二）内心独白"><a href="#（二）内心独白" class="headerlink" title="（二）内心独白"></a>（二）内心独白</h3><p>在某些应用场景下，完整呈现语言模型的推理过程可能会泄露关键信息或答案,这并不可取。例如在教学应用中，我们希望学生通过自己的思考获得结论,而不是直接被告知答案。</p>
+<p>针对这一问题。“内心独白”技巧可以在一定程度上隐藏语言模型的推理链。具体做法是，在 Prompt 中指示语言模型以结构化格式存储需要隐藏的中间推理，例如存储为变量。然后在返回结果时，仅呈现对用户有价值的输出，不展示完整的推理过程。这种提示策略只向用户呈现关键信息，避免透露答案。同时语言模型的推理能力也得以保留。适当使用“内心独白”可以在保护敏感信息的同时，发挥语言模型的推理特长。</p>
+<h1 id="使用-LangChain-开发应用程序"><a href="#使用-LangChain-开发应用程序" class="headerlink" title="使用 LangChain 开发应用程序"></a>使用 LangChain 开发应用程序</h1><p>虽然 <strong>LLM</strong> 提供了强大的能力，极大便利了应用程序的开发，个人开发者要基于 <strong>LLM</strong> 快速、便捷地开发一个完整的应用程序依然是一个具有较大工作量的任务。针对 <strong>LLM</strong> 开发，<strong>LangChain</strong> 应运而生。<strong>LangChain</strong> 是一套专为  <strong>LLM</strong> 开发打造的开源框架，实现了 <strong>LLM</strong> 多种强大能力的利用，提供了 <strong>Chain</strong>、<strong>Agent</strong>、<strong>Tool</strong> 等多种封装工具，基于 <strong>LangChain</strong> 可以便捷开发应用程序，极大化发挥 <strong>LLM</strong> 潜能。目前，使用 LangChin 已经成为 <strong>LLM</strong> 开发的必备能力之一。</p>
+<p><strong>LangChain</strong> 是用于构建大模型应用程序的开源框架，有 <strong>Python</strong> 和 <strong>JavaScript</strong> 两个不同版本的包。<strong>LangChain</strong> 也是一个开源项目，社区活跃，新增功能快速迭代。<strong>LangChain</strong> 基于模块化组合，有许多单独的组件，可以一起使用或单独使用。本模块将重点介绍 <strong>LangChain</strong> 的常用组件： </p>
+<ul>
+<li><strong>模型</strong>（Models）：集成各种语言模型与向量模型。  </li>
+<li><strong>提示</strong>（Prompts）：向模型提供指令的途径。  </li>
+<li><strong>索引</strong>（Indexes）：提供数据检索功能。  </li>
+<li><strong>链</strong>（Chains）：将组件组合实现端到端应用。  </li>
+<li><strong>代理</strong>（Agents）：扩展模型的推理能力。</li>
+</ul>
+<h2 id="一、模型、提示和输出解释器"><a href="#一、模型、提示和输出解释器" class="headerlink" title="一、模型、提示和输出解释器"></a>一、模型、提示和输出解释器</h2><h3 id="（一）通过-LangChain-使用-OpenAI"><a href="#（一）通过-LangChain-使用-OpenAI" class="headerlink" title="（一）通过 LangChain 使用 OpenAI"></a>（一）通过 LangChain 使用 OpenAI</h3><h4 id="1-模型"><a href="#1-模型" class="headerlink" title="1.模型"></a>1.模型</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI  </span><br><span class="line"><span class="comment"># 这里我们将参数temperature设置为0.0,从而减少生成答案的随机性。  # 如果你想要每次得到不一样的有新意的答案,可以尝试调整该参数。  chat = ChatOpenAI(temperature=0.0)  </span></span><br><span class="line">chat</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ChatOpenAI(cache=<span class="literal">None</span>, verbose=<span class="literal">False</span>, callbacks=<span class="literal">None</span>, callback_manager=<span class="literal">None</span>, tags=<span class="literal">None</span>,  metadata=<span class="literal">None</span>, client=&lt;<span class="keyword">class</span> <span class="string">'openai.api_resources.chat_completion.ChatCompletion'</span>&gt;,  model_name=<span class="string">'gpt-3.5-turbo'</span>, temperature=<span class="number">0.0</span>, model_kwargs={}, openai_api_key=<span class="string">'skIBJfPyi4LiaSSiYxEB2wT3BlbkFJjfw8KCwmJez49eVF1O1b'</span>, openai_api_base=<span class="string">''</span>, openai_organization=<span class="string">''</span>,  openai_proxy=<span class="string">''</span>, request_timeout=<span class="literal">None</span>, max_retries=<span class="number">6</span>, streaming=<span class="literal">False</span>, n=<span class="number">1</span>, max_tokens=<span class="literal">None</span>,  tiktoken_model_name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-使用提升模板"><a href="#2-使用提升模板" class="headerlink" title="2.使用提升模板"></a>2.使用提升模板</h4><p>在应用于比较复杂的场景时，提示可能会非常长并且包含涉及许多细节。使用提示模版，可以让我们更为方便地重复使用设计好的提示。</p>
+<p>此外，LangChain 还提供了提示模版用于一些常用场景。比如自动摘要、问答、连接到SQL数据库、连接到不同的API。通过使用 LangChain 内置的提示模版，可以快速建立自己的大模型应用，而不需要花时间去设计和构造提示。</p>
+<p>最后，我们在建立大模型应用时，通常希望模型的输出为给定的格式，比如在输出使用特定的关键词来让输出结构化。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">customer_style = <span class="string">"""正式普通话 \  </span></span><br><span class="line"><span class="string">用一个平静、尊敬的语气  </span></span><br><span class="line"><span class="string">"""</span>  </span><br><span class="line"></span><br><span class="line">customer_email = <span class="string">"""  </span></span><br><span class="line"><span class="string">嗯呐,我现在可是火冒三丈,我那个搅拌机盖子竟然飞了出去,把我厨房的墙壁都溅上了果汁!  更糟糕的是,保修条款可不包括清理我厨房的费用。  </span></span><br><span class="line"><span class="string">伙计,赶紧给我过来!  </span></span><br><span class="line"><span class="string">"""</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用提示模版  </span></span><br><span class="line">customer_messages = prompt_template.format_messages(</span><br><span class="line">    style=customer_style,  </span><br><span class="line">    text=customer_email)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印客户消息类型 </span></span><br><span class="line"><span class="comment"># customer_messages 变量类型为列表( list )</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"客户消息类型:"</span>,<span class="built_in">type</span>(customer_messages),<span class="string">"\n"</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印第一个客户消息类型</span></span><br><span class="line"><span class="comment"># 列表里的元素变量类型为langchain自定义消息( langchain.schema.HumanMessage )</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"第一个客户客户消息类型类型:"</span>, <span class="built_in">type</span>(customer_messages[<span class="number">0</span>]),<span class="string">"\n"</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印第一个元素</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"第一个客户客户消息类型类型: "</span>, customer_messages[<span class="number">0</span>],<span class="string">"\n"</span>)</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">客户消息类型:  </span><br><span class="line">&lt;class 'list'&gt;  </span><br><span class="line"></span><br><span class="line">第一个客户客户消息类型类型:  </span><br><span class="line">&lt;class 'langchain.schema.messages.HumanMessage'&gt;  </span><br><span class="line"></span><br><span class="line">第一个客户客户消息类型类型:  </span><br><span class="line">content='把由三个反引号分隔的文本翻译成一种正式普通话 用一个平静、尊敬的语气\n风格。文本: ```\n嗯呐,我现在  可是火冒三丈,我那个搅拌机盖子竟然飞了出去,把我厨房的墙壁都溅上了果汁!\n更糟糕的是,保修条款可不包括清理我厨房  的费用。\n伙计,赶紧给我过来!\n```\n' additional_kwargs={} example=False</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="二、储存"><a href="#二、储存" class="headerlink" title="二、储存"></a>二、储存</h2><h3 id="（一）对话缓存储存"><a href="#（一）对话缓存储存" class="headerlink" title="（一）对话缓存储存"></a>（一）对话缓存储存</h3><p>当使用 <strong>LangChain</strong> 中的**储存（Memory）**模块时，它旨在保存、组织和跟踪整个对话的历史，从而为用户和模型之间的交互提供连续的上下文。  LangChain 提供了多种储存类型。其中，缓冲区储存允许保留最近的聊天消息，摘要储存则提供了对整个对话的摘要。实体储存则允许在多轮对话中保留有关特定实体的信息。这些记忆组件都是模块化的，可与其他组件组合使用,从而增强机器人的对话管理能力。储存模块可以通过简单的 API 调用来访问和更新，允许开发人员更轻松地实现对话历史记录的管理和维护。  </p>
+<p>此次课程主要介绍其中四种储存模块，其他模块可查看文档学习。<strong>对话缓存储（ConversationBufferMemory）</strong>、<strong>对话缓存窗口储存（ConversationBufferWindowMemory）</strong>、<strong>对话令牌缓存储存（ConversationTokenBufferMemory）</strong>、<strong>对话摘要缓存储存 （ConversationSummaryBufferMemory）</strong>。在 LangChain 中，储存指的是大语言模型（LLM）的短期记忆。LLM 训练好之后（获得了一些<strong>长期记忆</strong>），它的参数便不会因为用户的输入而发生改变。当用户与训练好的 LLM 进行对话时，LLM 会暂时记住用户的输入和它已经生成的输出，以便预测之后的输出，而模型输出完毕后,  它便会“遗忘”之前用户的输入和它的输出。因此，之前的这些信息只能称作为 LLM 的短期记忆。为了延长 LLM 短期记忆的保留时间，需要借助一些外部储存方式来进行记忆，以便在用户与 LLM 对话中，LLM 能够尽可能的知道用户与它所进行的历史对话信息。</p>
+<p>当我们在使用大型语言模型进行聊天对话时，大型语言模型本身实际上是无状态的。语言模型本身并不记得到目前为止的历史对话。每次调用 API 结点都是独立的。**储存（Memory）**可以储存到目前为止的所有术语或对话，并将其输入或附加上下文到 LLM 中用于生成输出。</p>
+<h3 id="（二）对话缓存窗口储存"><a href="#（二）对话缓存窗口储存" class="headerlink" title="（二）对话缓存窗口储存"></a>（二）对话缓存窗口储存</h3><p>随着对话变得越来越长，所需的内存量也变得非常长。将大量的 tokens 发送到 LLM 的成本，也会变得更加昂贵，这也就是为什么 API 的调用费用，通常是基于它需要处理的 tokens 数量而收费的。针对以上问题，LangChain 也提供了几种方便的储存方式来保存历史对话。其中，对话缓存窗口储存只保留一个窗口大小的对话。它只使用最近的 n 次交互。这可以用于保持最近交互的滑动窗口，以便缓冲区不会过大。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">llm = ChatOpenAI(temperature=<span class="number">0.0</span>)  </span><br><span class="line">memory = ConversationBufferWindowMemory(k=<span class="number">1</span>)  </span><br><span class="line">conversation = ConversationChain(llm=llm, memory=memory, verbose=<span class="literal">False</span> )  </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"第一轮对话:"</span>)  </span><br><span class="line"><span class="built_in">print</span>(conversation.predict(<span class="built_in">input</span>=<span class="string">"你好, 我叫皮皮鲁"</span>))  </span><br><span class="line"><span class="built_in">print</span>(<span class="string">"第二轮对话:"</span>)  </span><br><span class="line"><span class="built_in">print</span>(conversation.predict(<span class="built_in">input</span>=<span class="string">"1+1等于多少?"</span>))  </span><br><span class="line"><span class="built_in">print</span>(<span class="string">"第三轮对话:"</span>)  </span><br><span class="line"><span class="built_in">print</span>(conversation.predict(<span class="built_in">input</span>=<span class="string">"我叫什么名字?"</span>))</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一轮对话:  </span><br><span class="line">你好,皮皮鲁!很高兴认识你。我是一个AI助手,可以回答你的问题和提供帮助。有什么我可以帮你的吗?  </span><br><span class="line">第二轮对话:  1+1等于2。  </span><br><span class="line">第三轮对话:  很抱歉,我无法知道您的名字。</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（三）对话字符缓存储存"><a href="#（三）对话字符缓存储存" class="headerlink" title="（三）对话字符缓存储存"></a>（三）对话字符缓存储存</h3><p>使用对话字符缓存记忆，内存将限制保存的 token 数量。如果字符数量超出指定数目，它会切掉这个对话的早期部分以保留与最近的交流相对应的字符数量，但不超过字符限制。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI  </span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationTokenBufferMemory  </span><br><span class="line"></span><br><span class="line">memory = ConversationTokenBufferMemory(llm=llm, max_token_limit=<span class="number">30</span>)  </span><br><span class="line">memory.save_context({<span class="string">"input"</span>: <span class="string">"朝辞白帝彩云间,"</span>}, {<span class="string">"output"</span>: <span class="string">"千里江陵一日还。"</span>})  </span><br><span class="line">memory.save_context({<span class="string">"input"</span>: <span class="string">"两岸猿声啼不住,"</span>}, {<span class="string">"output"</span>: <span class="string">"轻舟已过万重山。"</span>})  </span><br><span class="line">memory.load_memory_variables({})</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">{'history': 'AI: 轻舟已过万重山。'}</span><br></pre></td></tr></table></figure></div>
+
+<p>ChatGPT 使用一种**基于字节对编码（Byte Pair Encoding，BPE）**的方法来进行 <strong>tokenization</strong>（将输入文本拆分为token）。BPE 是一种常见的 tokenization 技术，它将输入文本分割成较小的子词单元。 </p>
+<p> OpenAI 在其官方 GitHub 上公开了一个最新的开源 Python 库 <strong>tiktoken</strong>（<a class="link" target="_blank" rel="noopener" href="https://github.com/openai/tiktoken%EF%BC%89%EF%BC%8C%E8%BF%99%E4%B8%AA%E5%BA%93%E4%B8%BB%E8%A6%81%E6%98%AF%E7%94%A8%E6%9D%A5%E8%AE%A1%E7%AE%97">https://github.com/openai/tiktoken），这个库主要是用来计算<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> tokens 数量的。相比较 HuggingFace 的 tokenizer，其速度提升了好几  倍。</p>
+<h3 id="（四）对话摘要缓存储存"><a href="#（四）对话摘要缓存储存" class="headerlink" title="（四）对话摘要缓存储存"></a>（四）对话摘要缓存储存</h3><p>对话摘要缓存储存，<strong>使用 LLM 对到目前为止历史对话自动总结摘要</strong>，并将其保存下来。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain  </span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI  </span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationSummaryBufferMemory  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个长字符串  </span></span><br><span class="line">schedule = <span class="string">"在八点你和你的产品团队有一个会议。 \  </span></span><br><span class="line"><span class="string">你需要做一个PPT。 \  </span></span><br><span class="line"><span class="string">上午9点到12点你需要忙于LangChain。\  </span></span><br><span class="line"><span class="string">Langchain是一个有用的工具,因此你的项目进展的非常快。\  </span></span><br><span class="line"><span class="string">中午,在意大利餐厅与一位开车来的顾客共进午餐 \  </span></span><br><span class="line"><span class="string">走了一个多小时的路程与你见面,只为了解最新的 AI。 \  </span></span><br><span class="line"><span class="string">确保你带了笔记本电脑可以展示最新的 LLM 样例."</span>  </span><br><span class="line"></span><br><span class="line">llm = ChatOpenAI(temperature=<span class="number">0.0</span>)  </span><br><span class="line">memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=<span class="number">100</span>)  </span><br><span class="line">memory.save_context({<span class="string">"input"</span>: <span class="string">"你好,我叫皮皮鲁"</span>}, {<span class="string">"output"</span>: <span class="string">"你好啊,我叫鲁西西"</span>})  </span><br><span class="line">memory.save_context({<span class="string">"input"</span>: <span class="string">"很高兴和你成为朋友!"</span>}, {<span class="string">"output"</span>: <span class="string">"是的,让我们一起去冒  险吧!"</span>})  </span><br><span class="line">memory.save_context({<span class="string">"input"</span>: <span class="string">"今天的日程安排是什么?"</span>}, {<span class="string">"output"</span>: <span class="string">f"<span class="subst">{schedule}</span>"</span>})  </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(memory.load_memory_variables({})[<span class="string">'history'</span>])</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System: The human introduces themselves as Pipilu and the AI introduces  themselves as Luxixi. They express happiness at becoming friends and decide to go  on an adventure together. The human asks about the schedule for the day. The AI  informs them that they have a meeting with their product team at 8 o'clock and  need to prepare a PowerPoint presentation. From 9 am to 12 pm, they will be busy  with LangChain, a useful tool that helps their project progress quickly. At noon,  they will have lunch with a customer who has driven for over an hour just to  learn about the latest AI. The AI advises the human to bring their laptop to  showcase the latest LLM samples.</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="三、模型链"><a href="#三、模型链" class="headerlink" title="三、模型链"></a>三、模型链</h2><p><strong>链（Chains）<strong>通常将</strong>大语言模型（LLM）<strong>与提示（Prompt）结合在一起，基于此，我们可以对文本或数据进行一系列操作。链（Chains）可以一次性接受多个输入。例如，我们可以创建一个链，该链接受用户输入，使用提示模板对其进行格式化，然后</strong>将格式化的响应传递给 LLM</strong>。我们可以通过将多个链组合在一起，或者通过将链与其他组件组合在一起来构建更复杂的链。</p>
+<h3 id="（一）大语言模型链（LLMChain）"><a href="#（一）大语言模型链（LLMChain）" class="headerlink" title="（一）大语言模型链（LLMChain）"></a>（一）大语言模型链（LLMChain）</h3><h4 id="1-初始化语言模型"><a href="#1-初始化语言模型" class="headerlink" title="1.初始化语言模型"></a>1.初始化语言模型</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings  </span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)  </span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI  </span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> ChatPromptTemplate </span><br><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里我们将参数temperature设置为0.0,从而减少生成答案的随机性。  # 如果你想要每次得到不一样的有新意的答案,可以尝试调整该参数。  </span></span><br><span class="line">llm = ChatOpenAI(temperature=<span class="number">0.0</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-初始化提示模板"><a href="#2-初始化提示模板" class="headerlink" title="2.初始化提示模板"></a>2.初始化提示模板</h4><p>初始化提示，这个提示将接受一个名为 product 的变量。该 prompt 将要求 LLM 生成一个描述制造该产品的公司的最佳名称。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prompt = ChatPromptTemplate.from_template(<span class="string">"描述制造{product}的一个公司的最佳名称是什  么?"</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="3-构建大语言模型链"><a href="#3-构建大语言模型链" class="headerlink" title="3.构建大语言模型链"></a>3.构建大语言模型链</h4><p>将大语言模型（LLM）和提示（Prompt）组合成链。这个大语言模型链非常简单，可以让我们以一种顺序的方式去通过运行提示并且结合到大语言模型中。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="4-运行大语言模型链"><a href="#4-运行大语言模型链" class="headerlink" title="4.运行大语言模型链"></a>4.运行大语言模型链</h4><p>因此，如果我们有一个名为”Queen Size Sheet Set”的产品，我们可以通过使用 chain.run 将其通过这个链运行。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">product = <span class="string">"大号床单套装"</span>  </span><br><span class="line">chain.run(product)</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'"豪华床纺"'</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（二）简单顺序链"><a href="#（二）简单顺序链" class="headerlink" title="（二）简单顺序链"></a>（二）简单顺序链</h3><p>顺序链（SequentialChains）是按预定义顺序执行其链接的链。具体来说，我们将使用简单顺序链（SimpleSequentialChain—），这是顺序链的最简单类型，其中每个步骤都有一个输入/输出，一个步骤的输出是下一个步骤的输入。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SimpleSequentialChain  </span><br><span class="line">llm = ChatOpenAI(temperature=<span class="number">0.9</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="1-创建两个子链"><a href="#1-创建两个子链" class="headerlink" title="1.创建两个子链"></a>1.创建两个子链</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提示模板 1 :这个提示将接受产品并返回最佳名称来描述该公司  </span></span><br><span class="line">first_prompt = ChatPromptTemplate.from_template(  <span class="string">"描述制造{product}的一个公司的最好的名称是什么"</span>  )  </span><br><span class="line">chain_one = LLMChain(llm=llm, prompt=first_prompt)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 提示模板 2 :接受公司名称,然后输出该公司的长为20个单词的描述  </span></span><br><span class="line">second_prompt = ChatPromptTemplate.from_template(  <span class="string">"写一个20字的描述对于下面这个\  公司:{company_name}的"</span>  </span><br><span class="line">) </span><br><span class="line">chain_two = LLMChain(llm=llm, prompt=second_prompt)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-构建简单顺序链"><a href="#2-构建简单顺序链" class="headerlink" title="2.构建简单顺序链"></a>2.构建简单顺序链</h4><p>现在我们可以组合两个 LLMChain，以便我们可以在一个步骤中创建公司名称和描述。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two],  verbose=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="3-运行简单顺序链"><a href="#3-运行简单顺序链" class="headerlink" title="3.运行简单顺序链"></a>3.运行简单顺序链</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">product = <span class="string">"大号床单套装"</span>  </span><br><span class="line">overall_simple_chain.run(product)</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Entering new SimpleSequentialChain chain...  </span><br><span class="line">优床制造公司  </span><br><span class="line">优床制造公司是一家专注于生产高品质床具的公司。  </span><br><span class="line">&gt; Finished chain.</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">'优床制造公司是一家专注于生产高品质床具的公司。'</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（三）顺序链"><a href="#（三）顺序链" class="headerlink" title="（三）顺序链"></a>（三）顺序链</h3><p>当只有一个输入和一个输出时，**简单顺序链（SimpleSequentialChain）<strong>即可实现。当有多个输入或多个输出时，我们则需要使用</strong>顺序链（SequentialChain）**来实现。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd  </span><br><span class="line">from langchain.chains import SequentialChain  </span><br><span class="line">from langchain.chat_models import ChatOpenAI #导入OpenAI模型  </span><br><span class="line">from langchain.prompts import ChatPromptTemplate #导入聊天提示模板  </span><br><span class="line">from langchain.chains import LLMChain #导入LLM链。  </span><br><span class="line"></span><br><span class="line">llm = ChatOpenAI(temperature=0.9)</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#子链1  </span></span><br><span class="line"><span class="comment"># prompt模板 1: 翻译成英语(把下面的review翻译成英语)  </span></span><br><span class="line">first_prompt = ChatPromptTemplate.from_template(  <span class="string">"把下面的评论review翻译成英文:"</span>  <span class="string">"\n\n{Review}"</span>  )  </span><br><span class="line"><span class="comment"># chain 1: 输入:Review 输出:英文的 Review  </span></span><br><span class="line">chain_one = LLMChain(llm=llm, prompt=first_prompt, output_key=<span class="string">"English_Review"</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#子链2  </span></span><br><span class="line"><span class="comment"># prompt模板 2: 用一句话总结下面的 review  </span></span><br><span class="line">second_prompt = ChatPromptTemplate.from_template(  <span class="string">"请你用一句话来总结下面的评论review:"</span>  <span class="string">"\n\n{English_Review}"</span>  ) </span><br><span class="line"><span class="comment"># chain 2: 输入:英文的Review 输出:总结  chain_two = LLMChain(llm=llm, prompt=second_prompt, output_key="summary")  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#子链3  </span></span><br><span class="line"><span class="comment"># prompt模板 3: 下面review使用的什么语言  </span></span><br><span class="line">third_prompt = ChatPromptTemplate.from_template(  <span class="string">"下面的评论review使用的什么语言:\n\n{Review}"</span>  )  </span><br><span class="line"><span class="comment"># chain 3: 输入:Review 输出:语言  </span></span><br><span class="line">chain_three = LLMChain(llm=llm, prompt=third_prompt, output_key=<span class="string">"language"</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#子链4  </span></span><br><span class="line"><span class="comment"># prompt模板 4: 使用特定的语言对下面的总结写一个后续回复  </span></span><br><span class="line">fourth_prompt = ChatPromptTemplate.from_template(  <span class="string">"使用特定的语言对下面的总结写一个后续回复:"</span>  <span class="string">"\n\n总结: {summary}\n\n语言: {language}"</span>  )  </span><br><span class="line"><span class="comment"># chain 4: 输入: 总结, 语言 输出: 后续回复  </span></span><br><span class="line">chain_four = LLMChain(llm=llm, prompt=fourth_prompt,  output_key=<span class="string">"followup_message"</span>)</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="（四）路由链"><a href="#（四）路由链" class="headerlink" title="（四）路由链"></a>（四）路由链</h3><p>到目前为止，我们已经学习了大语言模型链和顺序链。但是，如果我们想做一些更复杂的事情怎么办?  一个相当常见但基本的操作是根据输入将其路由到一条链，具体取决于该输入到底是什么。如果你有多个子链，每个子链都专门用于特定类型的输入，那么可以组成一个路由链，它首先决定将它传递给哪个子链，然后将它传递给那个链。  </p>
+<p>路由器由两个组件组成：</p>
+<ul>
+<li>路由链（Router Chain）：路由器链本身，负责选择要调用的下一个链  </li>
+<li>destination_chains：路由器链可以路由到的链</li>
+</ul>
+<h2 id="四、基于文档的问答"><a href="#四、基于文档的问答" class="headerlink" title="四、基于文档的问答"></a>四、基于文档的问答</h2><p>使用大语言模型构建一个能够回答关于给定文档和文档集合的问答系统是一种非常实用和有效的应用场景。与仅依赖模型预训练知识不同，这种方法可以进一步整合用户自有数据，实现更加个性化和专业的问答服务。例如，我们可以收集某公司的内部文档、产品说明书等文字资料，导入问答系统中。然后用户针对这些文档提出问题时，系统可以先在文档中检索相关信息，再提供给语言模型生成答案。</p>
+<p>这样,语言模型不仅利用了自己的通用知识，还可以充分运用外部输入文档的专业信息来回答用户问题，显著提升答案的质量和适用性。构建这类基于外部文档的问答系统，可以让语言模型更好地服务于具体场景，而不是停留在通用层面。这种灵活应用语言模型的方法值得在实际使用中推广。</p>
+<h3 id="一、直接使用向量储存查询"><a href="#一、直接使用向量储存查询" class="headerlink" title="一、直接使用向量储存查询"></a>一、直接使用向量储存查询</h3><h4 id="1-导入数据"><a href="#1-导入数据" class="headerlink" title="1.导入数据"></a>1.导入数据</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA <span class="comment">#检索QA链,在文档上进行检索  </span></span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI <span class="comment">#openai模型  </span></span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> CSVLoader <span class="comment">#文档加载器,采用csv格式存储  </span></span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> DocArrayInMemorySearch <span class="comment">#向量存储  </span></span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display, Markdown <span class="comment">#在jupyter显示信息的工具  </span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd  file = <span class="string">'../data/OutdoorClothingCatalog_1000.csv'</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用langchain文档加载器对数据进行导入  </span></span><br><span class="line">loader = CSVLoader(file_path=file)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用pandas导入数据,用以查看  </span></span><br><span class="line">data = pd.read_csv(file,usecols=[<span class="number">1</span>, <span class="number">2</span>])  </span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-基本文档加载器创建向量存储"><a href="#2-基本文档加载器创建向量存储" class="headerlink" title="2.基本文档加载器创建向量存储"></a>2.基本文档加载器创建向量存储</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入向量存储索引创建器  </span></span><br><span class="line"><span class="keyword">from</span> langchain.indexes <span class="keyword">import</span> VectorstoreIndexCreator  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建指定向量存储类, 创建完成后,从加载器中调用, 通过文档加载器列表加载  </span></span><br><span class="line">index =  VectorstoreIndexCreator(vectorstore_cls=DocArrayInMemorySearch).from_loaders([loa  der])</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="3-查询创建的向量存储"><a href="#3-查询创建的向量存储" class="headerlink" title="3.查询创建的向量存储"></a>3.查询创建的向量存储</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">query =<span class="string">"请用markdown表格的方式列出所有具有防晒功能的衬衫,对每件衬衫描述进行总结"</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment">#使用索引查询创建一个响应,并传入这个查询  </span></span><br><span class="line">response = index.query(query)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#查看查询返回的内容  </span></span><br><span class="line">display(Markdown(response))</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="二、结合表征模型和向量存储"><a href="#二、结合表征模型和向量存储" class="headerlink" title="二、结合表征模型和向量存储"></a>二、结合表征模型和向量存储</h3><p>由于语言模型的上下文长度限制，直接处理长文档具有困难。为实现长文档的问答，可以引入**向量嵌入（Embeddings）<strong>和</strong>向量存储（Vector Store）**等技术：</p>
+<p>首先，<strong>使用向量嵌入算法对文档进行向量化，使语义相似的文本片段具有接近的向量表示</strong>。其次，<strong>将向量化的文档切分为小块，存入向量数据库</strong>，这个流程是创建**索引（Index）**的过程。向量数据库对各文档片段进行索引，支持快速检索。这样，当用户提出问题时，可以先将问题转换为向量，在数据库中快速找到语义最相关的文档片段，然后将这些文档片段与问题一起传递给语言模型，生成回答。</p>
+<p>通过嵌入向量化和索引技术，可以实现对长文档的切片检索和问答，这种流程克服了语言模型的上下文限制，可以构建处理大规模文档的问答系统。</p>
+<h4 id="1-导入数据-1"><a href="#1-导入数据-1" class="headerlink" title="1.导入数据"></a>1.导入数据</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建一个文档加载器,通过csv格式加载  </span></span><br><span class="line">file = <span class="string">'../data/OutdoorClothingCatalog_1000.csv'</span>  </span><br><span class="line">loader = CSVLoader(file_path=file)  </span><br><span class="line">docs = loader.load()  </span><br><span class="line"></span><br><span class="line"><span class="comment">#查看单个文档,每个文档对应于CSV中的一行数据  </span></span><br><span class="line">docs[<span class="number">0</span>]</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Document(page_content=": 0\nname: Women's Campside Oxfords\ndescription: This  ultracomfortable lace-to-toe Oxford boasts a super-soft canvas, thick cushioning,  and quality construction for a broken-in feel from the first time you put them  on. \n\nSize &amp; Fit: Order regular shoe size. For half sizes not offered, order up  to next whole size. \n\nSpecs: Approx. weight: 1 lb.1 oz. per pair.  \n\nConstruction: Soft canvas material for a broken-in feel and look. Comfortable  EVA innersole with Cleansport NXT® antimicrobial odor control. Vintage hunt, fish  and camping motif on innersole. Moderate arch contour of innersole. EVA foam  midsole for cushioning and support. Chain-tread-inspired molded rubber outsole  with modified chain-tread pattern. Imported. \n\nQuestions? Please contact us for  any inquiries.", metadata={'source': '../data/OutdoorClothingCatalog_1000.csv',  'row': 0})</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-文本向量表征模型"><a href="#2-文本向量表征模型" class="headerlink" title="2.文本向量表征模型"></a>2.文本向量表征模型</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用OpenAIEmbedding类  </span></span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings  </span><br><span class="line">embeddings = OpenAIEmbeddings()  </span><br><span class="line"></span><br><span class="line"><span class="comment">#因为文档比较短了,所以这里不需要进行任何分块,可以直接进行向量表征  </span></span><br><span class="line"><span class="comment">#使用初始化OpenAIEmbedding实例上的查询方法embed_query为文本创建向量表征  </span></span><br><span class="line">embed = embeddings.embed_query(<span class="string">"你好呀,我的名字叫小可爱"</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#查看得到向量表征的长度  </span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\n\033[32m向量表征的长度: \033[0m \n"</span>, <span class="built_in">len</span>(embed))  </span><br><span class="line"><span class="comment">#每个元素都是不同的数字值,组合起来就是文本的向量表征  </span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\n\033[32m向量表征前5个元素: \033[0m \n"</span>, embed[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">向量表征的长度:  </span><br><span class="line">1536  </span><br><span class="line"></span><br><span class="line">向量表征前5个元素:  </span><br><span class="line">[-0.019283676849006164, -0.006842594710511029, -0.007344046732916966,  -0.024501312942119265, -0.026608679897592472]</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="3-基于向量表征创建并查询向量存储"><a href="#3-基于向量表征创建并查询向量存储" class="headerlink" title="3.基于向量表征创建并查询向量存储"></a>3.基于向量表征创建并查询向量存储</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将刚才创建文本向量表征(embeddings)存储在向量存储(vector store)中  </span></span><br><span class="line"><span class="comment"># 使用DocArrayInMemorySearch类的from_documents方法来实现  </span></span><br><span class="line"><span class="comment"># 该方法接受文档列表以及向量表征模型作为输入  </span></span><br><span class="line">db = DocArrayInMemorySearch.from_documents(docs, embeddings)  </span><br><span class="line"></span><br><span class="line">query = <span class="string">"请推荐一件具有防晒功能的衬衫"</span>  </span><br><span class="line"><span class="comment">#使用上面的向量存储来查找与传入查询类似的文本,得到一个相似文档列表  </span></span><br><span class="line">docs = db.similarity_search(query)  </span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\n\033[32m返回文档的个数: \033[0m \n"</span>, <span class="built_in">len</span>(docs))  </span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\n\033[32m第一个文档: \033[0m \n"</span>, docs[<span class="number">0</span>])</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">返回文档的个数:  </span><br><span class="line">4  </span><br><span class="line"></span><br><span class="line">第一个文档:  </span><br><span class="line">page_content=": 535\nname: Men's TropicVibe Shirt, Short-Sleeve\ndescription:  This Men’s sun-protection shirt with built-in UPF 50+ has the lightweight feel  you want and the coverage you need when the air is hot and the UV rays are  strong. Size &amp; Fit: Traditional Fit: Relaxed through the chest, sleeve and waist.  Fabric &amp; Care: Shell: 71% Nylon, 29% Polyester. Lining: 100% Polyester knit mesh.  UPF 50+ rated – the highest rated sun protection possible. Machine wash and dry.  Additional Features: Wrinkle resistant. Front and back cape venting lets in cool  breezes. Two front bellows pockets. Imported.\n\nSun Protection That Won't Wear  Off: Our high-performance fabric provides SPF 50+ sun protection, blocking 98% of  the sun's harmful rays." metadata={'source':  '../data/OutdoorClothingCatalog_1000.csv', 'row': 535}</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="4-使用查询结果构造提示来回答问题"><a href="#4-使用查询结果构造提示来回答问题" class="headerlink" title="4.使用查询结果构造提示来回答问题"></a>4.使用查询结果构造提示来回答问题</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入大语言模型, 这里使用默认模型gpt-3.5-turbo会出现504服务器超时,  </span></span><br><span class="line"><span class="comment">#因此使用gpt-3.5-turbo-0301  </span></span><br><span class="line">llm = ChatOpenAI(model_name=<span class="string">"gpt-3.5-turbo-0301"</span>,temperature = <span class="number">0.0</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#合并获得的相似文档内容  </span></span><br><span class="line">qdocs = <span class="string">""</span>.join([docs[i].page_content <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(docs))])  </span><br><span class="line"></span><br><span class="line"><span class="comment">#将合并的相似文档内容后加上问题(question)输入到 `llm.call_as_llm`中  </span></span><br><span class="line"><span class="comment">#这里问题是:以Markdown表格的方式列出所有具有防晒功能的衬衫并总结  </span></span><br><span class="line">response = llm.call_as_llm(<span class="string">f"<span class="subst">{qdocs}</span>问题:请用markdown表格的方式列出所有具有防晒功能的衬  衫,对每件衬衫描述进行总结"</span>)</span><br><span class="line">display(Markdown(response))</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="5-使用检索问答链来回答问题"><a href="#5-使用检索问答链来回答问题" class="headerlink" title="5.使用检索问答链来回答问题"></a>5.使用检索问答链来回答问题</h4><p>通过 <strong>LangChain</strong> 创建一个检索问答链,对检索到的文档进行问题回答。检索问答链的输入包含以下：</p>
+<ul>
+<li><code>llm </code>：语言模型,进行文本生成</li>
+<li><code>chain_type</code>：传入链类型，这里使用 stuff，将所有查询得到的文档组合成一个文档传入下一步。其他的方式包括:  <ul>
+<li>Map Reduce：将所有块与问题一起传递给语言模型，获取回复，使用另一个语言模型调用将所有单独的回复总结成最终答案，它可以在任意数量的文档上运行。可以并行处理单个问题，同时也需要更多的调用。它将所有文档视为独立的；</li>
+<li>Refine：用于循环许多文档，实际上是迭代的，建立在先前文档的答案之上，非常适合前后因果信息并随时间逐步构建答案，依赖于先前调用的结果。它通常需要更长的时间，并且基本上需要与 Map Reduce 一样多的调用；</li>
+<li>Map Re-rank：对每个文档进行单个语言模型调用，要求它返回一个分数，选择最高分，这依赖于语言模型知道分数应该是什么，需要告诉它，如果它与文档相关，则应该是高分，并在那里精细调整说明。可以批量处理它们相对较快。但是更加昂贵。</li>
+</ul>
+</li>
+</ul>
+<h2 id="五、评估"><a href="#五、评估" class="headerlink" title="五、评估"></a>五、评估</h2><p>评估是检验语言模型问答质量的关键环节。评估可以检验语言模型在不同文档上的问答效果，找出其弱点。还可以通过比较不同模型，选择最佳系统。此外，定期评估也可以检查模型质量的衰减。评估通常有两个目的：</p>
+<ul>
+<li>检验LLM应用是否达到了验收标准</li>
+<li>分析改动对于LLM应用性能的影响</li>
+</ul>
+<p>基本的思路就是利用语言模型本身和链本身，来辅助评估其他的语言模型、链和应用程序。</p>
+<h3 id="（一）创建-LLM-应用"><a href="#（一）创建-LLM-应用" class="headerlink" title="（一）创建 LLM 应用"></a>（一）创建 LLM 应用</h3><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA <span class="comment">#检索QA链,在文档上进行检索  </span></span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI <span class="comment">#openai模型  </span></span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> CSVLoader <span class="comment">#文档加载器,采用csv格式存储  </span></span><br><span class="line"><span class="keyword">from</span> langchain.indexes <span class="keyword">import</span> VectorstoreIndexCreator <span class="comment">#导入向量存储索引创建器  </span></span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> DocArrayInMemorySearch <span class="comment">#向量存储  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#加载中文数据  </span></span><br><span class="line">file = <span class="string">'../data/product_data.csv'</span>  </span><br><span class="line">loader = CSVLoader(file_path=file)  </span><br><span class="line">data = loader.load()  </span><br><span class="line"></span><br><span class="line"><span class="comment">#查看数据  </span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd  </span><br><span class="line">test_data = pd.read_csv(file,skiprows=<span class="number">0</span>)  </span><br><span class="line">display(test_data.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将指定向量存储类,创建完成后,我们将从加载器中调用,通过文档记载器列表加载  </span></span><br><span class="line">index = VectorstoreIndexCreator(  </span><br><span class="line">    vectorstore_cls=DocArrayInMemorySearch  ).from_loaders([loader]</span><br><span class="line">                                                          )</span><br><span class="line"></span><br><span class="line"><span class="comment">#通过指定语言模型、链类型、检索器和我们要打印的详细程度来创建检索QA链  </span></span><br><span class="line">llm = ChatOpenAI(temperature = <span class="number">0.0</span>)  </span><br><span class="line">qa = RetrievalQA.from_chain_type(  </span><br><span class="line">    llm=llm,  chain_type=<span class="string">"stuff"</span>,  </span><br><span class="line">    retriever=index.vectorstore.as_retriever(),  </span><br><span class="line">    verbose=<span class="literal">True</span>,  </span><br><span class="line">    chain_type_kwargs = {  <span class="string">"document_separator"</span>: <span class="string">"&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;"</span>  }  </span><br><span class="line">)</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="（二）通过-LLM-进行评估实例"><a href="#（二）通过-LLM-进行评估实例" class="headerlink" title="（二）通过 LLM 进行评估实例"></a>（二）通过 LLM 进行评估实例</h3><p>问答评估的流程：</p>
+<ul>
+<li>首先，使用 LLM 自动构建问答测试集，包含问题及标准答案；</li>
+<li>然后，同一 LLM 试图回答测试集中的所有问题，得到响应；</li>
+<li>下一步，需要评估语言模型的回答是否正确，需要使用另一个 LLM 链进行判断。</li>
+</ul>
+<p>具体来说，第一个语言模型负责回答问题，第二个语言模型链用来进行答案判定，最后收集判断结果，得到语言模型在这一任务上的效果分数。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">langchain.debug = <span class="literal">False</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment">#为所有不同的示例创建预测  </span></span><br><span class="line">predictions = qa.apply(examples)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 对预测的结果进行评估,导入QA问题回答,评估链,通过语言模型创建此链  </span></span><br><span class="line"><span class="keyword">from</span> langchain.evaluation.qa <span class="keyword">import</span> QAEvalChain <span class="comment">#导入QA问题回答,评估链  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#通过调用chatGPT进行评估  </span></span><br><span class="line">llm = ChatOpenAI(temperature=<span class="number">0</span>)  </span><br><span class="line">eval_chain = QAEvalChain.from_llm(llm)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#在此链上调用evaluate,进行评估  </span></span><br><span class="line">graded_outputs = eval_chain.evaluate(examples, predictions)</span><br><span class="line"></span><br><span class="line"><span class="comment">#我们将传入示例和预测,得到一堆分级输出,循环遍历它们打印答案  </span></span><br><span class="line"><span class="keyword">for</span> i, eg <span class="keyword">in</span> <span class="built_in">enumerate</span>(examples):  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"Example <span class="subst">{i}</span>:"</span>)  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Question: "</span> + predictions[i][<span class="string">'query'</span>])  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Real Answer: "</span> + predictions[i][<span class="string">'answer'</span>])  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Predicted Answer: "</span> + predictions[i][<span class="string">'result'</span>])  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Predicted Grade: "</span> + graded_outputs[i][<span class="string">'results'</span>])  </span><br><span class="line">    <span class="built_in">print</span>()</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Example 0:  Question: 高清电视机怎么进行护理?  </span><br><span class="line">Real Answer: 使用干布清洁。  </span><br><span class="line">Predicted Answer: 高清电视机的护理非常简单。您只需要使用干布清洁即可。避免使用湿布或化学清洁  剂,以免损坏电视机的表面。  </span><br><span class="line">Predicted Grade: CORRECT  </span><br><span class="line"></span><br><span class="line">Example 1:  </span><br><span class="line">Question: 旅行背包有内外袋吗?  </span><br><span class="line">Real Answer: 有。  </span><br><span class="line">Predicted Answer: 是的,旅行背包有多个实用的内外袋,可以轻松装下您的必需品。  </span><br><span class="line">Predicted Grade: CORRECT  </span><br><span class="line"></span><br><span class="line">Example 2:  </span><br><span class="line">Question: 这款全自动咖啡机的尺寸是多少?  </span><br><span class="line">Real Answer: 大型尺寸为13.8'' x 17.3'',中型尺寸为11.5'' x 15.2''。  </span><br><span class="line">Predicted Answer: 这款全自动咖啡机有两种尺寸可选:  - 大型尺寸为13.8'' x 17.3''。  - 中型尺寸为11.5'' x 15.2''。  </span><br><span class="line">Predicted Grade: CORRECT  </span><br><span class="line"></span><br><span class="line">Example 3:  </span><br><span class="line">Question: 这款电动牙刷的规格是什么?  </span><br><span class="line">Real Answer: 一般大小 - 高度:9.5'',宽度:1''。  </span><br><span class="line">Predicted Answer: 这款电动牙刷的规格是:高度为9.5英寸,宽度为1英寸。  </span><br><span class="line">Predicted Grade: CORRECT  </span><br><span class="line"></span><br><span class="line">Example 4:  </span><br><span class="line">Question: 这种产品的名称是什么?  </span><br><span class="line">Real Answer: 这种产品的名称是橙味维生素C泡腾片。  </span><br><span class="line">Predicted Answer: 这种产品的名称是儿童益智玩具。  </span><br><span class="line">Predicted Grade: INCORRECT  </span><br><span class="line"></span><br><span class="line">Example 5:  </span><br><span class="line">Question: 这款无线蓝牙耳机的尺寸是多少?  </span><br><span class="line">Real Answer: 该无线蓝牙耳机的尺寸为1.5'' x 1.3''。  </span><br><span class="line">Predicted Answer: 这款无线蓝牙耳机的尺寸是1.5'' x 1.3''。  </span><br><span class="line">Predicted Grade: CORRECT  </span><br><span class="line"></span><br><span class="line">Example 6:  </span><br><span class="line">Question: 这款瑜伽垫的尺寸是多少?  </span><br><span class="line">Real Answer: 这款瑜伽垫的尺寸是24'' x 68''。  </span><br><span class="line">Predicted Answer: 这款瑜伽垫的尺寸是24'' x 68''。  </span><br><span class="line">Predicted Grade: CORRECT</span><br></pre></td></tr></table></figure></div>
+
+<p>与传统手工准备评估集、逐题判断等方式不同，<strong>LangChain</strong> 使整个评估流程自动化。它可以自动构建包含问答样本的测试集，然后使用语言模型对测试集自动产生回复，最后通过另一个模型链自动判断每个回答的准确性。这种全自动的评估方式极大地简化了问答系统的评估和优化过程，开发者无需手动准备测试用例，也无需逐一判断正确性，大大提升了工作效率。</p>
+<h2 id="六、代理"><a href="#六、代理" class="headerlink" title="六、代理"></a>六、代理</h2><p><strong>LLM</strong> 对<strong>逻辑推理</strong>、<strong>计算</strong>和检索外部信息的能力较弱，这与最简单的计算机程序形成对比。例如，语言模型无法准确回答简单的计算问题，还有当询问最近发生的事件时，其回答也可能过时或错误,因为无法主动获取最新信息。这是由于当前语言模型仅依赖预训练数据，与外界隔离。要克服这一缺陷，<strong>LangChain</strong> 框 架提出了**代理（Agent）**的解决方案。</p>
+<p><strong>代理</strong>作为语言模型的外部模块，可提供<strong>计算</strong>、<strong>逻辑</strong>、检索等功能的支持，使语言模型获得异常强大的推理和获取信息的超能力。</p>
+<h3 id="（一）使用-LangChain-内置工具-llm-math-和-wikipedia"><a href="#（一）使用-LangChain-内置工具-llm-math-和-wikipedia" class="headerlink" title="（一）使用 LangChain 内置工具 llm-math 和 wikipedia"></a>（一）使用 LangChain 内置工具 llm-math 和 wikipedia</h3><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> load_tools, initialize_agent  </span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> AgentType  </span><br><span class="line"><span class="keyword">from</span> langchain.python <span class="keyword">import</span> PythonREPL  </span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数temperature设置为0.0,从而减少生成答案的随机性。  </span></span><br><span class="line">llm = ChatOpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">tools = load_tools(  </span><br><span class="line">    [<span class="string">"llm-math"</span>,<span class="string">"wikipedia"</span>],  </span><br><span class="line">    llm=llm <span class="comment">#第一步初始化的模型  </span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化代理  </span></span><br><span class="line">agent= initialize_agent(  </span><br><span class="line">    tools, <span class="comment">#第二步加载的工具  </span></span><br><span class="line">    llm, <span class="comment">#第一步初始化的模型  </span></span><br><span class="line">    agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION, <span class="comment">#代理类型  </span></span><br><span class="line">    handle_parsing_errors=<span class="literal">True</span>, <span class="comment">#处理解析错误  </span></span><br><span class="line">    verbose = <span class="literal">True</span> <span class="comment">#输出中间步骤  )</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><strong>agent</strong>：代理类型。这里使用的是 <code>AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION</code>。其中  <strong>CHAT</strong> 代表代理模型为针对对话优化的模型；<strong>Zero-shot</strong> 意味着**代理（Agents）**仅在当前操作上起作用，即它没有记忆；<strong>REACT</strong> 代表针对 <strong>REACT</strong> 设计的提示模版。 <strong>DESCRIPTION</strong> 根据工具的描述  <strong>description</strong> 来决定使用哪个工具。 </li>
+<li><strong>handle_parsing_errors</strong> ：是否处理解析错误。当发生解析错误时，将错误信息返回给大模型，让其进行纠正。 </li>
+<li><strong>verbose</strong>：是否输出中间步骤结果。</li>
+</ul>
+<h3 id="二、使用-LangChain-内置工具-PythonREPLTool"><a href="#二、使用-LangChain-内置工具-PythonREPLTool" class="headerlink" title="二、使用 LangChain 内置工具 PythonREPLTool"></a>二、使用 LangChain 内置工具 PythonREPLTool</h3><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.agents.agent_toolkits <span class="keyword">import</span> create_python_agent  </span><br><span class="line"><span class="keyword">from</span> langchain.tools.python.tool <span class="keyword">import</span> PythonREPLTool  </span><br><span class="line"></span><br><span class="line">agent = create_python_agent(  </span><br><span class="line">    llm, <span class="comment">#使用前面一节已经加载的大语言模型  </span></span><br><span class="line">    tool=PythonREPLTool(), <span class="comment">#使用Python交互式环境工具 REPLTool  </span></span><br><span class="line">    verbose=<span class="literal">True</span> <span class="comment">#输出中间步骤  )  </span></span><br><span class="line"></span><br><span class="line">customer_list = [<span class="string">"小明"</span>,<span class="string">"小黄"</span>,<span class="string">"小红"</span>,<span class="string">"小蓝"</span>,<span class="string">"小橘"</span>,<span class="string">"小绿"</span>,]  </span><br><span class="line">    </span><br><span class="line">agent.run(<span class="string">f"将使用pinyin拼音库这些客户名字转换为拼音,并打印输出列表: <span class="subst">{customer_list}</span>。"</span>)</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; Entering new AgentExecutor chain...  </span><br><span class="line">I need to use the pinyin library to convert the names to pinyin. I can then <span class="built_in">print</span>  out the <span class="built_in">list</span> of converted names.  </span><br><span class="line">Action: Python_REPL  </span><br><span class="line">Action Input: <span class="keyword">import</span> pinyin  </span><br><span class="line">Observation:  </span><br><span class="line">Thought:I have imported the pinyin library. Now I can use it to convert the names  to pinyin.  </span><br><span class="line">Action: Python_REPL  </span><br><span class="line">Action Input: names = [<span class="string">'小明'</span>, <span class="string">'小黄'</span>, <span class="string">'小红'</span>, <span class="string">'小蓝'</span>, <span class="string">'小橘'</span>, <span class="string">'小绿'</span>]  pinyin_names = [pinyin.get(i, <span class="built_in">format</span>=<span class="string">'strip'</span>) <span class="keyword">for</span> i <span class="keyword">in</span> names]  </span><br><span class="line"><span class="built_in">print</span>(pinyin_names)  </span><br><span class="line"></span><br><span class="line">Observation: [<span class="string">'xiaoming'</span>, <span class="string">'xiaohuang'</span>, <span class="string">'xiaohong'</span>, <span class="string">'xiaolan'</span>, <span class="string">'xiaoju'</span>, <span class="string">'xiaolv'</span>]</span><br><span class="line"></span><br><span class="line">Thought:I have successfully converted the names to pinyin <span class="keyword">and</span> printed out the  <span class="built_in">list</span> of converted names.  </span><br><span class="line">Final Answer: [<span class="string">'xiaoming'</span>, <span class="string">'xiaohuang'</span>, <span class="string">'xiaohong'</span>, <span class="string">'xiaolan'</span>, <span class="string">'xiaoju'</span>,  <span class="string">'xiaolv'</span>]  </span><br><span class="line"></span><br><span class="line">&gt; Finished chain.</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"['xiaoming', 'xiaohuang', 'xiaohong', 'xiaolan', 'xiaoju', 'xiaolv']"</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="三、-定义自己的工具并在代理中使用"><a href="#三、-定义自己的工具并在代理中使用" class="headerlink" title="三、 定义自己的工具并在代理中使用"></a>三、 定义自己的工具并在代理中使用</h3><p><strong>LangChian tool</strong> 函数装饰器可以应用用于任何函数，将函数转化为 <strong>LangChain</strong> 工具，使其成为代理可调用的工具。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入tool函数装饰器  </span></span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> tool  </span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date  </span><br><span class="line"></span><br><span class="line"><span class="meta">@tool  </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">time</span>(<span class="params">text: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:  </span><br><span class="line">    <span class="string">"""  返回今天的日期,用于任何需要知道今天日期的问题。\  </span></span><br><span class="line"><span class="string">    输入应该总是一个空字符串,\  </span></span><br><span class="line"><span class="string">    这个函数将总是返回今天的日期,任何日期计算应该在这个函数之外进行。  </span></span><br><span class="line"><span class="string">    """</span>  </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">str</span>(date.today())  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化代理  </span></span><br><span class="line">agent= initialize_agent(  </span><br><span class="line">    tools=[time], <span class="comment">#将刚刚创建的时间工具加入代理  </span></span><br><span class="line">    llm=llm, <span class="comment">#初始化的模型  </span></span><br><span class="line">    agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION, <span class="comment">#代理类型  </span></span><br><span class="line">    handle_parsing_errors=<span class="literal">True</span>, <span class="comment">#处理解析错误  </span></span><br><span class="line">    verbose = <span class="literal">True</span> <span class="comment">#输出中间步骤  </span></span><br><span class="line">)  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用代理询问今天的日期.  </span></span><br><span class="line"><span class="comment"># 注: 代理有时候可能会出错(该功能正在开发中)。如果出现错误,请尝试再次运行它。</span></span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">agent("今天的日期是?")</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; Entering new AgentExecutor chain...  </span><br><span class="line">根据提供的工具,我们可以使用`time`函数来获取今天的日期。  </span><br><span class="line"></span><br><span class="line">Thought: 使用`time`函数来获取今天的日期。  </span><br><span class="line">Action:  </span><br><span class="line">    ```  </span><br><span class="line">    {  <span class="string">"action"</span>: <span class="string">"time"</span>,  </span><br><span class="line">     <span class="string">"action_input"</span>: <span class="string">""</span>  </span><br><span class="line">    }  </span><br><span class="line">    ```  </span><br><span class="line">Observation: <span class="number">2023</span>-08-09  </span><br><span class="line">Thought:我现在知道了最终答案。  </span><br><span class="line">Final Answer: 今天的日期是<span class="number">2023</span>-08-09。  </span><br><span class="line"></span><br><span class="line">&gt; Finished chain.</span><br></pre></td></tr></table></figure></div>
+
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 《面向开发者的LLM入门教程》阅读笔记</li>
+        <li><strong>Author:</strong> 寻觅之境</li>
+        <li><strong>Created at
+                :</strong> 2024-05-22 16:04:11</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-05-12 23:38:41
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://example.com/2024/05/22/LangChain学习指南/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/LLM/">#LLM</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/05/22/GNSS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">GNSS基础知识总结</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/05/16/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-2024-03-%E4%BD%8E%E8%BD%A8%E5%A2%9E%E5%BC%BA%E7%B2%BE%E5%AF%86%E5%8D%95%E7%82%B9%E5%AE%9A%E4%BD%8D%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%BA%94%E7%94%A8%E7%A0%94%E7%A9%B6/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">论文笔记-2024-03-低轨增强精密单点定位技术与应用研究</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">《面向开发者的LLM入门教程》阅读笔记</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B"><span class="nav-text">面向开发者的提示工程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8F%90%E7%A4%BA%E5%8E%9F%E5%88%99"><span class="nav-text">一、提示原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E7%BC%96%E5%86%99%E6%B8%85%E6%99%B0%E3%80%81%E5%85%B7%E4%BD%93%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="nav-text">（一）编写清晰、具体的指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E7%BB%99%E6%A8%A1%E5%9E%8B%E6%97%B6%E9%97%B4%E5%8E%BB%E6%80%9D%E8%80%83"><span class="nav-text">（二）给模型时间去思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-text">（三）局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BF%AD%E4%BB%A3%E4%BC%98%E5%8C%96"><span class="nav-text">二、迭代优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%96%87%E6%9C%AC%E6%A6%82%E5%86%B5"><span class="nav-text">三、文本概况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%95%E4%B8%80%E6%96%87%E6%9C%AC%E6%A6%82%E5%86%B5"><span class="nav-text">（一）单一文本概况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%90%8C%E6%97%B6%E6%A6%82%E5%86%B5%E5%A4%9A%E6%9D%A1%E6%96%87%E6%9C%AC"><span class="nav-text">（二）同时概况多条文本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%8E%A8%E6%96%AD"><span class="nav-text">四、推断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%83%85%E6%84%9F%E6%8E%A8%E6%96%AD"><span class="nav-text">（一）情感推断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96"><span class="nav-text">（二）信息提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E4%B8%BB%E9%A2%98%E6%8E%A8%E6%96%AD"><span class="nav-text">（三）主题推断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%96%87%E6%9C%AC%E8%BD%AC%E6%8D%A2"><span class="nav-text">五、文本转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%96%87%E6%9C%AC%E6%89%A9%E5%B1%95"><span class="nav-text">六、文本扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%AE%9A%E5%88%B6%E5%AE%A2%E6%88%B7%E9%82%AE%E4%BB%B6"><span class="nav-text">（一）定制客户邮件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%BC%95%E5%85%A5%E6%B8%A9%E5%BA%A6%E7%B3%BB%E6%95%B0"><span class="nav-text">（二）引入温度系数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8E-ChatGPT-%E7%9A%84%E9%97%AE%E7%AD%94%E7%B3%BB%E7%BB%9F"><span class="nav-text">搭建基于 ChatGPT 的问答系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="nav-text">一、语言模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Tokens"><span class="nav-text">二、Tokens</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Helper-Function-%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="nav-text">三、Helper Function 辅助函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%A4%84%E7%90%86%E8%BE%93%E5%85%A5%E2%80%94%E2%80%94%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8E%A8%E7%90%86"><span class="nav-text">三、处理输入——思维链推理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8F%90%E7%A4%BA%E8%AE%BE%E8%AE%A1"><span class="nav-text">（一）思维链提示设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%86%85%E5%BF%83%E7%8B%AC%E7%99%BD"><span class="nav-text">（二）内心独白</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-LangChain-%E5%BC%80%E5%8F%91%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-text">使用 LangChain 开发应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A8%A1%E5%9E%8B%E3%80%81%E6%8F%90%E7%A4%BA%E5%92%8C%E8%BE%93%E5%87%BA%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="nav-text">一、模型、提示和输出解释器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E9%80%9A%E8%BF%87-LangChain-%E4%BD%BF%E7%94%A8-OpenAI"><span class="nav-text">（一）通过 LangChain 使用 OpenAI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%82%A8%E5%AD%98"><span class="nav-text">二、储存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%AF%B9%E8%AF%9D%E7%BC%93%E5%AD%98%E5%82%A8%E5%AD%98"><span class="nav-text">（一）对话缓存储存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AF%B9%E8%AF%9D%E7%BC%93%E5%AD%98%E7%AA%97%E5%8F%A3%E5%82%A8%E5%AD%98"><span class="nav-text">（二）对话缓存窗口储存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E5%AF%B9%E8%AF%9D%E5%AD%97%E7%AC%A6%E7%BC%93%E5%AD%98%E5%82%A8%E5%AD%98"><span class="nav-text">（三）对话字符缓存储存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AF%B9%E8%AF%9D%E6%91%98%E8%A6%81%E7%BC%93%E5%AD%98%E5%82%A8%E5%AD%98"><span class="nav-text">（四）对话摘要缓存储存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E5%9E%8B%E9%93%BE"><span class="nav-text">三、模型链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E9%93%BE%EF%BC%88LLMChain%EF%BC%89"><span class="nav-text">（一）大语言模型链（LLMChain）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E7%AE%80%E5%8D%95%E9%A1%BA%E5%BA%8F%E9%93%BE"><span class="nav-text">（二）简单顺序链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E9%A1%BA%E5%BA%8F%E9%93%BE"><span class="nav-text">（三）顺序链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E8%B7%AF%E7%94%B1%E9%93%BE"><span class="nav-text">（四）路由链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%9F%BA%E4%BA%8E%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E7%AD%94"><span class="nav-text">四、基于文档的问答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E5%90%91%E9%87%8F%E5%82%A8%E5%AD%98%E6%9F%A5%E8%AF%A2"><span class="nav-text">一、直接使用向量储存查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%BB%93%E5%90%88%E8%A1%A8%E5%BE%81%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%90%91%E9%87%8F%E5%AD%98%E5%82%A8"><span class="nav-text">二、结合表征模型和向量存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%AF%84%E4%BC%B0"><span class="nav-text">五、评估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%88%9B%E5%BB%BA-LLM-%E5%BA%94%E7%94%A8"><span class="nav-text">（一）创建 LLM 应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E9%80%9A%E8%BF%87-LLM-%E8%BF%9B%E8%A1%8C%E8%AF%84%E4%BC%B0%E5%AE%9E%E4%BE%8B"><span class="nav-text">（二）通过 LLM 进行评估实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%BB%A3%E7%90%86"><span class="nav-text">六、代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%BF%E7%94%A8-LangChain-%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7-llm-math-%E5%92%8C-wikipedia"><span class="nav-text">（一）使用 LangChain 内置工具 llm-math 和 wikipedia</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8-LangChain-%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7-PythonREPLTool"><span class="nav-text">二、使用 LangChain 内置工具 PythonREPLTool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E5%AE%9A%E4%B9%89%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E5%85%B7%E5%B9%B6%E5%9C%A8%E4%BB%A3%E7%90%86%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-text">三、 定义自己的工具并在代理中使用</span></a></li></ol></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">寻觅之境</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        17 posts in total
+                    </span>
+                    
+                        <span>
+                            114.2k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Swup.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/utils.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/main.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/lazyload.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/minimasonry.min.js" ></script>
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/masonry.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+	<div id="aplayer"></div>
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/APlayer.min.js" ></script>
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/aplayer.js" ></script>
+
+	
+
+	{% if theme.fireworks %}
+	<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+	<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+	<script type="text/javascript" src="/js/fireworks.js"></script>
+
+</body>
+
+</html>
+
