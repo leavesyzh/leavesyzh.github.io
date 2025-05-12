@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="寻觅之境">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2022/10/02/《动手学pytorch》阅读笔记/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动手学Pytorch阅读笔记">
+<meta property="og:url" content="http://example.com/2022/10/02/%E3%80%8A%E5%8A%A8%E6%89%8B%E5%AD%A6Pytorch%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2022-10-02T11:07:05.000Z">
+<meta property="article:modified_time" content="2025-05-12T13:27:32.809Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Pytorch">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/sakana.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/sakana.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/sakana.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            动手学Pytorch阅读笔记 | StoryWriter
+        
+    </title>
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/54140687_p0.jpg","dark":"/images/wallhaven-z8lgwg_5830x2492.png"},"title":"。","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":"github:https://github.com/leavesyzh fa-regular fa-tv-music:https://music.163.com/#/user/home?id=1444634100","qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Ambient","artist":"Kevin MacLeod","url":"http://music.163.com/song/media/outer/url?id=33207576.mp3","cover":"/images/Ambient.jpg","lrc":"/images/none.lrc"},{"name":"Cleaning out the Rooms (Wandering Horn)","artist":"Sea Power","url":"http://music.163.com/song/media/outer/url?id=26690256.mp3","cover":"/images/Cleaning-out-the-Rooms-(Wandering-Horn).jpg","lrc":"/images/none.lrc"},{"name":"万物流転","artist":"頭脳警察","url":"http://music.163.com/song/media/outer/url?id=22723043.mp3","cover":"/images/万物流転.png","lrc":"/images/none.lrc"},{"name":"Happy End","artist":"Flare","url":"http://music.163.com/song/media/outer/url?id=35307891.mp3","cover":"/images/Happy-End.jpg","lrc":"/images/none.lrc"},{"name":"21 grams ft. Fei Lin (Cikado)","artist":"Triodust","url":"http://music.163.com/song/media/outer/url?id=1381395883.mp3","cover":"/images/21-grams-ft.jpg","lrc":"/images/none.lrc"}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"Masonry":{"icon":"fa-solid fa-image","path":"/masonry/"},"About":{"icon":"fa-regular fa-user","submenus":{"CloudMusic":"https://music.163.com/#/user/home?id=1444634100","Github":"https://github.com/leavesyzh","Blog":"https://leavesyzh.github.io/"}}},"search":{"enable":true,"preload":false}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"今天晚上做了什么.","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/sakana.png" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                StoryWriter
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    MASONRY
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=1444634100">
+                                                    CLOUDMUSIC
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/leavesyzh">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://leavesyzh.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                MASONRY
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=1444634100">CLOUDMUSIC</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/leavesyzh">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://leavesyzh.github.io/">BLOG</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">动手学Pytorch阅读笔记</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/blueroom.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">寻觅之境</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-10-02 19:07:05</span>
+        <span class="mobile">2022-10-02 19:07:05</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-05-12 21:27:32</span>
+            <span class="mobile">2025-05-12 21:27:32</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Pytorch/">Pytorch</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>5.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>20 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="动手学Pytorch阅读笔记"><a href="#动手学Pytorch阅读笔记" class="headerlink" title="动手学Pytorch阅读笔记"></a>动手学Pytorch阅读笔记</h2><h3 id="4-1-nn-Module"><a href="#4-1-nn-Module" class="headerlink" title="4.1 nn.Module"></a>4.1 nn.Module</h3><ul>
+<li>Module能够自动检测到自己的parameter，并将其作为学习参数。除了parameter，Module还包含子Module，主Module能够递归查找子Module中的parameter。</li>
+</ul>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Perceptron(nn.Module):</span><br><span class="line">    def __init__(self,in_features,hidden_features,out_features):</span><br><span class="line">        nn.Module.__init__(self)</span><br><span class="line">        self.layer1 = Linear(in_features,hidden_features)    # 此处的Linear是前面自定义的全连接层</span><br><span class="line">        self.layer2 = Linear(hidden_features,out_features)</span><br><span class="line">        </span><br><span class="line">    def forward(self,x):</span><br><span class="line">        x = self.layer1(x)</span><br><span class="line">        x = t.sigmoid(x)</span><br><span class="line">        x = self.layer2(x)</span><br><span class="line">        return x</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">perceptron = Perceptron(3,4,1)</span><br><span class="line">for name,param in perceptron.named_parameters():</span><br><span class="line">    print(name,param.size())</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">layer1.w torch.Size([3, 4])</span><br><span class="line">layer1.b torch.Size([4])</span><br><span class="line">layer2.w torch.Size([4, 1])</span><br><span class="line">layer2.b torch.Size([1])</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>构造函数 __init__ 中，可利用前面自定义的Linear层（Module）作为当前 Module 对象的一个子 Module ，它的可学习参数，也会成为当前Module的可学习参数。<br>在前向传播函数中，我们有意识地将输出变量都命名为 x ，是为了能让 Python 回收一些中间层的输出，从而节省内存。但并不是所有的中间结果都会被回收，有些 variable 虽然名字被覆盖，但其在反向传播时仍需要用到，此时 Python 的内存回收模块将通过检查引用计数，不会回收这一部分内存。</p>
+</li>
+<li><p>自定义层 Linear 必须继承 nn.Module ，并且在其构造函数中需调用 nn.Module 的构造函数，即 super(Linear,self).init() 或nn.Module.init(self)。</p>
+</li>
+<li><p>在构造函数 __init__ 中必须自己定义可学习的参数，并封装成 Parameter，Parameter 是一种特殊的Variable，但其默认需要求导（requires_grad=True），感兴趣的读者可以通过 nn.Parameter?? 查看 Parameter 类的源代码。</p>
+</li>
+<li><p>forward函数实现前向传播过程，其输入可以是一个或多个variable，对x的任何操作也必须是variable支持的操作。</p>
+</li>
+<li><p>无须写反向传播函数，因其前向传播都是对variable进行操作，nn.Module能够利用autograd自动实现反向传播，这一点比Function简单许多。</p>
+</li>
+<li><p>使用时，直观上可将 net 看成数学概念中的函数，调用 net(x) 即可得到 x 对应的结果。它等价于 net.call(x) ，在 __call__ 函数中，主要调用的是 net.forward(x) ，另外还对钩子做了一些处理。所以在实际使用中应尽量使用 net(x) 而不是使用net.forward(x)。</p>
+</li>
+<li><p>Module 中的可学习参数可以通过 named_parameters() 或者 parameters() 返回迭代器，前者会给每个 parameter 附上名字，使其更具有辨识度。</p>
+</li>
+<li><p>阅读 nn.Module 的其他 layers 的文档时应主要关注以下几点：</p>
+<p>构造函数的参数，如 nn.Linear(in_features,out_features,bias)，需关注这三个参数的作用。<br>属性、可学习参数和子 Module。如 nn.Linear 中有 weight 和 bias 两个可学习参数，不包含子 Module。<br>输入输出的形状，如 nn.Linear 的输入形状是（N，input_features），输出形状为（N，output_features），N是batch_size。</p>
+</li>
+<li><p>这些自定义 layer 对输入形状都有假设：输入的不是单个数据，而是一个 batch 。若想输入一个数据，必须调用 unsqueeze(0) 函数将数据伪装成 batch_size=1的batch。</p>
+</li>
+</ul>
+<h3 id="4-2-常用的神经网络层"><a href="#4-2-常用的神经网络层" class="headerlink" title="4.2 常用的神经网络层"></a>4.2 常用的神经网络层</h3><ul>
+<li><p>ReLU 函数有个 inplace 参数，如果设为 True，它会把输出直接覆盖到输入中，这样可以节省内存/显存。之所以可以覆盖是因为在计算 ReLU 的反向传播时，只需根据输出就能推算出反向传播的梯度。但是只有少数的 autograd 操作支持 inplace操作（如variable.sigmoid_()），除非你明确地知道自己在做什么，否则一般不要使用 inplace 操作。</p>
+</li>
+<li><pre><code># Sequential的三种写法
+net1 = nn.Sequential()
+net1.add_module('conv', nn.Conv2d(3, 3, 3))
+net1.add_module('batchnorm', nn.BatchNorm2d(3))
+net1.add_module('activation_layer', nn.ReLU())
+
+net2 = nn.Sequential(
+        nn.Conv2d(3, 3, 3),
+        nn.BatchNorm2d(3),
+        nn.ReLU()
+        )
+
+from collections import OrderedDict
+net3= nn.Sequential(OrderedDict([
+          ('conv1', nn.Conv2d(3, 3, 3)),
+          ('bn1', nn.BatchNorm2d(3)),
+          ('relu1', nn.ReLU())
+        ]))
+print('net1:', net1)
+print('net2:', net2)
+print('net3:', net3)
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></div>
+net1: Sequential(
+  (conv): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))
+  (batchnorm): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (activation_layer): ReLU()
+)
+net2: Sequential(
+  (0): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))
+  (1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (2): ReLU()
+)
+net3: Sequential(
+  (conv1): Conv2d(3, 3, kernel_size=(3, 3), stride=(1, 1))
+  (bn1): BatchNorm2d(3, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu1): ReLU()
+)
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ModuleList是 Module 的子类，当在 Module 中使用它时，就能自动识别为子 Module，如果使用 list保存网络，就不能被识别到。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 4.3 优化器</span><br><span class="line"></span><br><span class="line">为不同子网络设置不同的学习率，在finetune中经常用到如果对某个参数不指定学习率，就使用最外层的默认学习率</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+</code></pre>
+</li>
+</ul>
+<h1 id="首先定义一个LeNet网络"><a href="#首先定义一个LeNet网络" class="headerlink" title="首先定义一个LeNet网络"></a>首先定义一个LeNet网络</h1><p>class Net(nn.Module):<br>    def <strong>init</strong>(self):<br>        super(Net, self).<strong>init</strong>()<br>        self.features = nn.Sequential(<br>                    nn.Conv2d(3, 6, 5),<br>                    nn.ReLU(),<br>                    nn.MaxPool2d(2,2),<br>                    nn.Conv2d(6, 16, 5),<br>                    nn.ReLU(),<br>                    nn.MaxPool2d(2,2)<br>        )<br>        self.classifier = nn.Sequential(<br>            nn.Linear(16 * 5 * 5, 120),<br>            nn.ReLU(),<br>            nn.Linear(120, 84),<br>            nn.ReLU(),<br>            nn.Linear(84, 10)<br>        )</p>
+<pre><code>def forward(self, x):
+    x = self.features(x)
+    x = x.view(-1, 16 * 5 * 5)
+    x = self.classifier(x)
+    return x
+</code></pre>
+<p>net = Net()</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>optimizer =optim.SGD([<br>                {‘params’: net.features.parameters()}, # 学习率为1e-5<br>                {‘params’: net.classifier.parameters(), ‘lr’: 1e-2}<br>            ], lr=1e-5)<br>optimizer</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>SGD (<br>Parameter Group 0<br>    dampening: 0<br>    lr: 1e-05<br>    momentum: 0<br>    nesterov: False<br>    weight_decay: 0</p>
+<p>Parameter Group 1<br>    dampening: 0<br>    lr: 0.01<br>    momentum: 0<br>    nesterov: False<br>    weight_decay: 0<br>)</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 4.4 nn.functional</span><br><span class="line"></span><br><span class="line">nn中还有一个很常用的模块：nn.functional。nn中的大多数layer在functional中都有一个与之对应的函数。nn.functional中的函数和nn.Module主要区别在于，用nn.Module实现的layers是一个特殊的类，都是由class Layer(nn.Module)定义，会自动提取科学系参数；而nn.functional中的函数更像是纯函数，由def function(input)定义。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 4.5 nn.Module深入分析</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>def <strong>init</strong>(self):<br>    self._parameters = OrderedDict()<br>    self._modules = OrderedDict()<br>    self._buffers = OrderedDict()<br>    self._backward_hooks = OrderedDict()<br>    self._forward_hooks = OrderedDict()<br>    self.training = True</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其中每个属性的解释如下：</span><br><span class="line"></span><br><span class="line">- \_parameters：字典，保存用户直接设置的 parameter，self.param1 = nn.Parameter(t.randn(3, 3)) 会被检测到，在字典中加入一个 key 为 ’param’，value 为对应 parameter 的 item。而 self.submodule = nn.Linear(3, 4) 中的 parameter 则不会存于此。</span><br><span class="line"></span><br><span class="line">- \_modules：子 module，通过 self.submodel = nn.Linear(3, 4) 指定的子 module 会保存于此。</span><br><span class="line">- \_buffers：缓存，如 batchnorm 使用 momentum 机制，每次前向传播需用到上一次前向传播的结果。</span><br><span class="line">- \_backward_hooks 与 \_forward_hooks：钩子技术，用来提取中间变量，类似 variable 的 hook。</span><br><span class="line">- training：BatchNorm 与 Dropout 层在训练阶段和测试阶段中采取的策略不同，通过判断 training 值来决定前向传播策略。</span><br><span class="line">- 上述几个属性中，\_parameters、\_modules 和 \_buffers 这三个字典中的键值，都可以通过 self.key 方式获得，效果等价于self._parameters[‘key’].</span><br><span class="line"></span><br><span class="line">nn.Module 在实际使用中可能层层嵌套，一个 module 包含若干个子 module，每一个子 module 又包含了更多的子 module。为方便用户访问各个子 module，nn.Module 实现了很多方法，如函数 children 可以查看直接子 module，函数 module 可以查看所有的子module（包括当前module）。与之相对应的还有函数 named_childen 和 named_modules，其能够在返回 module 列表的同时返回它们的名字。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">对于batchnorm、dropout、instancenorm等在训练和测试阶段行为差距巨大的层，如果在测试时不将其training值设为True，则可能会有很大影响，这在实际使用中要千万注意。虽然可通过直接设置training属性，来将子module设为train和eval模式，但这种方式较为繁琐，因如果一个模型具有多个dropout层，就需要为每个dropout层指定training属性。更为推荐的做法是调用model.train()函数，它会将当前module及其子module中的所有training属性都设为True，相应的，model.eval()函数会把training属性都设为False。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在PyTorch中保存模型十分简单，所有的Module对象都具有state_dict()函数，返回当前Module所有的状态数据。将这些状态数据保存后，下次使用模型时即可利用model.load_state_dict()函数将状态加载进来。优化器（optimizer）也有类似的机制，不过一般并不需要保存优化器的运行状态。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 3.1 Tensor</span><br><span class="line"></span><br><span class="line">- 需要注意的是，t.Tensor(*sizes ) 创建 tensor，系统不会马上分配空间，只会计算剩余的内存是否足够使用，使用到 tenso r时才会分配，而其他操作都是在创建完 tensor 后马上进行空间分配。</span><br><span class="line"></span><br><span class="line">- 通过 tensor.view 方法可以调整 tensor 的形状，但必须保证调整前后元素总数一致。view 不会修改自身的数据，返回的新 tensor 与源 tensor 共享内存，即更改其中一个，另外一个也会跟着改变。在实际应用中可能经常需要添加或减少某一维度，这时 squeeze 和unsqueeze 两个函数就派上了用场。</span><br><span class="line"></span><br><span class="line">- resize 是另一种可用来调整 size 的方法，但与 view 不同，它可以修改 tensor 的尺寸。如果新尺寸超过了原尺寸，会自动分配新的内存空间，而如果新尺寸小于原尺寸，则之前的数据依旧会被保存。</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  In :  a = t.randn(3,4)</span><br><span class="line">        a</span><br><span class="line">  Out :  tensor([[-0.3973,  0.0700, -0.5916, -0.4848],</span><br><span class="line">                 [ 0.5232,  0.8094,  2.4726,  1.4351],</span><br><span class="line">                 [-0.0845,  2.0454, -0.0363, -0.8606]])</span><br><span class="line">  </span><br><span class="line">  In :  a[0]    # 第0行（下标从0开始）</span><br><span class="line">  Out :  tensor([-0.3973,  0.0700, -0.5916, -0.4848])</span><br><span class="line">  </span><br><span class="line">  In :  a[:,0]    # 第0列</span><br><span class="line">  Out :  tensor([-0.3973,  0.5232, -0.0845])</span><br><span class="line">  </span><br><span class="line">  In :  a[0][2]    # 第0行第2个元素，等价于a[0,2]</span><br><span class="line">  Out :  tensor(-0.5916)</span><br><span class="line">  </span><br><span class="line">  In :  a[0,-1]    # 第0行最后一个元素</span><br><span class="line">  Out :  tensor(-0.4848)</span><br><span class="line">  </span><br><span class="line">  In :  a[:2]    # 前两行</span><br><span class="line">  Out :  tensor([[-0.3973,  0.0700, -0.5916, -0.4848],</span><br><span class="line">                 [ 0.5232,  0.8094,  2.4726,  1.4351]])</span><br><span class="line">  </span><br><span class="line">  In :  a[:2,0:2]    # 前两行，前两列</span><br><span class="line">  Out :  tensor([[-0.3973,  0.0700],</span><br><span class="line">                 [ 0.5232,  0.8094]])</span><br><span class="line">  </span><br><span class="line">  In :  print(a[0:1,:2])    # 第0行，前两列</span><br><span class="line">        print(a[0,:2])    # 注意两者的区别，形状不同</span><br><span class="line">  Out :  tensor([[-0.3973,  0.0700]])</span><br><span class="line">         tensor([-0.3973,  0.0700])</span><br><span class="line">  </span><br><span class="line">  In :  a &gt; 1</span><br><span class="line">  Out :  tensor([[False, False, False, False],</span><br><span class="line">                 [False, False,  True,  True],</span><br><span class="line">                 [False,  True, False, False]])</span><br><span class="line">  </span><br><span class="line">  In :  a[a&gt;1]    # 等价于a.maked_select(a&gt;1)，选择结果与原tensor不共享内存空间</span><br><span class="line">  Out :  tensor([2.4726, 1.4351, 2.0454])</span><br><span class="line">  </span><br><span class="line">  In :  a[t.LongTensor([0,1])]    # 第0行和第1行</span><br><span class="line">  Out :  tensor([[-0.3973,  0.0700, -0.5916, -0.4848],</span><br><span class="line">                 [ 0.5232,  0.8094,  2.4726,  1.4351]])</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>Tensor有不同的数据类型，如下表所示，每种类型分别对应有CPU和GPU版本（HalfTensor除外）。默认的Tensor是FloatTensor，可通过t.set_default_tensor_type修改默认Tensor的类型（如果默认为GPU Tensor，则所有操作都将在GPU上进行）。</p>
+</li>
+<li><p>归并操作</p>
+<p>此类操作会使输出形状小于输入形状，并可以沿着某一维度进行指定操作。如加法sum，既可以计算整个Tensor的和，也可以计算Tensor中 每一行或每一列的和。常用的归并操作如下所示。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWQtaW1hZ2VzLmppYW5zaHUuaW8vdXBsb2FkX2ltYWdlcy8xNzYzNDEyMy1lODIyZDMyYjI1ZjBjMGY5LnBuZw?x-oss-process=image/format,png" alt="image.png"></p>
+<p>假设输入的形状是（m,n,k）：</p>
+<p>如果指定dim=0，输出的形状就是（1,n,k）或者（n,k）<br>如果指定dim=1，输出的形状就是（m,1,k）或者（m,k）<br>如果指定dim=2，输出的形状就是（m,n,1）或者（m,n）<br>size中是否有“1”，取决于参数keepdim，keepdim=True会保留维度1，从PyTorch 0.2版本起，keepdim默认为False。注意，以上只是经验总结，并非所有函数都符合这种形状变化方式，如cumsum。</p>
+</li>
+<li><p>线性代数</p>
+<p>PyTorch的线性函数主要封装了Blas和Lapack，其用法和接口都与之类似。常用的线性代数函数如下所示。</p>
+</li>
+</ul>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://20240522-1326729435.cos.ap-nanjing.myqcloud.com/imgs/QQ%E6%88%AA%E5%9B%BE20240525081228.jpg"></p>
+<p>具体使用说明请参考官方文档，需要注意的是，矩阵的转置会导致存储空间不连续，需要调用它的.contiguous方法将其转为连续。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In :  b = a.t()</span><br><span class="line">      b.is_contiguous()</span><br><span class="line">Out :  False</span><br><span class="line"></span><br><span class="line">In :  b.contiguous()</span><br><span class="line">Out :  tensor([[ 0.,  9.],</span><br><span class="line">               [ 3., 12.],</span><br><span class="line">               [ 6., 15.]])</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>Tensor的数据结构如下图所示。Tensor分为头信息区（Tensor）和存储区（Storage），信息区主要保存着Tensor的形状（size）、步长（stride）、数据类型（type）等信息，而真正的数据则保存成连续数组。由于数据动辄成千上万，因此信息区元素占用内存较少，主要内存占用取决于Tensor中元素的数目，即存储区的大小。</li>
+<li><img lazyload="" src="/images/loading.svg" data-src="https://20240522-1326729435.cos.ap-nanjing.myqcloud.com/imgs/QQ%E6%88%AA%E5%9B%BE20240525081254.jpg" style="zoom:67%;"></li>
+<li>向量化计算是一种特殊的并行计算方式，一般程序在同一时间只执行一个操作的方式，它可在同一时间执行多个操作，通常是对不同的数据执行同样的一个或一批命令，或者说把指令应用于一个数组或向量上。向量化可极大地提高科学运算的效率，Python本身是一门高级语言，使用很方便，但许多操作很低效，尤其是for循环。在科学计算程序中应当极力避免使用Python原生的for循环，尽量使用向量化的数值计算。</li>
+</ul>
+<h3 id="3-2-autograd"><a href="#3-2-autograd" class="headerlink" title="3.2 autograd"></a>3.2 autograd</h3><p>PyTorch在autograd模块中实现了计算图的相关功能，autograd中的核心数据结构是Variable。Variable封装了tensor，并记录对tensor的操作记录用来构建计算图。Variable的数据结构如下图所示，主要包括三个属性。</p>
+<p>data：保存variable所包含的tensor。<br>grad：保存data对应的梯度，grad也是variable，而非tensor，它与data形状一致。<br>grad_fn：指向一个Function，记录variable的操作历史，即它是什么操作的输出，用来构建计算图。如果某一个变量是由用户创建的，则它为叶子节点，对应的grad_fn等于None。</p>
+<img lazyload="" src="/images/loading.svg" data-src="https://20240522-1326729435.cos.ap-nanjing.myqcloud.com/imgs/QQ%E6%88%AA%E5%9B%BE20240525081326.jpg" style="zoom:67%;">
+
+<p>在PyTorch中计算图的特点可总结如下：</p>
+<ul>
+<li><p>autograd根据用户对variable的操作构建其计算图。对变量的操作抽象为Function。</p>
+</li>
+<li><p>对于那些不是任何函数(Function)的输出，由用户创建的节点称为叶子节点，叶子节点的grad_fn为None。叶子节点中需要求导的variable，具有AccumulateGrad标识，因其梯度是累加的。</p>
+</li>
+<li><p>variable默认是不需要求导的，即requires_grad属性默认为False，如果某一个节点requires_grad被设置为True，那么所有依赖它的节点requires_grad都为True。</p>
+</li>
+<li><p>variable的volatile属性已经废除了。</p>
+</li>
+<li><p>多次反向传播时，梯度是累加的。反向传播的中间缓存会被清空，为进行多次反向传播需指定retain_graph=True来保存这些缓存。</p>
+</li>
+<li><p>非叶子节点的梯度计算完之后即被清空，可以使用autograd.grad或hook技术获取非叶子节点的值。</p>
+</li>
+<li><p>variable的grad与data形状一致，应避免直接修改variable.data，因为对data的直接操作无法利用autograd进行反向传播。</p>
+</li>
+<li><p>反向传播函数backward的参数grad_variables可以看成链式求导的中间结果，如果是标量，可以省略，默认为1。</p>
+</li>
+<li><p>PyTorch采用动态图设计，可以很方便地查看中间层的输出，动态的设计计算图结构。</p>
+</li>
+</ul>
+<h3 id="3-3-扩展autograd"><a href="#3-3-扩展autograd" class="headerlink" title="3.3 扩展autograd"></a>3.3 扩展autograd</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">In :  from torch.autograd import Function</span><br><span class="line"></span><br><span class="line">      class Mul(Function):</span><br><span class="line">          @staticmethod</span><br><span class="line">          def forward(ctx, w, x, b, x_requires_grad = True):</span><br><span class="line">              ctx.x_requires_grad = x_requires_grad</span><br><span class="line">              ctx.save_for_backward(w,x)</span><br><span class="line">              output = w * x + b</span><br><span class="line">              return output</span><br><span class="line"></span><br><span class="line">           @staticmethod</span><br><span class="line">           def backward(ctx, grad_output):</span><br><span class="line">               w,x = ctx.saved_tensors</span><br><span class="line">               grad_w = grad_output * x</span><br><span class="line">               if ctx.x_requires_grad:</span><br><span class="line">                   grad_x = grad_output * w</span><br><span class="line">               else:</span><br><span class="line">                   grad_x = None</span><br><span class="line">               grad_b = grad_output * 1</span><br><span class="line">               return grad_w, grad_x, grad_b, None</span><br></pre></td></tr></table></figure></div>
+
+<p>对以上代码的分析如下：</p>
+<ul>
+<li><p>自定义的Function需要继承autograd.Function，没有构造函数__init__，forward和backward函数都是静态方法。</p>
+</li>
+<li><p>forward函数的输入和输出都是tensor，backward函数的输入和输出都是variable。</p>
+</li>
+<li><p>backward函数的输出和forward函数的输入对应，backward函数的输入和forward函数的输出对应。</p>
+</li>
+<li><p>backward函数的grad_output参数即torch.autograd.backward中的grad_variables。</p>
+</li>
+<li><p>如果某一个输入不需要求导，直接返回None，如forward中的输入参数x_requires_grad显然无法对它求导，直接返回None即可。</p>
+</li>
+<li><p>反向传播可能需要利用前向传播的某些中间结果，在前向传播过程中，需要保存中间结果，否则前向传播结束后这些对象即被释放。</p>
+</li>
+</ul>
+<h3 id="5-1数据处理"><a href="#5-1数据处理" class="headerlink" title="5.1数据处理"></a>5.1数据处理</h3><p>（1）数据加载</p>
+<p>在PyTorch中，数据加载可通过自定义的数据集对象实现。数据集对象被抽象为Dataset，实现自定义的数据集需要继承Dataset，并实现两个Python魔法方法。</p>
+<ul>
+<li><p>getitem：返回一条数据或一个样本。obj[index]等价于obj.getitem(index)。</p>
+</li>
+<li><p>len：返回样本的数量。len(obj)等价于obj.len()。</p>
+</li>
+</ul>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import torch as t</span><br><span class="line">from torch.utils import data</span><br><span class="line">import os</span><br><span class="line">from PIL import  Image</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">class DogCat(data.Dataset):</span><br><span class="line">    def __init__(self, root):</span><br><span class="line">        imgs = os.listdir(root)</span><br><span class="line">        # 所有图片的绝对路径</span><br><span class="line">        # 这里不实际加载图片，只是指定路径，当调用__getitem__时才会真正读图片</span><br><span class="line">        self.imgs = [os.path.join(root, img) for img in imgs]</span><br><span class="line">        </span><br><span class="line">    def __getitem__(self, index):</span><br><span class="line">        img_path = self.imgs[index]</span><br><span class="line">        # dog-&gt;1， cat-&gt;0</span><br><span class="line">        label = 1 if 'dog' in img_path.split('/')[-1] else 0</span><br><span class="line">        pil_img = Image.open(img_path)</span><br><span class="line">        array = np.asarray(pil_img)</span><br><span class="line">        data = t.from_numpy(array)</span><br><span class="line">        return data, label</span><br><span class="line">    </span><br><span class="line">    def __len__(self):</span><br><span class="line">        return len(self.imgs)</span><br><span class="line"></span><br><span class="line">dataset = DogCat('./data/dogcat/')</span><br><span class="line">img, label = dataset[0] # 相当于调用dataset.__getitem__(0)</span><br><span class="line">for img, label in dataset:</span><br><span class="line">    print(img.size(), img.float().mean(), label)</span><br></pre></td></tr></table></figure></div>
+
+<p>（2）数据预处理</p>
+<p>torchvision 是一个视觉工具包，提供了很多视觉图像处理的工具，其中transforms模块提供了对PIL Image对象和Tensor对象的常用操作。</p>
+<p>对PIL Image的操作包括：</p>
+<ul>
+<li>Scale：调整图片尺寸，长宽比保持不变</li>
+<li>CenterCrop、RandomCrop、RandomResizedCrop： 裁剪图片</li>
+<li>Pad：填充</li>
+<li>ToTensor：将 PIL Image 对象转成 Tensor，会自动将 [0, 255] 归一化至 [0, 1]</li>
+</ul>
+<p>对Tensor的操作包括：</p>
+<ul>
+<li>Normalize：标准化，即减均值，除以标准差</li>
+<li>ToPILImage：将 Tensor 转为 PIL Image 对象</li>
+</ul>
+<p>如果要对图片进行多个操作，可通过Compose函数将这些操作拼接起来，类似于nn.Sequential。注意，这些操作定义后是以函数的形式存在，真正使用时需调用它的__call__方法，这点类似于nn.Module。</p>
+<p>（3）数据加载</p>
+<p>Dataset只负责数据的抽象，一次调用__getitem__只返回一个样本。前面提到过，在训练神经网络时，最好是对一个batch的数据进行操作，同时还需要对数据进行shuffle和并行加速等。对此，PyTorch提供了DataLoader实现这些功能。Dataloader 是一个可迭代的对象。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DataLoader(dataset, batch_size=1, shuffle=False, sampler=None, num_workers=0, collate_fn=default_collate, pin_memory=False, drop_last=False)</span><br><span class="line"></span><br><span class="line">dataiter = iter(dataloader)</span><br><span class="line">batch_datas, batch_labesl = next(dataiter)</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li><p>dataset：加载的数据集(Dataset对象)</p>
+</li>
+<li><p>batch_size：batch size</p>
+</li>
+<li><p>shuffle:：是否将数据打乱</p>
+</li>
+<li><p>sampler： 样本抽样</p>
+</li>
+<li><p>num_workers：使用多进程加载的进程数，0 代表不使用多进程</p>
+</li>
+<li><p>collate_fn： 如何将多个样本数据拼接成一个 batch，一般使用默认的拼接方式即可</p>
+</li>
+<li><p>pin_memory：是否将数据保存在 pin memory 区，pin memory 中的数据转到 GPU 会快一些</p>
+</li>
+<li><p>drop_last：dataset 中的数据个数可能不是 batch_size 的整数倍，drop_last 为 True 会将多出来不足一个batch的数据丢弃</p>
+</li>
+</ul>
+<p>在数据处理中，有时会出现某个样本无法读取等问题，比如某张图片损坏。这时在__getitem__函数中将出现异常，此时最好的解决方案即是将出错的样本剔除。如果实在是遇到这种情况无法处理，则可以返回 None 对象，然后在 Dataloader 中实现自定义的 collate_fn，将空对象过滤掉。但要注意，在这种情况下 dataloader 返回的 batch 数目会少于 batch_size。<br>（4）数据采样</p>
+<p>PyTorch中还单独提供了一个 sampler 模块，用来对数据进行采样。常用的有随机采样器：RandomSampler，当dataloader的shuffle参数为True时，系统会自动调用这个采样器，实现打乱数据。默认的是采用SequentialSampler，它会按顺序一个一个进行采样。这里介绍另外一个很有用的采样方法： WeightedRandomSampler，它会根据每个样本的权重选取数据，在样本比例不均衡的问题中，可用它来进行重采样。</p>
+<p>构建WeightedRandomSampler时需提供两个参数：每个样本的权重weights、共选取的样本总数num_samples，以及一个可选参数replacement。权重越大的样本被选中的概率越大，待选取的样本数目一般小于全部的样本数目。replacement用于指定是否可以重复选取某一个样本，默认为True，即允许在一个epoch中重复采样某一个数据。如果设为False，则当某一类的样本被全部选取完，但其样本数目仍未达到num_samples时，sampler将不会再从该类中选择数据，此时可能导致weights参数失效。</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 动手学Pytorch阅读笔记</li>
+        <li><strong>Author:</strong> 寻觅之境</li>
+        <li><strong>Created at
+                :</strong> 2022-10-02 19:07:05</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-05-12 21:27:32
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://example.com/2022/10/02/《动手学Pytorch》阅读笔记/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Pytorch/">#Pytorch</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2022/10/02/hello-world/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Hello World</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2022/05/16/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%BB%8E%E7%AE%97%E6%B3%95%E5%88%B0%E5%AE%9E%E6%88%98%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">《深度学习从算法到实战》阅读笔记</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">动手学Pytorch阅读笔记</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%89%8B%E5%AD%A6Pytorch%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0"><span class="nav-text">动手学Pytorch阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-nn-Module"><span class="nav-text">4.1 nn.Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%B8%B8%E7%94%A8%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-text">4.2 常用的神经网络层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AALeNet%E7%BD%91%E7%BB%9C"><span class="nav-text">首先定义一个LeNet网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-autograd"><span class="nav-text">3.2 autograd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E6%89%A9%E5%B1%95autograd"><span class="nav-text">3.3 扩展autograd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="nav-text">5.1数据处理</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">寻觅之境</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        15 posts in total
+                    </span>
+                    
+                        <span>
+                            96.5k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Swup.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/utils.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/main.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/lazyload.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/minimasonry.min.js" ></script>
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/masonry.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+	<div id="aplayer"></div>
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/APlayer.min.js" ></script>
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/aplayer.js" ></script>
+
+	
+
+	{% if theme.fireworks %}
+	<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+	<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+	<script type="text/javascript" src="/js/fireworks.js"></script>
+
+</body>
+
+</html>
+

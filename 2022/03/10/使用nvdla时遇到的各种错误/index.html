@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="寻觅之境">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2022/03/10/使用nvdla时遇到的各种错误/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用nvdla时遇到的各种错误(半成品)">
+<meta property="og:url" content="http://example.com/2022/03/10/%E4%BD%BF%E7%94%A8nvdla%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%94%99%E8%AF%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2022-03-10T14:12:23.000Z">
+<meta property="article:modified_time" content="2025-05-12T13:29:16.132Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="新玩具">
+<meta property="article:tag" content="Pytorch">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/sakana.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/sakana.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/sakana.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            使用nvdla时遇到的各种错误(半成品) | StoryWriter
+        
+    </title>
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/54140687_p0.jpg","dark":"/images/wallhaven-z8lgwg_5830x2492.png"},"title":"。","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":"github:https://github.com/leavesyzh fa-regular fa-tv-music:https://music.163.com/#/user/home?id=1444634100","qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Ambient","artist":"Kevin MacLeod","url":"http://music.163.com/song/media/outer/url?id=33207576.mp3","cover":"/images/Ambient.jpg","lrc":"/images/none.lrc"},{"name":"Cleaning out the Rooms (Wandering Horn)","artist":"Sea Power","url":"http://music.163.com/song/media/outer/url?id=26690256.mp3","cover":"/images/Cleaning-out-the-Rooms-(Wandering-Horn).jpg","lrc":"/images/none.lrc"},{"name":"万物流転","artist":"頭脳警察","url":"http://music.163.com/song/media/outer/url?id=22723043.mp3","cover":"/images/万物流転.png","lrc":"/images/none.lrc"},{"name":"Happy End","artist":"Flare","url":"http://music.163.com/song/media/outer/url?id=35307891.mp3","cover":"/images/Happy-End.jpg","lrc":"/images/none.lrc"},{"name":"21 grams ft. Fei Lin (Cikado)","artist":"Triodust","url":"http://music.163.com/song/media/outer/url?id=1381395883.mp3","cover":"/images/21-grams-ft.jpg","lrc":"/images/none.lrc"}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"Masonry":{"icon":"fa-solid fa-image","path":"/masonry/"},"About":{"icon":"fa-regular fa-user","submenus":{"CloudMusic":"https://music.163.com/#/user/home?id=1444634100","Github":"https://github.com/leavesyzh","Blog":"https://leavesyzh.github.io/"}}},"search":{"enable":true,"preload":false}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"今天晚上做了什么.","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/sakana.png" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                StoryWriter
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    MASONRY
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=1444634100">
+                                                    CLOUDMUSIC
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/leavesyzh">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://leavesyzh.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                MASONRY
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=1444634100">CLOUDMUSIC</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/leavesyzh">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://leavesyzh.github.io/">BLOG</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">使用nvdla时遇到的各种错误(半成品)</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/blueroom.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">寻觅之境</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-03-10 22:12:23</span>
+        <span class="mobile">2022-03-10 22:12:23</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-05-12 21:29:16</span>
+            <span class="mobile">2025-05-12 21:29:16</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Debug/">Debug</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%96%B0%E7%8E%A9%E5%85%B7/">新玩具</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Pytorch/">Pytorch</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.6k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h3 id="error-error-“Please-port-gnulib-fseterr-c-to-your-platform"><a href="#error-error-“Please-port-gnulib-fseterr-c-to-your-platform" class="headerlink" title="error: #error “Please port gnulib fseterr.c to your platform!"></a>error: #error “Please port gnulib fseterr.c to your platform!</h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/Jun626/article/details/104870430">NUC980开源项目24-Please port gnulib freadahead.c to your platform!_Jun626的博客-CSDN博客<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<blockquote>
+<p><strong>freadahead.c</strong>:91:3: error: #error “<strong>Please port gnulib freadahead.c to your platform</strong>! Look at the definition of fflush, fread, ungetc on your system, then report this to bug-gnulib.”</p>
+<p>91 |  #error “Please port gnulib freadahead.c to your platform! Look at the definition of fflush, fread, ungetc on your system, then report this to bug-gnulib.”</p>
+</blockquote>
+<p>解决方法：</p>
+<p>进入目录**/buildroot/output/build/host-m4-1.4.18**</p>
+<p>在该目录下输入以下命令：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' lib/*.c</span><br><span class="line">echo "#define _IO_IN_BACKUP 0x100" &gt;&gt; lib/stdio-impl.h</span><br></pre></td></tr></table></figure></div>
+</blockquote>
+<h3 id="error-conflicting-types-for-‘copy-file-range’"><a href="#error-conflicting-types-for-‘copy-file-range’" class="headerlink" title="error: conflicting types for ‘copy_file_range’"></a>error: conflicting types for ‘copy_file_range’</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/wangwangever/p/12882670.html">全志(allwinner)编译过程问题与解决方法汇总 - 旺旺Ever - 博客园 (cnblogs.com)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<blockquote>
+<p>error: conflicting types for ‘copy_file_range’</p>
+<p>static errcode_t copy_file_range(ext2_filsys fs, int fd, ext2_file_t e2_file……</p>
+<p>修改文件：/buildroot/build/host-e2fsprogs-1.43.3/misc/create_inode.c</p>
+</blockquote>
+<p><strong>注释掉：#inlucde &lt;unistd.h&gt;</strong></p>
+</blockquote>
+<h3 id="Package-‘g-4-8’-has-no-installation-candidate"><a href="#Package-‘g-4-8’-has-no-installation-candidate" class="headerlink" title="Package ‘g++-4.8’ has no installation candidate"></a>Package ‘g++-4.8’ has no installation candidate</h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/u013187057/article/details/84996127">ubuntu系统使用update-alternatives 管理多版本gcc/g++_gcc update-alternatives<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<p>原因是系统中并没有安装g++-4..8版本，直接使用20.04版本的Ubuntu镜像源进行安装会找不到4.8版本，需要将镜像源更换为14.4版本的之后再下载g++，安装gcc-4.8时同理。</p>
+<p>安装完成之后，使用以下命令，向系统中添加一个新的alternatives组，“50”表示版本的优先级。</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc-4.8</span><br><span class="line">sudo apt-get install g++-4.8</span><br><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50</span><br><span class="line">sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /usr/bin/gcc*		#查看gcc的版本和链接</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --display &lt;name&gt;		#显示命令&lt;name&gt;的信息及目标文件</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --config &lt;name&gt;		#配置命令的版本</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --remove &lt;name&gt; &lt;path&gt;	#移除系统中注册的某个&lt;name&gt;的某个软件版本&lt;path&gt;</span><br></pre></td></tr></table></figure></div>
+</blockquote>
+<h3 id="拉取github报错-failed-The-TLS-connection-was-non-properly-terminated"><a href="#拉取github报错-failed-The-TLS-connection-was-non-properly-terminated" class="headerlink" title="拉取github报错 failed: The TLS connection was non-properly terminated."></a>拉取github报错 failed: The TLS connection was non-properly terminated.</h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/songtianlun/article/details/115611734"> 解决拉取github仓库报错“gnutls_handshake() failed”问题_烹茶室-CSDN博客<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<p>原因可能是代理设置出错，为 http 错误配置了 https 的代理。有时在相同情况下又不会报错，可能还和网络的质量有关。</p>
+<p>解决方法：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#重置代理</span><br><span class="line">git config --global  --unset https.https://github.com.proxy </span><br><span class="line">git config --global  --unset http.https://github.com.proxy </span><br></pre></td></tr></table></figure></div>
+</blockquote>
+<h3 id="GitHub访问加速"><a href="#GitHub访问加速" class="headerlink" title="GitHub访问加速"></a>GitHub访问加速</h3><p>[github访问加速 - 知乎 (zhihu.com)](<a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/75994966#:~:text=github%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F">https://zhuanlan.zhihu.com/p/75994966#:~:text=github访问加速<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 1 获取GitHub官方CDN地址.. …,2 修改系统Hosts文件.. … 3 刷新系统DNS缓存)</p>
+<p>使用github的镜像网站<a class="link" href="https://link.zhihu.com/?target=http://cnpmjs.org">http://cnpmjs.org<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，<strong>在<a class="link" target="_blank" rel="noopener" href="http://github.com后面加个http//cnpmjs.org%E5%8D%B3%E5%8F%AF">http://github.com后面加个http://cnpmjs.org即可<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></strong></p>
+<h3 id="编译报错util-memfd-c-44-12-error-static-declaration-of-‘memfd-create’-follows-non-static-declara"><a href="#编译报错util-memfd-c-44-12-error-static-declaration-of-‘memfd-create’-follows-non-static-declara" class="headerlink" title="编译报错util/memfd.c:44:12: error: static declaration of ‘memfd_create’ follows non-static declara"></a>编译报错util/memfd.c:44:12: error: static declaration of ‘memfd_create’ follows non-static declara</h3><blockquote>
+<p>解决方法：修改报错的文件<strong>memfd.c</strong></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim qemu-2.11.0/util/memfd.c</span><br></pre></td></tr></table></figure></div>
+
+<p>按照报错信息，找到memfd.c文件的第40行，将“static”声明修改为“int”</p>
+<p>static int memfd_create(const char *name, unsigned int flags)</p>
+<p>int memfd_create(const char *name, unsigned int flags)</p>
+<p>修改后保存退出，<strong>make</strong>，然后<strong>make clean</strong>。</p>
+</blockquote>
+<h3 id="linu内核编译时出现“make-arm-linux-gcc-command-not-found”解决方法"><a href="#linu内核编译时出现“make-arm-linux-gcc-command-not-found”解决方法" class="headerlink" title="linu内核编译时出现“make: arm-linux-gcc:command not found”解决方法"></a>linu内核编译时出现“make: arm-linux-gcc:command not found”解决方法</h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/polarisyj86/article/details/89395083"> linux内核编译时出现“make: arm-linux-gcc:command not found”解决方法<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/wanglouxiaozi/p/9521950.html">aarch64-linux-gnu交叉编译Qt4.7.3 - 王楼小子 - 博客园 (cnblogs.com)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<p>一般出现这个错误是因为没有设置环境变量。</p>
+<p>解决方法：</p>
+<ol>
+<li><strong>首先找到arm-linux-gcc所在目录， 使用命令</strong></li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -name arm-linux-gcc</span><br></pre></td></tr></table></figure></div>
+
+<p>系统会显示arm-linux-gcc所在的路径，如/home/user/linux/bin/arm-linux-gcc</p>
+<ol start="2">
+<li><strong>将arm-linux-gcc所在路径加入系统环境变量。</strong></li>
+</ol>
+<p>2.1 如果想对系统内所有用户都生效，可以编辑/etc/profile文件，在文件末尾添加路径。</p>
+<p>​	  在这之前，需要先登陆超级用户，取得超级用户权限，输入命令</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -s</span><br></pre></td></tr></table></figure></div>
+
+<p>之后输入当前用户密码，登陆超级用户。</p>
+<p>然后再编辑profile文件，输入命令</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line">export PATH=$PATH:/home/user/linux/bin</span><br></pre></td></tr></table></figure></div>
+
+<p>编辑profile文件后，不会立即生效，需要再键入以下命令使之立即生效</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">souce /etc/profile</span><br></pre></td></tr></table></figure></div>
+
+<p>2.2 如果只对当前用户生效，需要编辑~/.bashrc文件，之后再source该文件使之生效。方法与2.1步骤类似。</p>
+<p>编辑.bashrc文件</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line">export PATH=$PATH:/home/user/linux/bin</span><br></pre></td></tr></table></figure></div>
+
+<p>使.bashrc文件生效</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+
+<p>最后，再运行程序或者编译，如make。系统就能找到arm-linux-gcc工具了。</p>
+</blockquote>
+<h3 id="Error-E115-sc-signal-cannot-have-more-than-one-driver"><a href="#Error-E115-sc-signal-cannot-have-more-than-one-driver" class="headerlink" title="Error: (E115) sc_signal cannot have more than one driver:"></a>Error: (E115) sc_signal<t> cannot have more than one driver:</t></h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/u010144189/article/details/8956390"> Error: (E115) sc_signal cannot have more than one driver:_u010144189的专栏-CSDN博客<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<p>在执行SystemC程序的时候，出现这种错误时，只需输入以下命令，修改环境变量：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export SC_SIGNAL_WRITE_CHECK=DISABLE</span><br></pre></td></tr></table></figure></div>
+</blockquote>
+<h3 id="insmod模块时候出现loading-out-of-tree-module-taints-kernel"><a href="#insmod模块时候出现loading-out-of-tree-module-taints-kernel" class="headerlink" title="insmod模块时候出现loading out-of-tree module taints kernel"></a>insmod模块时候出现loading out-of-tree module taints kernel</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/ggzhangxiaochao/p/13359172.html">insmod模块时候出现loading out-of-tree module taints kernel - 裸睡的猪 - 博客园 (cnblogs.com)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/sky-heaven/p/13280047.html">modulename: loading out-of-tree module taints kernel【转】 - sky-heaven - 博客园 (cnblogs.com)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="src-caffe-util-io-cpp-In-function-‘bool-caffe-ReadProtoFromBinaryFile"><a href="#src-caffe-util-io-cpp-In-function-‘bool-caffe-ReadProtoFromBinaryFile" class="headerlink" title="src/caffe/util/io.cpp: In function ‘bool caffe::ReadProtoFromBinaryFile"></a>src/caffe/util/io.cpp: In function ‘bool caffe::ReadProtoFromBinaryFile</h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/SilenYep/article/details/115498646">src/caffe/util/io.cpp: In function ‘bool caffe::ReadProtoFromBinaryFile(const char*, google::protobu<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<blockquote>
+<p>src/caffe/util/io.cpp: In function ‘cv::Mat caffe::ReadImageToCVMat(const string&amp;, int, int, bool)’:<br>src/caffe/util/io.cpp:76:34: error: ‘CV_LOAD_IMAGE_COLOR’ was not declared in this scope<br>76 | int cv_read_flag = (is_color ? CV_LOAD_IMAGE_COLOR :</p>
+<p>解决方法：</p>
+<p>编辑/caffe/src/caffe/util/io.cpp这个文件，</p>
+<p>将<strong>CV_LOAD_IMAGE_COLOR</strong>改成 <strong>cv::IMREAD_COLOR</strong></p>
+<p>将<strong>CV_LOAD_IMAGE_GRAYSCALE</strong>改成 <strong>cv::IMREAD_GRAYSCALE</strong></p>
+</blockquote>
+</blockquote>
+<h3 id="fatal-error-opencv2-core-core-hpp-caffe-framework-installation"><a href="#fatal-error-opencv2-core-core-hpp-caffe-framework-installation" class="headerlink" title="fatal error: opencv2/core/core.hpp caffe framework installation"></a>fatal error: opencv2/core/core.hpp caffe framework installation</h3><p><a class="link" target="_blank" rel="noopener" href="https://stackoverflow.com/questions/35020757/fatal-error-opencv2-core-core-hpp-caffe-framework-installation">fatal error: opencv2/core/core.hpp caffe framework installation<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://stackoom.com/question/4NFBc">致命错误：opencv2/core/core.hpp：编译caffe时没有那个文件或目录 - 堆栈内存溢出 (stackoom.com)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<p>CXX src/caffe/layers/data_layer.cpp<br>src/caffe/layers/data_layer.cpp:2:33:<br>fatal error: opencv2/core/core.hpp: No such file or directory<br>#include &lt;opencv2/core/core.hpp&gt;<br>                       ^<br>compilation terminated.<br>make: *** [.build_release/src/caffe/layers/data_layer.o] Error 1</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libopencv-dev</span><br></pre></td></tr></table></figure></div>
+
+<p>找到/usr/include/opencv4，将其中的/opencv2复制到/include目录下</p>
+</blockquote>
+<h3 id="usr-bin-ld-cannot-find-lxxx-的解决办法"><a href="#usr-bin-ld-cannot-find-lxxx-的解决办法" class="headerlink" title="/usr/bin/ld: cannot find -lxxx 的解决办法"></a>/usr/bin/ld: cannot find -lxxx 的解决办法</h3><p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/e01528/article/details/79532462">ubuntu16.04下编译caffe出现.build_release/lib/libcaffe.so: undefined reference to google ::protobuf…的问题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38883095/article/details/106138238">caffe 安装报错解决办法_weixin_38883095的博客-CSDN博客<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/zwjhq/p/9258432.html">Ubuntu下caffe 配置（总结踩过的坑） - 小虫子12 - 博客园 (cnblogs.com)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/zhming26/p/6164131.html">/usr/bin/ld: cannot find -lxxx 的解决办法 - zhming - 博客园 (cnblogs.com)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>先查找链接文件是否存在，一般都是存在的，如果不存在，重新下载。</p>
+<h3 id="error-This-file-requires-compiler-and-library-support-for-the-ISO-C-2011"><a href="#error-This-file-requires-compiler-and-library-support-for-the-ISO-C-2011" class="headerlink" title="#error This file requires compiler and library support for the ISO C++ 2011"></a>#error This file requires compiler and library support for the ISO C++ 2011</h3><p><a class="link" target="_blank" rel="noopener" href="https://github.com/BVLC/caffe/issues/6359">enabled -std=c++11 · Issue #6359 · BVLC/caffe (github.com)<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<blockquote>
+<p>#error This file requires compiler and library support for the ISO C++ 2011 standard. This support must be enabled with the -std=c++11 or -std=gnu++11 compiler options.</p>
+</blockquote>
+<blockquote>
+<p>找到当前编译工程中的 <code>CMakeList.txt</code>, 然后修改：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ---[ Flags</span><br><span class="line">if(UNIX OR APPLE)</span><br><span class="line">set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wall")</span><br><span class="line">endif()if()</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")</span><br></pre></td></tr></table></figure></div>
+</blockquote>
+<h3 id="快速删除乱码文件"><a href="#快速删除乱码文件" class="headerlink" title="快速删除乱码文件"></a>快速删除乱码文件</h3><p>[find: missing argument to `-exec’ - eryoung2 - 博客园 (cnblogs.com)](<a class="link" target="_blank" rel="noopener" href="https://www.cnblogs.com/young233/p/11986633.html">https://www.cnblogs.com/young233/p/11986633.html<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>)</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 使用nvdla时遇到的各种错误(半成品)</li>
+        <li><strong>Author:</strong> 寻觅之境</li>
+        <li><strong>Created at
+                :</strong> 2022-03-10 22:12:23</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-05-12 21:29:16
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://example.com/2022/03/10/使用nvdla时遇到的各种错误/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%96%B0%E7%8E%A9%E5%85%B7/">#新玩具</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Pytorch/">#Pytorch</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2022/03/11/Windows%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Windows实用指令</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">使用nvdla时遇到的各种错误(半成品)</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#error-error-%E2%80%9CPlease-port-gnulib-fseterr-c-to-your-platform"><span class="nav-text">error: #error “Please port gnulib fseterr.c to your platform!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error-conflicting-types-for-%E2%80%98copy-file-range%E2%80%99"><span class="nav-text">error: conflicting types for ‘copy_file_range’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-%E2%80%98g-4-8%E2%80%99-has-no-installation-candidate"><span class="nav-text">Package ‘g++-4.8’ has no installation candidate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96github%E6%8A%A5%E9%94%99-failed-The-TLS-connection-was-non-properly-terminated"><span class="nav-text">拉取github报错 failed: The TLS connection was non-properly terminated.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub%E8%AE%BF%E9%97%AE%E5%8A%A0%E9%80%9F"><span class="nav-text">GitHub访问加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E6%8A%A5%E9%94%99util-memfd-c-44-12-error-static-declaration-of-%E2%80%98memfd-create%E2%80%99-follows-non-static-declara"><span class="nav-text">编译报错util&#x2F;memfd.c:44:12: error: static declaration of ‘memfd_create’ follows non-static declara</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linu%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E2%80%9Cmake-arm-linux-gcc-command-not-found%E2%80%9D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">linu内核编译时出现“make: arm-linux-gcc:command not found”解决方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-E115-sc-signal-cannot-have-more-than-one-driver"><span class="nav-text">Error: (E115) sc_signal cannot have more than one driver:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#insmod%E6%A8%A1%E5%9D%97%E6%97%B6%E5%80%99%E5%87%BA%E7%8E%B0loading-out-of-tree-module-taints-kernel"><span class="nav-text">insmod模块时候出现loading out-of-tree module taints kernel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#src-caffe-util-io-cpp-In-function-%E2%80%98bool-caffe-ReadProtoFromBinaryFile"><span class="nav-text">src&#x2F;caffe&#x2F;util&#x2F;io.cpp: In function ‘bool caffe::ReadProtoFromBinaryFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fatal-error-opencv2-core-core-hpp-caffe-framework-installation"><span class="nav-text">fatal error: opencv2&#x2F;core&#x2F;core.hpp caffe framework installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#usr-bin-ld-cannot-find-lxxx-%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-text">&#x2F;usr&#x2F;bin&#x2F;ld: cannot find -lxxx 的解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error-This-file-requires-compiler-and-library-support-for-the-ISO-C-2011"><span class="nav-text">#error This file requires compiler and library support for the ISO C++ 2011</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4%E4%B9%B1%E7%A0%81%E6%96%87%E4%BB%B6"><span class="nav-text">快速删除乱码文件</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">寻觅之境</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        15 posts in total
+                    </span>
+                    
+                        <span>
+                            96.5k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Swup.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/utils.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/main.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/lazyload.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/minimasonry.min.js" ></script>
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/masonry.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+	<div id="aplayer"></div>
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/APlayer.min.js" ></script>
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/aplayer.js" ></script>
+
+	
+
+	{% if theme.fireworks %}
+	<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+	<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+	<script type="text/javascript" src="/js/fireworks.js"></script>
+
+</body>
+
+</html>
+
