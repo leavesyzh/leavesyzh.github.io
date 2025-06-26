@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="寻觅之境">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/06/25/rag技巧与底层代码剖析 阅读笔记/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RAG技巧与底层代码剖析 阅读笔记">
+<meta property="og:url" content="http://example.com/2025/06/25/RAG%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BA%95%E5%B1%82%E4%BB%A3%E7%A0%81%E5%89%96%E6%9E%90%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-06-25T15:03:05.000Z">
+<meta property="article:modified_time" content="2025-06-25T15:04:07.100Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Pytorch">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="RAG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/sakana.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/sakana.png">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/sakana.png">
+    <!--- Page Info-->
+    
+    <title>
+        
+            RAG技巧与底层代码剖析 阅读笔记 | StoryWriter
+        
+    </title>
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/54140687_p0.jpg","dark":"/images/wallhaven-z8lgwg_5830x2492.png"},"title":"。","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":"github:https://github.com/leavesyzh fa-regular fa-tv-music:https://music.163.com/#/user/home?id=1444634100","qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"Ambient","artist":"Kevin MacLeod","url":"http://music.163.com/song/media/outer/url?id=33207576.mp3","cover":"/images/Ambient.jpg","lrc":"/images/none.lrc"},{"name":"Cleaning out the Rooms (Wandering Horn)","artist":"Sea Power","url":"http://music.163.com/song/media/outer/url?id=26690256.mp3","cover":"/images/Cleaning-out-the-Rooms-(Wandering-Horn).jpg","lrc":"/images/none.lrc"},{"name":"万物流転","artist":"頭脳警察","url":"http://music.163.com/song/media/outer/url?id=22723043.mp3","cover":"/images/万物流転.png","lrc":"/images/none.lrc"},{"name":"Happy End","artist":"Flare","url":"http://music.163.com/song/media/outer/url?id=35307891.mp3","cover":"/images/Happy-End.jpg","lrc":"/images/none.lrc"},{"name":"21 grams ft. Fei Lin (Cikado)","artist":"Triodust","url":"http://music.163.com/song/media/outer/url?id=1381395883.mp3","cover":"/images/21-grams-ft.jpg","lrc":"/images/none.lrc"}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"Masonry":{"icon":"fa-solid fa-image","path":"/masonry/"},"About":{"icon":"fa-regular fa-user","submenus":{"CloudMusic":"https://music.163.com/#/user/home?id=1444634100","Github":"https://github.com/leavesyzh","Blog":"https://leavesyzh.github.io/"}}},"search":{"enable":true,"preload":false}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"今天晚上做了什么.","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/sakana.png" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                StoryWriter
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/"
+                                        >
+                                    <i class="fa-solid fa-folder fa-fw"></i>
+                                    CATEGORIES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/masonry/"
+                                        >
+                                    <i class="fa-solid fa-image fa-fw"></i>
+                                    MASONRY
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=1444634100">
+                                                    CLOUDMUSIC
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/leavesyzh">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://leavesyzh.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/"
+                        >
+                            <span>
+                                CATEGORIES
+                            </span>
+                            
+                                <i class="fa-solid fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/masonry/"
+                        >
+                            <span>
+                                MASONRY
+                            </span>
+                            
+                                <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=1444634100">CLOUDMUSIC</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/leavesyzh">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://leavesyzh.github.io/">BLOG</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">RAG技巧与底层代码剖析 阅读笔记</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/blueroom.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">寻觅之境</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-06-25 23:03:05</span>
+        <span class="mobile">2025-06-25 23:03:05</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-06-25 23:04:07</span>
+            <span class="mobile">2025-06-25 23:04:07</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Pytorch/">Pytorch</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/RAG/">RAG</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>9.6k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>36 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="原文链接：RAG技巧与底层代码剖析"><a href="#原文链接：RAG技巧与底层代码剖析" class="headerlink" title="原文链接：RAG技巧与底层代码剖析"></a><a class="link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/oX6JZS_INj9M8Ntkh4Jp9Q">原文链接：RAG技巧与底层代码剖析<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></h2><h2 id="一、简易-RAG-实现"><a href="#一、简易-RAG-实现" class="headerlink" title="一、简易 RAG 实现"></a>一、简易 RAG 实现</h2><h3 id="RAG-流程分解"><a href="#RAG-流程分解" class="headerlink" title="RAG 流程分解"></a>RAG 流程分解</h3><blockquote>
+<p>1.**数据导入：**加载并预处理原始文本数据，为后续处理做好准备。</p>
+<p>2.**文本分块：**将长文本分割成较小的段落或句子，以提高检索效率和相关性。</p>
+<p>3.**创建 Embedding：**使用嵌入模型将文本块转换为向量表示，便于进行语义层面的比较与匹配。</p>
+<p>4.**语义搜索：**根据用户输入的查询内容，在已有向量库中检索出最相关的文本块。</p>
+<p>5.**响应生成：**基于检索到的相关内容，结合语言模型生成最终的回答输出。</p>
+</blockquote>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化 DashScope 客户端（使用阿里云通义千问）</span></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=os.getenv(<span class="string">"DASHSCOPE_API_KEY"</span>),  <span class="comment"># 确保提前设置好环境变量</span></span><br><span class="line">    base_url=<span class="string">"https://dashscope.aliyuncs.com/compatible-mode/v1"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置系统提示</span></span><br><span class="line">SYSTEM_PROMPT = (</span><br><span class="line">    <span class="string">"你是一个 AI 助手，必须严格根据提供的上下文内容进行回答。"</span></span><br><span class="line">    <span class="string">"如果无法从提供的上下文中直接得出答案，请回复：'我无法根据现有信息回答这个问题。'"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_response</span>(<span class="params">system_prompt, user_message, model=<span class="string">"qwen-max"</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    使用 DashScope 的通义千问模型生成基于上下文的回答。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">        system_prompt (str): 控制 AI 行为的系统指令</span></span><br><span class="line"><span class="string">        user_message (str): 用户输入的问题及上下文</span></span><br><span class="line"><span class="string">        model (str): 使用的模型名称，默认为 qwen-plus</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">        str: 模型生成的回答内容</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    response = client.chat.completions.create(</span><br><span class="line">        model=model,</span><br><span class="line">        temperature=<span class="number">0.0</span>,  <span class="comment"># 温度设为0，保证输出确定性</span></span><br><span class="line">        max_tokens=<span class="number">512</span>,   <span class="comment"># 可按需调整最大输出长度</span></span><br><span class="line">        messages=[</span><br><span class="line">            {<span class="string">"role"</span>: <span class="string">"system"</span>, <span class="string">"content"</span>: system_prompt},</span><br><span class="line">            {<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: user_message}</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> response.choices[<span class="number">0</span>].message.content.strip()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例 top_chunks（假设这是 semantic_search 返回的结果）</span></span><br><span class="line">top_chunks = [</span><br><span class="line">    <span class="string">"通义灵码是一个基于 AI 的智能编程助手。"</span>,</span><br><span class="line">    <span class="string">"文件编辑能力包括自动补全、错误修复和代码重构等功能。"</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">query = <span class="string">"通义灵码的智能体能力是什么？"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建用户 prompt（包含上下文 + 问题）</span></span><br><span class="line">user_prompt = <span class="string">"\n"</span>.join([<span class="string">f"上下文 <span class="subst">{i + <span class="number">1</span>}</span>:\n<span class="subst">{chunk}</span>"</span><span class="keyword">for</span> i, chunk <span class="keyword">in</span> <span class="built_in">enumerate</span>(top_chunks)])</span><br><span class="line">user_prompt += <span class="string">f"\n\n问题：<span class="subst">{query}</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成 AI 回答</span></span><br><span class="line">answer = generate_response(SYSTEM_PROMPT, user_prompt)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"AI 回答："</span>)</span><br><span class="line"><span class="built_in">print</span>(answer)</span><br></pre></td></tr></table></figure></div></blockquote>
+<h2 id="二、基于语义的文本分块"><a href="#二、基于语义的文本分块" class="headerlink" title="二、基于语义的文本分块"></a>二、基于语义的文本分块</h2><blockquote>
+<p>在 RAG中，**文本分块（Text Chunking）**是一个至关重要的环节。其核心作用是将一大段连续文本划分为多个具有语义完整性的较小段落，从而提升信息检索的准确性和整体效果。</p>
+<p>传统的分块方式通常采用固定长度的切分策略，例如每 500 个字符或每若干句子进行一次分割。这种方法虽然实现简单，但在实际应用中容易割裂完整的语义单元，导致后续的信息检索与理解受到影响。</p>
+<p>相比之下，一种更智能的分块方法是<strong>语义分块（Semantic Chunking）</strong>。它不再依据字数或句数进行机械划分，而是<strong>通过分析句子之间的内容相似性来判断合适的切分位置</strong>。当检测到前后句子在语义上出现明显差异时，就在该位置断开，形成一个新的语义段落。</p>
+</blockquote>
+<h3 id="切分点的判定方法"><a href="#切分点的判定方法" class="headerlink" title="切分点的判定方法"></a>切分点的判定方法</h3><blockquote>
+<p>为了找到合适的语义切分点，我们可以借助以下几种常见的统计方法：</p>
+<p>1.**百分位法（Percentile）**找出所有相邻句子之间语义相似度差异的“第 X 百分位数”，并在那些差异值超过该阈值的位置进行切分。</p>
+<p>2.**标准差法（Standard Deviation）**当句子间的语义相似度下降幅度超过平均值减去 X 倍标准差时，在该位置进行切分。</p>
+<p>3.**四分位距法（IQR, Interquartile Range）**利用上下四分位数之差（Q3 - Q1）来识别变化较大的位置，并将其作为潜在的切分点。</p>
+</blockquote>
+<h3 id="实际应用示例"><a href="#实际应用示例" class="headerlink" title="实际应用示例"></a>实际应用示例</h3><blockquote>
+<ol>
+<li><h4 id="创建句子级别的-Embedding"><a href="#创建句子级别的-Embedding" class="headerlink" title="创建句子级别的 Embedding"></a>创建句子级别的 Embedding</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化客户端</span></span><br><span class="line">client = OpenAI(</span><br><span class="line">    api_key=os.getenv(<span class="string">"DASHSCOPE_API_KEY"</span>),  <span class="comment"># 如果您没有配置环境变量，请在此处用您的API Key进行替换</span></span><br><span class="line">    base_url=<span class="string">"https://dashscope.aliyuncs.com/compatible-mode/v1"</span>  <span class="comment"># 百炼服务的base_url</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建文本块的嵌入向量</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_embeddings</span>(<span class="params">texts, model=<span class="string">"text-embedding-v3"</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    输入一组文本（字符串或列表），返回对应的嵌入向量列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(texts, <span class="built_in">str</span>):</span><br><span class="line">        texts = [texts]  <span class="comment"># 确保输入为列表形式</span></span><br><span class="line"></span><br><span class="line">    completion = client.embeddings.create(</span><br><span class="line">        model=model,</span><br><span class="line">        <span class="built_in">input</span>=text_chunks,</span><br><span class="line">        encoding_format=<span class="string">"float"</span></span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将响应转换为 dict 并提取所有 embedding</span></span><br><span class="line">    data = json.loads(completion.model_dump_json())</span><br><span class="line">    embeddings = [item[<span class="string">"embedding"</span>] <span class="keyword">for</span> item <span class="keyword">in</span> data[<span class="string">"data"</span>]]</span><br><span class="line">    <span class="keyword">return</span> embeddings</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将文本按句号进行初步切分为句子</span></span><br><span class="line">sentences = extracted_text.split(<span class="string">"。"</span>)</span><br><span class="line"><span class="comment"># 去除空字符串和前后空格</span></span><br><span class="line">sentences = [sentence.strip() <span class="keyword">for</span> sentence <span class="keyword">in</span> sentences <span class="keyword">if</span> sentence.strip()]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量生成所有句子的嵌入向量（推荐做法）</span></span><br><span class="line">embeddings = create_embeddings(sentences)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"成功生成 <span class="subst">{<span class="built_in">len</span>(embeddings)}</span> 个句子的嵌入向量。"</span>)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><h4 id="计算相似度差异"><a href="#计算相似度差异" class="headerlink" title="计算相似度差异"></a>计算相似度差异</h4><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> cosine_similarity</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cosine_similarity</span>(<span class="params">vec1, vec2</span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算两个向量之间的余弦相似度。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    vec1(np.ndarray): 第一向量。</span></span><br><span class="line"><span class="string">    vec2(np.ndarray): 第二向量。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">    float: 余弦相似度。</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    异常:</span></span><br><span class="line"><span class="string">    ValueError: 如果输入向量不是一维数组或形状不匹配。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> vec1.ndim != <span class="number">1</span> <span class="keyword">or</span> vec2.ndim != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">"输入向量必须是一维数组"</span>)</span><br><span class="line">    <span class="keyword">if</span> vec1.shape[<span class="number">0</span>] != vec2.shape[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">"输入向量必须具有相同的维度"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用sklearn的cosine_similarity函数计算连续句子之间的相似度</span></span><br><span class="line">similarities = [cosine_similarity(embeddings[i].reshape(<span class="number">1</span>, -<span class="number">1</span>), embeddings[i + <span class="number">1</span>].reshape(<span class="number">1</span>, -<span class="number">1</span>))[<span class="number">0</span>][<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(embeddings) - <span class="number">1</span>)]</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><h4 id="实现语义分块"><a href="#实现语义分块" class="headerlink" title="实现语义分块"></a>实现语义分块</h4><blockquote>
+<p><strong>基于句子之间的语义相似度变化</strong>来决定切分位置。当检测到连续句子之间的语义差异较大时，就认为此处是一个潜在的段落分界点。</p>
+</blockquote>
+<blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">compute_breakpoints</span>(<span class="params">similarity_scores, method=<span class="string">"percentile"</span>, threshold=<span class="number">90</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    根据相似度下降点计算分段断点。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    similarity_scores(List[float]): 句子之间的相似度列表。</span></span><br><span class="line"><span class="string">    method(str): 阈值计算方法，可选 'percentile', 'standard_deviation', 或 'interquartile'。</span></span><br><span class="line"><span class="string">    threshold(float): 阈值（用于百分位数或标准差法）。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">    List[int]: 应该进行分割的索引位置。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 根据选择的方法确定阈值</span></span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">"percentile"</span>:</span><br><span class="line">        <span class="comment"># 计算指定百分位数的相似度值作为阈值</span></span><br><span class="line">        threshold_value = np.percentile(similarity_scores, threshold)</span><br><span class="line">    <span class="keyword">elif</span> method == <span class="string">"standard_deviation"</span>:</span><br><span class="line">        <span class="comment"># 计算均值和标准差，并通过减去X个标准差确定阈值</span></span><br><span class="line">        mean = np.mean(similarity_scores)</span><br><span class="line">        std_dev = np.std(similarity_scores)</span><br><span class="line">        threshold_value = mean - (threshold * std_dev)</span><br><span class="line">    <span class="keyword">elif</span> method == <span class="string">"interquartile"</span>:</span><br><span class="line">        <span class="comment"># 使用四分位距（IQR）规则确定异常值阈值</span></span><br><span class="line">        q1, q3 = np.percentile(similarity_scores, [<span class="number">25</span>, <span class="number">75</span>])</span><br><span class="line">        iqr = q3 - q1</span><br><span class="line">        threshold_value = q1 - <span class="number">1.5</span> * iqr</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 如果方法无效则抛出错误</span></span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">"无效方法。请选择 'percentile'、'standard_deviation' 或 'interquartile'。"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 找出相似度低于阈值的位置，即分段断点</span></span><br><span class="line">    <span class="keyword">return</span> [i <span class="keyword">for</span> i, score <span class="keyword">in</span> <span class="built_in">enumerate</span>(similarity_scores) <span class="keyword">if</span> score &lt; threshold_value]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 percentile 方法并设置阈值为 90% 百分位数计算断点</span></span><br><span class="line">breakpoints = compute_breakpoints(similarity_scores=similarities, method=<span class="string">"percentile"</span>, threshold=<span class="number">90</span>)</span><br></pre></td></tr></table></figure></div></blockquote>
+</li>
+<li><h4 id="将文本切分为语义块"><a href="#将文本切分为语义块" class="headerlink" title="将文本切分为语义块"></a>将文本切分为语义块</h4><blockquote>
+<p>接下来我们根据计算出的切分点（Breakpoints），将文本按照其语义内容进行划分。在上一步中，我们已经通过分析句子之间的语义相似度变化，识别出了一些潜在的切分位置。现在，我们将依据这些位置，把原始文本分割为多个具有清晰语义边界的段落，也称为“语义块（Semantic Chunks）”。</p>
+</blockquote>
+</li>
+<li><h4 id="为语义块创建嵌入向量"><a href="#为语义块创建嵌入向量" class="headerlink" title="为语义块创建嵌入向量"></a>为语义块创建嵌入向量</h4><blockquote>
+<p>在完成文本的语义切分之后，接下来我们要为每一个语义块（Semantic Chunk）生成嵌入向量（Embedding），以便于后续的检索和使用。</p>
+</blockquote>
+</li>
+<li><h4 id="进行语义搜索"><a href="#进行语义搜索" class="headerlink" title="进行语义搜索"></a>进行语义搜索</h4><blockquote>
+<p>我们使用<strong>余弦相似度（Cosine Similarity）</strong> 来检索与查询内容<strong>最相关的语义块（Chunks）</strong></p>
+</blockquote>
+<blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> cosine_similarity</span><br><span class="line"></span><br><span class="line"><span class="comment"># 语义搜索函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">semantic_search</span>(<span class="params">query, text_chunks, embeddings=<span class="literal">None</span>, k=<span class="number">2</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    在 text_chunks 中找出与 query 最相关的 top-k 文本块</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">        query: 查询语句</span></span><br><span class="line"><span class="string">        text_chunks: 候选文本块列表</span></span><br><span class="line"><span class="string">        embeddings: 对应的嵌入向量列表（如果已提前计算）</span></span><br><span class="line"><span class="string">        k: 返回最相关的结果数量</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">        top_k_chunks: 最相关的 top-k 文本块</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> embeddings <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        embeddings = create_embeddings(text_chunks)  <span class="comment"># 如果没有提供，则自动生成</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">len</span>(embeddings) == <span class="built_in">len</span>(text_chunks), <span class="string">"embeddings 和 text_chunks 必须长度一致"</span></span><br><span class="line"></span><br><span class="line">    query_embedding = create_embeddings(query)[<span class="number">0</span>]  <span class="comment"># 获取查询的嵌入</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算相似度</span></span><br><span class="line">    similarity_scores = []</span><br><span class="line">    <span class="keyword">for</span> i, chunk_embedding <span class="keyword">in</span> <span class="built_in">enumerate</span>(embeddings):</span><br><span class="line">        score = cosine_similarity([query_embedding], [chunk_embedding])[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        similarity_scores.append((i, score))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 排序并取 top-k</span></span><br><span class="line">    similarity_scores.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line">    top_indices = [index <span class="keyword">for</span> index, _ <span class="keyword">in</span> similarity_scores[:k]]</span><br><span class="line">    <span class="keyword">return</span> [text_chunks[index] <span class="keyword">for</span> index <span class="keyword">in</span> top_indices]</span><br></pre></td></tr></table></figure></div></blockquote>
+</li>
+<li><h4 id="基于检索到的文本块生成响应"><a href="#基于检索到的文本块生成响应" class="headerlink" title="基于检索到的文本块生成响应"></a>基于检索到的文本块生成响应</h4></li>
+</ol>
+</blockquote>
+<h2 id="三、在-RAG-中引入上下文增强检索"><a href="#三、在-RAG-中引入上下文增强检索" class="headerlink" title="三、在 RAG 中引入上下文增强检索"></a>三、在 RAG 中引入上下文增强检索</h2><blockquote>
+<p>传统的方法存在一个明显的问题：它只返回一个个孤立的文本块，这些文本块之间缺乏上下文联系，有时会导致 AI 获取的信息不完整，从而出现回答错误或内容不全面的情况。</p>
+<p>为了解决这个问题，我们提出了一种新的方法，叫做 <strong>“上下文增强检索”（Context-Enriched Retrieval）</strong>。 它的核心思想是： 不只是找出一个最相关的文本块，而是同时返回它的前一个和后一个文本块，帮助 AI 更好地理解上下文，从而生成更准确、更完整的回答。</p>
+</blockquote>
+<h3 id="上下文增强检索流程"><a href="#上下文增强检索流程" class="headerlink" title="上下文增强检索流程"></a>上下文增强检索流程</h3><blockquote>
+<p>1.<strong>数据导入（Data Ingestion）</strong>：从 PDF 文件中提取原始文字内容。</p>
+<p>2.<strong>带上下文的分块（Chunking with Overlapping Context）</strong>：将大段文字划分为多个小块，但每个文本块与前后内容有一定的重叠。 👉 这样做的目的是确保即使某句话被切分到两个文本块之间，在其中一个块中也能看到完整的上下文。</p>
+<p>3.<strong>创建嵌入向量（Embedding Creation）</strong>：将每个文本块转换为一组数字表示（称为“嵌入向量”），便于后续进行相似度计算。 👉 可以理解为给每个文本块打上“语义标签”，这样就能快速找到语义相近的内容。</p>
+<p>4.<strong>上下文感知的检索（Context-Aware Retrieval）</strong>：当用户提问时，系统不仅会找到最相关的那个文本块，还会一并返回其前后的文本块。 👉 这样 AI 在回答问题时能获得更丰富的背景信息，避免断章取义。</p>
+<p>5.<strong>生成回答（Response Generation）</strong>：使用大语言模型（如 Llama、ChatGLM 等），基于包含上下文的检索结果生成自然、准确的回答。 👉 就像你在考试时可以翻书找答案，而且还能看到那一页的前后内容，自然就能答得更准确。</p>
+<p>6.<strong>评估效果（Evaluation）</strong>：最后，我们会对 AI 的回答进行评估，判断是否因引入上下文而提升了回答的准确性与完整性。 👉 比如可以通过人工评分，或者让另一个 AI 来评估回答的质量。</p>
+</blockquote>
+<h3 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h3><blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">context_enriched_search</span>(<span class="params">search_query, chunked_texts, chunk_embeddings, top_k=<span class="number">1</span>, context_window_size=<span class="number">1</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    在搜索时不仅返回最相关的段落，还包含它前后的上下文段落，以提供更丰富的背景信息。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        search_query(str): 用户的查询语句。</span></span><br><span class="line"><span class="string">        chunked_texts(List[str]): 文本被切分后的段落列表。</span></span><br><span class="line"><span class="string">        chunk_embeddings(List[dict]): 每个文本段落对应的向量表示（通常是从 embedding 模型得到的）。</span></span><br><span class="line"><span class="string">        top_k(int): 要检索的相关段落数量（这里只用 top 1 来找中心段落）。</span></span><br><span class="line"><span class="string">        context_window_size(int): 要包含的上下文段落数量（前后各取几个）。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        List[str]: 包含最相关段落及其上下文的文本段落列表。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第一步：将用户的问题转换为一个向量（embedding），用于和文本段落做相似度比较</span></span><br><span class="line">    query_embedding = create_embeddings(search_query).data[<span class="number">0</span>].embedding</span><br><span class="line"></span><br><span class="line">    similarity_list = []  <span class="comment"># 用于存储每个段落与问题的相似度分数和其索引</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第二步：遍历所有段落的向量，计算它们与问题向量之间的余弦相似度</span></span><br><span class="line">    <span class="keyword">for</span> i, chunk_embedding <span class="keyword">in</span> <span class="built_in">enumerate</span>(chunk_embeddings):</span><br><span class="line">        <span class="comment"># 使用 cosine_similarity 函数计算相似度（越接近1越相似）</span></span><br><span class="line">        similarity_score = cosine_similarity(np.array(query_embedding), np.array(chunk_embedding.embedding))</span><br><span class="line">        <span class="comment"># 把该段落的索引和相似度保存下来，如：(0, 0.75)</span></span><br><span class="line">        similarity_list.append((i, similarity_score))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第三步：根据相似度对所有段落进行排序，从高到低排列</span></span><br><span class="line">    similarity_list.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第四步：获取最相关的那个段落的索引（即排在第一位的段落）</span></span><br><span class="line">    most_relevant_index = similarity_list[<span class="number">0</span>][<span class="number">0</span>]  <span class="comment"># 如：第3个段落</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第五步：确定要提取的上下文范围（包括当前段落 + 前后 context_window_size 个段落）</span></span><br><span class="line">    start_index = <span class="built_in">max</span>(<span class="number">0</span>, most_relevant_index - context_window_size)  <span class="comment"># 防止超出开头</span></span><br><span class="line">    end_index = <span class="built_in">min</span>(<span class="built_in">len</span>(chunked_texts), most_relevant_index + context_window_size + <span class="number">1</span>)  <span class="comment"># 防止超出结尾</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第六步：返回包含上下文的段落列表</span></span><br><span class="line">    <span class="keyword">return</span> [chunked_texts[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start_index, end_index)]</span><br></pre></td></tr></table></figure></div></blockquote>
+<h2 id="四、添加上下文块标题"><a href="#四、添加上下文块标题" class="headerlink" title="四、添加上下文块标题"></a>四、添加上下文块标题</h2><blockquote>
+<p>RAG 通过在生成回答之前从外部知识库中检索相关信息，从而提升语言模型的事实准确性。然而，在传统的文本分块方法中，<strong>往往会丢失重要的上下文信息，导致检索效果不佳</strong>，甚至使模型生成脱离上下文的回答。</p>
+<p>为了解决这个问题，我们引入了一种改进方法：<strong>上下文块标题（Contextual Chunk Headers, 简称 CCH）</strong>。 这个方法的核心思想是： 在将文本分成小块（chunk）时，将该段内容所属的高级上下文信息（如文档标题、章节标题等）一并加到每个文本块的开头，然后再进行嵌入和检索。 这样做可以让每个文本块都带有其背景信息，帮助模型更好地理解它属于哪个部分，从而提高检索的相关性，并避免模型基于断章取义的内容生成错误答案。</p>
+</blockquote>
+<h3 id="上下文块标题流程分解"><a href="#上下文块标题流程分解" class="headerlink" title="上下文块标题流程分解"></a>上下文块标题流程分解</h3><blockquote>
+<p>1.<strong>数据导入（Data Ingestion）</strong>：加载并预处理原始文本数据。</p>
+<p>2.<strong>带上下文标题的分块（Chunking with Contextual Headers）</strong>：自动识别文档中的章节标题，并将这些标题加到对应段落的前面，形成带有上下文的文本块。👉 例如：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 第三章：人工智能的基本技术人工智能的核心方法包括机器学习、深度学习和自然语言处理...</span><br></pre></td></tr></table></figure></div>
+
+<p>3.<strong>创建嵌入向量（Embedding Creation）</strong>：将这些带有上下文信息的文本块转换成数字形式（即嵌入向量），以便后续进行语义搜索。</p>
+<p>4.<strong>语义搜索（Semantic Search）</strong>：当用户提出问题时，系统会基于这些增强后的文本块，找到最相关的内容。</p>
+<p>5.<strong>生成回答（Response Generation）</strong>：使用大语言模型（如 Llama、ChatGLM 等）基于检索结果生成自然、准确的回答。</p>
+<p>6.<strong>评估效果（Evaluation）</strong>：通过评分系统对 AI 的回答进行评估，检查加入上下文标题后是否提升了回答的准确性和相关性。</p>
+</blockquote>
+<h3 id="实际应用示例-1"><a href="#实际应用示例-1" class="headerlink" title="实际应用示例"></a>实际应用示例</h3><blockquote>
+<ol>
+<li><h4 id="使用上下文标题对文本进行分块"><a href="#使用上下文标题对文本进行分块" class="headerlink" title="使用上下文标题对文本进行分块"></a>使用上下文标题对文本进行分块</h4><blockquote>
+<p>为了提升信息检索的效果，我们使用大语言模型（LLM）为每一个文本块自动生成一个描述性的标题（Header），并将其加在该文本块的前面。</p>
+</blockquote>
+<blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">generate_chunk_header</span>(<span class="params">text_chunk, model_name=<span class="string">"qwen-max"</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    使用大语言模型（LLM）为给定文本段落生成一个标题/摘要。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        text_chunk(str): 需要生成标题的文本段落。</span></span><br><span class="line"><span class="string">        model_name(str): 用于生成标题的语言模型名称，默认为 "qwen-max"。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        str: 由模型生成的标题或摘要内容。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义系统提示词，指导 AI 的行为</span></span><br><span class="line">    header_system_prompt = <span class="string">"请为以下文本生成一个简洁且具有信息量的标题。"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调用 LLM 模型生成基于系统提示词和输入文本的响应</span></span><br><span class="line">    llm_response = client.chat.completions.create(</span><br><span class="line">        model=model_name,</span><br><span class="line">        temperature=<span class="number">0</span>,</span><br><span class="line">        messages=[</span><br><span class="line">            {<span class="string">"role"</span>: <span class="string">"system"</span>, <span class="string">"content"</span>: header_system_prompt},</span><br><span class="line">            {<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: text_chunk}</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取并返回模型生成的内容，去除前后多余的空白字符</span></span><br><span class="line">    <span class="keyword">return</span> llm_response.choices[<span class="number">0</span>].message.content.strip()</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">chunk_text_with_headers</span>(<span class="params">input_text, chunk_size, overlap_size</span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    将输入文本分割为较小的段落并为每个段落生成标题。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        input_text(str): 需要分割的完整文本。</span></span><br><span class="line"><span class="string">        chunk_size(int): 每个段落的大小（字符数）。</span></span><br><span class="line"><span class="string">        overlap_size(int): 相邻段落之间的重叠字符数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        List[dict]: 包含 'header' 和 'text' 键的字典列表，分别表示段落的标题和内容。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    text_chunks = []  <span class="comment"># 初始化一个空列表，用于存储带有标题的文本段落</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用指定的段落大小和重叠长度遍历文本</span></span><br><span class="line">    <span class="keyword">for</span> start_index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(input_text), chunk_size - overlap_size):</span><br><span class="line">        current_chunk = input_text[start_index:start_index + chunk_size]  <span class="comment"># 提取当前段落</span></span><br><span class="line">        chunk_header = generate_chunk_header(current_chunk)  <span class="comment"># 使用大语言模型生成段落标题</span></span><br><span class="line">        text_chunks.append({<span class="string">"header"</span>: chunk_header, <span class="string">"text"</span>: current_chunk})  <span class="comment"># 将标题和段落内容一起添加到列表中</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text_chunks  <span class="comment"># 返回包含标题和内容的段落列表</span></span><br></pre></td></tr></table></figure></div></blockquote>
+</li>
+<li><h4 id="为标题和正文创建embedding向量"><a href="#为标题和正文创建embedding向量" class="headerlink" title="为标题和正文创建embedding向量"></a>为标题和正文创建embedding向量</h4><blockquote>
+<p>为了提升信息检索的准确性，我们不仅对正文内容生成<strong>Embedding</strong>，同时也对每个文本块前面的标题（Header）生成嵌入向量。</p>
+</blockquote>
+<blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 为每个文本块生成嵌入向量</span></span><br><span class="line">chunk_embeddings = []  <span class="comment"># 初始化一个空列表，用于存储带有标题、文本及其嵌入向量的字典</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历每个文本块并生成嵌入向量（带进度条）</span></span><br><span class="line"><span class="keyword">for</span> current_chunk <span class="keyword">in</span> tqdm(text_chunks, desc=<span class="string">"生成嵌入向量"</span>):</span><br><span class="line">    <span class="comment"># 获取当前文本块的文本内容，并生成其嵌入向量</span></span><br><span class="line">    text_embedding = create_embeddings(current_chunk[<span class="string">"text"</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取当前文本块的标题，并生成其嵌入向量</span></span><br><span class="line">    header_embedding = create_embeddings(current_chunk[<span class="string">"header"</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 将当前文本块的标题、文本及其对应的嵌入向量存入列表中</span></span><br><span class="line">    chunk_embeddings.append({</span><br><span class="line">        <span class="string">"header"</span>: current_chunk[<span class="string">"header"</span>],</span><br><span class="line">        <span class="string">"text"</span>: current_chunk[<span class="string">"text"</span>],</span><br><span class="line">        <span class="string">"embedding"</span>: text_embedding,</span><br><span class="line">        <span class="string">"header_embedding"</span>: header_embedding</span><br><span class="line">    })</span><br></pre></td></tr></table></figure></div></blockquote>
+</li>
+<li><h4 id="语义检索"><a href="#语义检索" class="headerlink" title="语义检索"></a>语义检索</h4><blockquote>
+<p>遍历每个文本块，分别计算查询与文本、标题的相似度，并取平均，最后返回最相关的 <strong>top-k</strong> 个文本块</p>
+</blockquote>
+<blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_calculate_similarity</span>(<span class="params">query_vec, chunk_vec</span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算查询向量与块向量之间的余弦相似度。</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    query_vec (np.array): 查询的嵌入向量。</span></span><br><span class="line"><span class="string">    chunk_vec (np.array): 文本块的嵌入向量。</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">    float: 余弦相似度。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> cosine_similarity(np.array(query_vec), np.array(chunk_vec))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">semantic_search</span>(<span class="params">query, chunks, top_k=<span class="number">5</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    根据查询语义搜索最相关的文本块。</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    query (str): 用户输入的查询语句。</span></span><br><span class="line"><span class="string">    chunks (List[dict]): 包含嵌入向量的文本块列表。</span></span><br><span class="line"><span class="string">    top_k (int): 需要返回的最相关结果的数量。</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">    List[dict]: 最相关的前top_k个文本块。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 生成查询语句的向量表示</span></span><br><span class="line">    query_vector = create_embeddings(query)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化一个列表用于存储每个文本块及其相似度</span></span><br><span class="line">    chunk_similarity_pairs = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历每个文本块并计算相似度</span></span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> chunks:</span><br><span class="line">        text_vector = chunk[<span class="string">"embedding"</span>]     <span class="comment"># 获取文本内容的嵌入向量</span></span><br><span class="line">        header_vector = chunk[<span class="string">"header_embedding"</span>]  <span class="comment"># 获取标题的嵌入向量</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 分别计算查询与文本、标题的相似度，并取平均</span></span><br><span class="line">        similarity_text = _calculate_similarity(query_vector, text_vector)</span><br><span class="line">        similarity_header = _calculate_similarity(query_vector, header_vector)</span><br><span class="line">        avg_similarity = (similarity_text + similarity_header) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 存储文本块及其平均相似度</span></span><br><span class="line">        chunk_similarity_pairs.append((chunk, avg_similarity))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 按照相似度从高到低排序</span></span><br><span class="line">    chunk_similarity_pairs.sort(key=<span class="keyword">lambda</span> pair: pair[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回最相关的 top-k 个文本块</span></span><br><span class="line">    <span class="keyword">return</span> [pair[<span class="number">0</span>] forpair <span class="keyword">in</span> chunk_similarity_pairs[:top_k]]</span><br></pre></td></tr></table></figure></div></blockquote>
+</li>
+</ol>
+</blockquote>
+<h2 id="五、基于问题生成的-RAG"><a href="#五、基于问题生成的-RAG" class="headerlink" title="五、基于问题生成的 RAG"></a>五、基于问题生成的 RAG</h2><blockquote>
+<p>本节通过在文档处理阶段引入<strong>问题生成（Question Generation）</strong>，对文档内容进行增强。</p>
+<p>我们为每个文本块生成相关的提问，从而提升信息检索的效果，最终帮助语言模型生成更准确、更相关的回答。</p>
+<p>这种方法的核心思想是： 在传统的 RAG（Retrieval-Augmented Generation）中，我们通常只将文本块嵌入后存入向量库。而在这一改进方法中，我们还<strong>为每个文本块自动生成一些相关的问题，并将这些问题也进行嵌入</strong>。这样，在用户提问时，<strong>系统可以更好地理解哪些文本块与问题最相关，从而提高检索效果和回答质量</strong>。</p>
+</blockquote>
+<h3 id="问题生成流程分解"><a href="#问题生成流程分解" class="headerlink" title="问题生成流程分解"></a>问题生成流程分解</h3><blockquote>
+<p>1.<strong>数据导入（Data Ingestion）</strong>：从 PDF 文件中提取原始文本内容。</p>
+<p>2.<strong>文本分块（Chunking）</strong>：将大段文字切分成小块，便于后续处理。 👉 每个块通常包含 200~300 字左右的内容。</p>
+<p>3.<strong>问题生成（Question Generation）</strong>：使用大语言模型（LLM），为每个文本块自动生成几个与该段内容相关的问题。 👉 例如，输入一段关于“机器学习”的内容，输出可能是：</p>
+<ul>
+<li><p>“什么是机器学习？”</p>
+</li>
+<li><p>“机器学习有哪些常见算法？”</p>
+</li>
+<li><p>“机器学习和人工智能有什么关系？”</p>
+</li>
+</ul>
+<p>4.<strong>创建嵌入向量（Embedding Creation）</strong>：对每个文本块及其对应的问题分别生成嵌入向量（即转化为数字表示），以便进行语义匹配。</p>
+<p>5.<strong>构建向量数据库（Vector Store Creation）</strong>：使用 NumPy 构建一个简单的向量数据库，用来存储所有文本块和问题的嵌入向量。</p>
+<p>6.<strong>语义搜索（Semantic Search）</strong>：当用户提出问题时，系统会先查找与其问题最相似的生成问题（generated questions），然后找到对应的文本块作为上下文。</p>
+<p>7.<strong>生成回答（Response Generation）</strong>：基于检索到的相关文本块，让语言模型生成自然、准确的回答。</p>
+<p>8.<strong>评估效果（Evaluation）</strong>：最后，我们会对生成的回答进行评分，评估这种增强型 RAG 是否提升了回答的质量和准确性。</p>
+</blockquote>
+<h3 id="实际应用示例-2"><a href="#实际应用示例-2" class="headerlink" title="实际应用示例"></a>实际应用示例</h3><blockquote>
+<ol>
+<li><h4 id="为文本块生成问题"><a href="#为文本块生成问题" class="headerlink" title="为文本块生成问题"></a>为文本块生成问题</h4><blockquote>
+<p>为每一个文本块自动生成一些相关问题——也就是那些可以通过这段文字找到答案的问题。</p>
+</blockquote>
+<blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_extract_questions_from_response</span>(<span class="params">response_text</span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    从模型返回的文本中提取出以问号结尾的问题。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    response_text (str): 模型返回的原始文本。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">    List[str]: 清洗后的有效问题列表。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    questions = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> response_text.split(<span class="string">'\n'</span>):</span><br><span class="line">        cleaned_line = line.strip()  <span class="comment"># 去除前后空格</span></span><br><span class="line">        <span class="keyword">if</span> cleaned_line:</span><br><span class="line">            <span class="comment"># 去除可能存在的编号前缀（如 "1.", "2)", "•", "-" 等）</span></span><br><span class="line">            cleaned_line = re.sub(<span class="string">r'^[\d\-\•\*]+\s*[\.\\)]?\s*'</span>, <span class="string">''</span>, cleaned_line)</span><br><span class="line">            <span class="comment"># 判断是否含有问号（中英文都支持）</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">'?'</span> <span class="keyword">in</span> cleaned_line <span class="keyword">or</span> <span class="string">'？'</span> <span class="keyword">in</span> cleaned_line:</span><br><span class="line">                <span class="comment"># 统一转为英文问号结尾</span></span><br><span class="line">                question = cleaned_line.rstrip(<span class="string">'?'</span>).rstrip(<span class="string">'？'</span>) + <span class="string">'?'</span></span><br><span class="line">                questions.append(question)</span><br><span class="line">    <span class="keyword">return</span> questions</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_questions</span>(<span class="params">text, question_count=<span class="number">5</span>, model=<span class="string">"qwen-max"</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    根据提供的文本块生成可回答的问题。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    text (str): 需要生成问题的文本内容。</span></span><br><span class="line"><span class="string">    question_count (int): 需要生成的问题数量。</span></span><br><span class="line"><span class="string">    model (str): 用于生成问题的语言模型名称。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">    List[str]: 生成的问题列表。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 系统指令：定义 AI 的行为准则</span></span><br><span class="line">    system_instruction = <span class="string">"你是一个擅长从文本中生成相关问题的专家。请仅使用提供的文本创建简洁的问题，关注关键信息和概念。"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 用户请求模板：提供具体任务和格式要求</span></span><br><span class="line">    user_request = <span class="string">f"""</span></span><br><span class="line"><span class="string">    请基于以下文本生成 <span class="subst">{question_count}</span> 个不同的问题，这些问题必须能通过该文本来回答：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    <span class="subst">{text}</span></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    请以数字编号列表的形式输出问题，不要添加其他内容。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调用大模型 API 生成问题</span></span><br><span class="line">    response = client.chat.completions.create(</span><br><span class="line">        model=model,</span><br><span class="line">        temperature=<span class="number">0.7</span>,</span><br><span class="line">        messages=[</span><br><span class="line">            {<span class="string">"role"</span>: <span class="string">"system"</span>, <span class="string">"content"</span>: system_instruction},</span><br><span class="line">            {<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: user_request}</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取原始响应内容并去除前后空格</span></span><br><span class="line">    raw_questions_text = response.choices[<span class="number">0</span>].message.content.strip()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用辅助函数提取并过滤有效问题</span></span><br><span class="line">    filtered_questions = _extract_questions_from_response(raw_questions_text)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> filtered_questions</span><br></pre></td></tr></table></figure></div></blockquote>
+</li>
+<li><h4 id="构建一个简单的向量存储库"><a href="#构建一个简单的向量存储库" class="headerlink" title="构建一个简单的向量存储库"></a>构建一个简单的向量存储库</h4><blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Dict</span>, <span class="type">Optional</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">classSimpleVectorStore:</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    简单的基于 NumPy 的向量存储实现。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        初始化向量数据库，包含向量、文本和元数据列表。</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="variable language_">self</span>.vectors: <span class="type">List</span>[np.ndarray] = []   <span class="comment"># 存储向量</span></span><br><span class="line">        <span class="variable language_">self</span>.texts: <span class="type">List</span>[<span class="built_in">str</span>] = []            <span class="comment"># 存储原始文本</span></span><br><span class="line">        <span class="variable language_">self</span>.metadata_list: <span class="type">List</span>[<span class="type">Dict</span>] = []    <span class="comment"># 存储元信息</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_item</span>(<span class="params">self, text: <span class="built_in">str</span>, vector: <span class="type">List</span>[<span class="built_in">float</span>], metadata: <span class="type">Optional</span>[<span class="type">Dict</span>] = <span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        向向量库中添加一个条目。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        参数:</span></span><br><span class="line"><span class="string">        text (str): 原始文本内容。</span></span><br><span class="line"><span class="string">        vector (List[float]): 向量嵌入表示。</span></span><br><span class="line"><span class="string">        metadata (Dict, optional): 可选的元数据信息。</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="variable language_">self</span>.vectors.append(np.array(vector))</span><br><span class="line">        <span class="variable language_">self</span>.texts.append(text)</span><br><span class="line">        <span class="variable language_">self</span>.metadata_list.append(metadata <span class="keyword">or</span> {})</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">similarity_search</span>(<span class="params">self, query_vector: <span class="type">List</span>[<span class="built_in">float</span>], top_k: <span class="built_in">int</span> = <span class="number">5</span></span>) -&gt; <span class="type">List</span>[<span class="type">Dict</span>]:</span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        根据查询向量在向量库中查找最相似的 top_k 条记录。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        参数:</span></span><br><span class="line"><span class="string">        query_vector (List[float]): 查询向量。</span></span><br><span class="line"><span class="string">        top_k (int): 返回的结果数量。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        返回:</span></span><br><span class="line"><span class="string">        List[Dict]: 包含相似文本、元数据和相似度得分的字典列表。</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable language_">self</span>.vectors:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 将查询向量转换为 numpy 数组</span></span><br><span class="line">        query_array = np.array(query_vector)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 计算每个向量与查询向量的余弦相似度</span></span><br><span class="line">        similarities = []</span><br><span class="line">        <span class="keyword">for</span> idx, vector <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.vectors):</span><br><span class="line">            similarity = np.dot(query_array, vector) / (</span><br><span class="line">                np.linalg.norm(query_array) * np.linalg.norm(vector)</span><br><span class="line">            )</span><br><span class="line">            similarities.append((idx, similarity))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 按照相似度降序排序</span></span><br><span class="line">        similarities.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 构建结果返回</span></span><br><span class="line">        results = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">min</span>(top_k, <span class="built_in">len</span>(similarities))):</span><br><span class="line">            idx, score = similarities[i]</span><br><span class="line">            results.append({</span><br><span class="line">                <span class="string">"text"</span>: <span class="variable language_">self</span>.texts[idx],</span><br><span class="line">                <span class="string">"metadata"</span>: <span class="variable language_">self</span>.metadata_list[idx],</span><br><span class="line">                <span class="string">"similarity_score"</span>: <span class="built_in">float</span>(score)</span><br><span class="line">            })</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> results</span><br></pre></td></tr></table></figure></div></blockquote>
+</li>
+<li><h4 id="使用问题增强来处理文档"><a href="#使用问题增强来处理文档" class="headerlink" title="使用问题增强来处理文档"></a>使用问题增强来处理文档</h4><blockquote>
+<p>现在，我们将前面的所有步骤整合在一起，对文档进行完整处理：包括为文本块生成相关问题、创建embedding，并构建一个<strong>增强型的向量存储库（Augmented Vector Store）</strong>。</p>
+</blockquote>
+<blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">process_document</span>(<span class="params">pdf_path, chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">200</span>, questions_per_chunk=<span class="number">5</span></span>):</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    对文档进行处理并生成问题增强。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">    pdf_path(str): PDF 文件路径。</span></span><br><span class="line"><span class="string">    chunk_size(int): 每个文本块的字符数。</span></span><br><span class="line"><span class="string">    chunk_overlap(int): 文本块之间的重叠字符数。</span></span><br><span class="line"><span class="string">    questions_per_chunk(int): 每个文本块生成的问题数量。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">    Tuple[List[str], SimpleVectorStore]: 处理后的文本块和向量存储。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"从PDF中提取文本..."</span>)</span><br><span class="line">    extracted_text = extract_text_from_pdf(pdf_path)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"分割文本为块..."</span>)</span><br><span class="line">    text_chunks = chunk_text(extracted_text, chunk_size, chunk_overlap)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"共创建 <span class="subst">{<span class="built_in">len</span>(text_chunks)}</span> 个文本块"</span>)</span><br><span class="line"></span><br><span class="line">    vector_store = SimpleVectorStore()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"处理每个文本块并生成相关问题..."</span>)</span><br><span class="line">    <span class="keyword">for</span> idx, chunk <span class="keyword">in</span> <span class="built_in">enumerate</span>(tqdm(text_chunks, desc=<span class="string">"正在处理文本块"</span>)):</span><br><span class="line">        <span class="comment"># 为当前文本块生成嵌入</span></span><br><span class="line">        chunk_embedding_response = create_embeddings(chunk)</span><br><span class="line">        chunk_embedding = chunk_embedding_response.data[<span class="number">0</span>].embedding</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将文本块添加到向量库中</span></span><br><span class="line">        vector_store.add_item(</span><br><span class="line">            text=chunk,</span><br><span class="line">            vectors=chunk_embedding,</span><br><span class="line">            metadata={<span class="string">"type"</span>: <span class="string">"chunk"</span>, <span class="string">"index"</span>: idx}</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 为当前文本块生成多个问题</span></span><br><span class="line">        questions = generate_questions(chunk, num_questions=questions_per_chunk)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 为每个问题生成嵌入，并加入向量库</span></span><br><span class="line">        <span class="keyword">for</span> q_idx, question <span class="keyword">in</span> <span class="built_in">enumerate</span>(questions):</span><br><span class="line">            question_embedding_response = create_embeddings(question)</span><br><span class="line">            question_embedding = question_embedding_response.data[<span class="number">0</span>].embedding</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 将问题添加到向量库</span></span><br><span class="line">            vector_store.add_item(</span><br><span class="line">                text=question,</span><br><span class="line">                vectors=question_embedding,</span><br><span class="line">                metadata={<span class="string">"type"</span>: <span class="string">"question"</span>, <span class="string">"chunk_index"</span>: idx, <span class="string">"original_chunk"</span>: chunk}</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> text_chunks, vector_store</span><br></pre></td></tr></table></figure></div></blockquote>
+</li>
+<li><h4 id="提取与处理文档"><a href="#提取与处理文档" class="headerlink" title="提取与处理文档"></a>提取与处理文档</h4></li>
+<li><h4 id="在增强型向量库上进行查询"><a href="#在增强型向量库上进行查询" class="headerlink" title="在增强型向量库上进行查询"></a>在增强型向量库上进行查询</h4></li>
+</ol>
+</blockquote>
+<h2 id="六、Query-改写"><a href="#六、Query-改写" class="headerlink" title="六、Query 改写"></a>六、Query 改写</h2><blockquote>
+<p>本节实现了三种<strong>查询转换（Query Transformation）</strong>，以提升检索增强生成（RAG）系统的信息检索效果。</p>
+<p>核心目标：通过<strong>修改或扩展用户的原始</strong>查询，帮助系统更准确地理解用户意图，并从向量库中找到更相关的信息。</p>
+</blockquote>
+<h3 id="查询转换技巧"><a href="#查询转换技巧" class="headerlink" title="查询转换技巧"></a>查询转换技巧</h3><blockquote>
+<h4 id="1-查询重写（Query-Rewriting）"><a href="#1-查询重写（Query-Rewriting）" class="headerlink" title="1. 查询重写（Query Rewriting）"></a>1. 查询重写（Query Rewriting）</h4><p>将用户的问题变得<strong>更具体、更详细</strong>，从而提高检索的精准度。</p>
+<p>🔹 示例：</p>
+<ul>
+<li><p>用户原问题：“AI 是什么？”</p>
+</li>
+<li><p>重写后的问题：“人工智能的定义及其核心技术有哪些？”</p>
+</li>
+</ul>
+<p>✅ 提升点：让搜索更精确，避免过于宽泛的结果。</p>
+<hr>
+<h4 id="2-回退提问（Step-back-Prompting）"><a href="#2-回退提问（Step-back-Prompting）" class="headerlink" title="2. 回退提问（Step-back Prompting）"></a>2. 回退提问（Step-back Prompting）</h4><p>生成一个<strong>更广泛、更高层次的问题</strong>，用于获取更多背景信息，帮助系统更好地理解上下文。</p>
+<p>🔹 示例：</p>
+<ul>
+<li><p>用户原问题：“深度学习在医疗领域有哪些应用？”</p>
+</li>
+<li><p>回退问题：“人工智能在医疗行业的应用有哪些？”</p>
+</li>
+</ul>
+<p>✅ 提升点：有助于找到与问题相关但不直接匹配的重要背景知识。</p>
+<hr>
+<h4 id="3-子查询拆解（Sub-query-Decomposition）"><a href="#3-子查询拆解（Sub-query-Decomposition）" class="headerlink" title="3. 子查询拆解（Sub-query Decomposition）"></a>3. 子查询拆解（Sub-query Decomposition）</h4><p><strong>将一个复杂的问题拆分成多个更简单的小问题</strong>，分别进行检索，最后综合所有结果，提供更全面的回答。</p>
+<p>🔹 示例：</p>
+<ul>
+<li><p>用户原问题：“比较机器学习和深度学习的优缺点及应用场景。”</p>
+</li>
+<li><p>拆解为：</p>
+</li>
+<li><p>“什么是机器学习？”</p>
+</li>
+<li><p>“什么是深度学习？”</p>
+</li>
+<li><p>“机器学习有哪些优缺点？”</p>
+</li>
+<li><p>“深度学习有哪些优缺点？”</p>
+</li>
+<li><p>“它们各自适用于哪些场景？”</p>
+</li>
+</ul>
+<p>✅ 提升点：确保覆盖问题的所有方面，避免遗漏关键信息。</p>
+</blockquote>
+<h2 id="七、重排序"><a href="#七、重排序" class="headerlink" title="七、重排序"></a>七、重排序</h2><blockquote>
+<p>重排序是在初步检索结果的基础上进行的<strong>第二轮筛选与优化步骤</strong>，目的是确保最终用于生成回答的内容是<strong>最相关、最准确的部分</strong>。</p>
+<p>在传统的语义搜索中，我们通常使用向量相似度（如余弦相似度）来找到最相关的文本块。但这种“初步检索”并不总是完美的，有时会返回一些看似相关但实际上不匹配的内容。</p>
+<p><strong>重排序的作用就是：</strong></p>
+<p>✅ 在初步检索结果中进一步筛选； </p>
+<p>✅ 使用更精确的相关性评分模型对内容重新打分；</p>
+<p>✅ 按照实际相关性重新排序；</p>
+<p>✅ 只保留最相关的文档用于后续的回答生成。</p>
+</blockquote>
+<h3 id="重排序的核心流程"><a href="#重排序的核心流程" class="headerlink" title="重排序的核心流程"></a>重排序的核心流程</h3><blockquote>
+<h4 id="1-初步检索（Initial-Retrieval）"><a href="#1-初步检索（Initial-Retrieval）" class="headerlink" title="1. 初步检索（Initial Retrieval）"></a>1. 初步检索（Initial Retrieval）</h4><ul>
+<li><p>使用基础的语义相似度搜索（如向量匹配）快速获取一批候选文本块；</p>
+</li>
+<li><p>这一步速度快，但准确性有限。</p>
+</li>
+</ul>
+<h4 id="2-文档评分（Document-Scoring）"><a href="#2-文档评分（Document-Scoring）" class="headerlink" title="2. 文档评分（Document Scoring）"></a>2. 文档评分（Document Scoring）</h4><ul>
+<li><p>对每个检索到的文档进行更深入的相关性评估；</p>
+</li>
+<li><p>可以使用专门的重排序模型（如 BERT reranker、ColBERT、Cross-Encoder 等），根据用户查询和文档内容之间的语义关系打分；</p>
+</li>
+<li><p>相比简单的向量匹配，这种方式能更好地理解“句子层面”的相关性。</p>
+</li>
+</ul>
+<h4 id="3-重新排序（Reordering）"><a href="#3-重新排序（Reordering）" class="headerlink" title="3. 重新排序（Reordering）"></a>3. 重新排序（Reordering）</h4><ul>
+<li><p>根据评分结果对所有候选文档进行重新排序；</p>
+</li>
+<li><p>最相关的排在最前面，最不相关的被靠后或剔除。</p>
+</li>
+</ul>
+<h4 id="4-内容选择（Selection）"><a href="#4-内容选择（Selection）" class="headerlink" title="4. 内容选择（Selection）"></a>4. 内容选择（Selection）</h4><ul>
+<li><p>只选取排名靠前的几个文档作为上下文提供给语言模型；</p>
+</li>
+<li><p>避免引入噪音信息，提高回答的准确性和可靠性。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="八、用于增强-RAG-的相关段落提取"><a href="#八、用于增强-RAG-的相关段落提取" class="headerlink" title="八、用于增强 RAG 的相关段落提取"></a>八、用于增强 RAG 的相关段落提取</h2><blockquote>
+<p>不同于传统的做法——仅仅检索出多个孤立的文本块， 我们的目标是：<strong>识别并重建连续的文本片段</strong>，从而为语言模型提供更完整、更有逻辑性的上下文信息。</p>
+<p>核心理念：在文档中，与用户问题相关的文本块往往<strong>集中出现在同一区域或连续段落中</strong>。 如果我们能够识别这些相关文本块之间的联系，并将它们按顺序组织成一个<strong>连贯的整体段落</strong>，就能显著提升语言模型对上下文的理解能力。</p>
+<p>传统 RAG 的问题：</p>
+<ul>
+<li><p>检索结果由多个不相连的文本块组成；</p>
+</li>
+<li><p>块之间可能缺少过渡和背景信息；</p>
+</li>
+<li><p>导致语言模型理解困难，甚至出现断章取义的情况。</p>
+</li>
+</ul>
+<p>而相关段落提取（Relevant Segment Extraction，RSE）的优势在于： ✅ 将相关文本块组合成连续段落； ✅ 保留原文结构和语义连贯性； ✅ 提供更自然、完整的上下文给语言模型； ✅ 提高最终回答的准确性和流畅度。</p>
+</blockquote>
+<h3 id="RSE-流程分解"><a href="#RSE-流程分解" class="headerlink" title="RSE 流程分解"></a>RSE 流程分解</h3><blockquote>
+<p><strong>1.初步检索</strong></p>
+<p>使用语义搜索从向量库中找出与用户问题最相关的若干文本块。</p>
+<p><strong>2.位置排序</strong></p>
+<p>如果原始文档中的文本块有编号或位置信息（如页码、段落顺序），我们可以根据这些信息对检索结果进行重新排序。</p>
+<p><strong>3.聚类分析</strong></p>
+<p>分析哪些文本块在原文中彼此靠近且语义相近，将它们归为一组，形成“相关段落簇”。</p>
+<p><strong>4.段落重建</strong></p>
+<p>将属于同一个簇的文本块拼接在一起，形成一个完整的上下文段落。必要时还可以加入相邻的前后内容，以增强上下文连贯性。</p>
+<p><strong>5.输入语言模型</strong></p>
+<p>将重建后的连续段落作为上下文，提供给大语言模型（LLM）生成最终回答。</p>
+</blockquote>
+<h3 id="实际应用示例-3"><a href="#实际应用示例-3" class="headerlink" title="实际应用示例"></a>实际应用示例</h3><blockquote>
+<h4 id="完整的-pipeline"><a href="#完整的-pipeline" class="headerlink" title="完整的 pipeline"></a>完整的 pipeline</h4><blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">rag_with_rse</span>(<span class="params">pdf_path: <span class="built_in">str</span>, query: <span class="built_in">str</span>, chunk_size: <span class="built_in">int</span> = <span class="number">800</span>, penalty: <span class="built_in">float</span> = <span class="number">0.2</span></span>) -&gt; <span class="type">Dict</span>:</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    完整的 RAG 流程，使用相关段落提取（RSE）策略筛选最有用的文档内容。</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        pdf_path(str): PDF 文档路径</span></span><br><span class="line"><span class="string">        query(str): 用户查询</span></span><br><span class="line"><span class="string">        chunk_size(int): 文本切片大小</span></span><br><span class="line"><span class="string">        penalty(float): 不相关切片的惩罚系数</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        Dict: 包含查询、选中的段落以及生成回答的结果字典</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\n=== 开始执行基于相关段落提取的 RAG 流程 ==="</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f"查询内容: <span class="subst">{query}</span>"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 步骤 1：处理文档并生成向量存储</span></span><br><span class="line">    text_chunks, vector_store, doc_info = process_document(pdf_path, chunk_size)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 步骤 2：计算每个文本块的相关性得分与价值值</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\n正在计算文本块相关性得分与价值值..."</span>)</span><br><span class="line">    chunk_values = calculate_chunk_values(query, text_chunks, vector_store, penalty)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 步骤 3：根据价值值选择最优段落</span></span><br><span class="line">    best_segments, scores = find_best_segments(</span><br><span class="line">        chunk_values=chunk_values,</span><br><span class="line">        max_segment_length=<span class="number">20</span>,</span><br><span class="line">        total_max_length=<span class="number">30</span>,</span><br><span class="line">        min_segment_value=<span class="number">0.2</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 步骤 4：重建最佳段落</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\n正在重建最佳文本段落..."</span>)</span><br><span class="line">    selected_segments = reconstruct_segments(text_chunks, best_segments)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 步骤 5：格式化上下文供大模型使用</span></span><br><span class="line">    formatted_context = format_segments_for_context(selected_segments)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 步骤 6：调用大模型生成最终回复</span></span><br><span class="line">    response = generate_response(query, formatted_context)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 整理输出结果</span></span><br><span class="line">    result = {</span><br><span class="line">        <span class="string">"query"</span>: query,</span><br><span class="line">        <span class="string">"segments"</span>: selected_segments,</span><br><span class="line">        <span class="string">"response"</span>: response</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\n=== 最终回复如下 ==="</span>)</span><br><span class="line">    <span class="built_in">print</span>(response)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure></div></blockquote>
+</blockquote>
+<h2 id="九、上下文压缩技术"><a href="#九、上下文压缩技术" class="headerlink" title="九、上下文压缩技术"></a>九、上下文压缩技术</h2><blockquote>
+<p>在使用 RAG 系统进行文档检索时，我们通常会得到一些包含<strong>混合内容</strong>的文本块：</p>
+<ul>
+<li><p>有些句子与用户的问题相关；</p>
+</li>
+<li><p>有些句子则完全无关或只是背景介绍。</p>
+</li>
+</ul>
+<p>例如：</p>
+<p>“人工智能是计算机科学的一个分支。它旨在让机器模拟人类智能行为。许多AI系统依赖于大数据进行训练。深度学习是一种特殊的机器学习方法。”</p>
+<p>如果用户的问题是：“什么是人工智能？” 那么只有第一句是最相关的，其余内容虽然正确，但和当前问题无关。</p>
+<p>我们将对检索到的文本块进行过滤与压缩，只保留其中最相关的内容，从而：</p>
+<p>✅ 减少噪声信息；</p>
+<p>✅ 提高语言模型回答的准确性和相关性；</p>
+<p>✅ 更高效地利用有限的上下文窗口（context window）。</p>
+</blockquote>
+<h3 id="上下文压缩流程分解"><a href="#上下文压缩流程分解" class="headerlink" title="上下文压缩流程分解"></a>上下文压缩流程分解</h3><blockquote>
+<h4 id="1-逐句分析相关性"><a href="#1-逐句分析相关性" class="headerlink" title="1. 逐句分析相关性"></a>1. 逐句分析相关性</h4><p>将每个文本块拆分为句子，并使用语义模型（如 BERT、Sentence-BERT 等）计算每句话与用户查询之间的相关性得分。</p>
+<h4 id="2-设定阈值或选择-Top-K-句子"><a href="#2-设定阈值或选择-Top-K-句子" class="headerlink" title="2. 设定阈值或选择 Top-K 句子"></a>2. 设定阈值或选择 Top-K 句子</h4><p>我们可以选择两种策略之一来筛选句子：</p>
+<p>✅ 保留得分高于某个阈值的句子；</p>
+<p>✅ 或者保留得分最高的前 K 个句子。</p>
+<h4 id="3-重建压缩后的上下文"><a href="#3-重建压缩后的上下文" class="headerlink" title="3. 重建压缩后的上下文"></a>3. 重建压缩后的上下文</h4><p>将筛选后的句子按原始顺序重新组合成一个新的、更紧凑的上下文段落。这是方法的核心部分。我们将使用一个<strong>大语言模型来过滤和压缩检索到的内容</strong>，从而保留与用户问题最相关的信息。</p>
+</blockquote>
+<h3 id="代码示例-2"><a href="#代码示例-2" class="headerlink" title="代码示例"></a>代码示例</h3><blockquote>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">compress_chunk</span>(<span class="params">chunk: <span class="built_in">str</span>, query: <span class="built_in">str</span>, compression_type: <span class="built_in">str</span> = <span class="string">"selective"</span>, model: <span class="built_in">str</span> = <span class="string">"qwen-max"</span></span>) -&gt; <span class="type">Tuple</span>[<span class="built_in">str</span>, <span class="built_in">float</span>]:</span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    压缩检索到的文本块，仅保留与查询相关的部分。</span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        chunk(str): 需要压缩的文本块</span></span><br><span class="line"><span class="string">        query(str): 用户查询</span></span><br><span class="line"><span class="string">        compression_type(str): 压缩方式 ("selective", "summary", 或 "extraction")</span></span><br><span class="line"><span class="string">        model(str): 使用的 LLM 模型名称</span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        Tuple[str, float]: 压缩后的文本块 和 压缩比例（百分比）</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 根据不同压缩类型构建系统提示词</span></span><br><span class="line">    <span class="keyword">if</span> compression_type == <span class="string">"selective"</span>:</span><br><span class="line">        system_prompt = <span class="string">"""你是一个信息筛选专家。</span></span><br><span class="line"><span class="string">        你的任务是分析文档片段并提取**直接与用户查询相关**的句子或段落。删除所有不相关的内容。</span></span><br><span class="line"><span class="string">        输出要求：</span></span><br><span class="line"><span class="string">        1. 只包含有助于回答问题的文本</span></span><br><span class="line"><span class="string">        2. 保留相关句子的原始措辞（不要改写）</span></span><br><span class="line"><span class="string">        3. 维持原文顺序</span></span><br><span class="line"><span class="string">        4. 包含所有相关内容，即使看起来重复</span></span><br><span class="line"><span class="string">        5. 排除任何与问题无关的文本</span></span><br><span class="line"><span class="string">        请以纯文本格式输出，不要添加额外说明。"""</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">elif</span> compression_type == <span class="string">"summary"</span>:</span><br><span class="line">        system_prompt = <span class="string">"""你是一个摘要专家。</span></span><br><span class="line"><span class="string">        你的任务是对给定的文档片段进行简洁总结，只聚焦于与用户查询有关的信息。</span></span><br><span class="line"><span class="string">        输出要求：</span></span><br><span class="line"><span class="string">        1. 简洁但涵盖所有与问题相关的内容</span></span><br><span class="line"><span class="string">        2. 专注于与查询相关的信息</span></span><br><span class="line"><span class="string">        3. 忽略不相关细节</span></span><br><span class="line"><span class="string">        4. 用中立、客观的语气撰写</span></span><br><span class="line"><span class="string">        请以纯文本格式输出，不要添加额外说明。"""</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span>:  <span class="comment"># extraction</span></span><br><span class="line">        system_prompt = <span class="string">"""你是一个信息抽取专家。</span></span><br><span class="line"><span class="string">        你的任务是从文档片段中提取**确切包含相关信息的句子**来回答用户的查询。</span></span><br><span class="line"><span class="string">        输出要求：</span></span><br><span class="line"><span class="string">        1. 仅包含原文中的相关句子</span></span><br><span class="line"><span class="string">        2. 保持原句不变（不要修改）</span></span><br><span class="line"><span class="string">        3. 只包含与问题直接相关的句子</span></span><br><span class="line"><span class="string">        4. 每个句子之间用换行分隔</span></span><br><span class="line"><span class="string">        5. 不添加任何评论或其他内容</span></span><br><span class="line"><span class="string">        请以纯文本格式输出，不要添加额外说明。"""</span></span><br><span class="line">    <span class="comment"># 构建用户提示</span></span><br><span class="line">    user_prompt = <span class="string">f"""</span></span><br><span class="line"><span class="string">        查询：<span class="subst">{query}</span></span></span><br><span class="line"><span class="string">        文档片段：</span></span><br><span class="line"><span class="string">        <span class="subst">{chunk}</span></span></span><br><span class="line"><span class="string">        提取与该查询相关的内容。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 调用大模型 API 进行压缩处理</span></span><br><span class="line">    response = client.chat.completions.create(</span><br><span class="line">        model=model,</span><br><span class="line">        messages=[</span><br><span class="line">            {<span class="string">"role"</span>: <span class="string">"system"</span>, <span class="string">"content"</span>: system_prompt},</span><br><span class="line">            {<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: user_prompt}</span><br><span class="line">        ],</span><br><span class="line">        temperature=<span class="number">0</span></span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># 获取压缩后的内容</span></span><br><span class="line">    compressed_content = response.choices[<span class="number">0</span>].message.content.strip()</span><br><span class="line">    <span class="comment"># 计算压缩比例</span></span><br><span class="line">    original_length = <span class="built_in">len</span>(chunk)</span><br><span class="line">    compressed_length = <span class="built_in">len</span>(compressed_content)</span><br><span class="line">    compression_ratio = (original_length - compressed_length) / original_length * <span class="number">100</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> compressed_content, compression_ratio</span><br></pre></td></tr></table></figure></div></blockquote>
+<h2 id="十、RAG-中的反馈机制"><a href="#十、RAG-中的反馈机制" class="headerlink" title="十、RAG 中的反馈机制"></a>十、RAG 中的反馈机制</h2><blockquote>
+<p>在本节中，我将实现一个带有反馈机制的 RAG 系统，它能够随着时间推移不断自我优化。 通过收集并整合用户的反馈信息，它可以：</p>
+<p>✅ 学习哪些回答是有效的，哪些需要改进；</p>
+<p>✅ 持续提升检索结果的相关性和回答质量；</p>
+<p>✅ 在每一次交互中变得“更聪明”。</p>
+<p>我们构建的是一个<strong>动态、自适应的 RAG 系统</strong>，它具备以下能力：</p>
+<p>✅ <strong>记忆功能</strong>：记住哪些文档曾提供过有用的信息，哪些没有；</p>
+<p>✅ <strong>动态调整评分</strong>：根据历史反馈更新文档的相关性得分；</p>
+<p>✅ <strong>知识积累</strong>：将成功的问答对加入知识库，供未来查询使用；</p>
+<p>✅ <strong>持续进化</strong>：每次与用户的互动都是一次学习机会，系统会越用越准、越用越好。</p>
+</blockquote>
+<h3 id="反馈机制流程分解"><a href="#反馈机制流程分解" class="headerlink" title="反馈机制流程分解"></a>反馈机制流程分解</h3><blockquote>
+<p><strong>1.用户提问</strong></p>
+<ul>
+<li>用户输入一个问题，并得到一个由 RAG 系统生成的回答。</li>
+</ul>
+<p><strong>2.获取用户反馈</strong></p>
+<ul>
+<li>用户可以通过评分、点赞/踩、或者直接评论等方式提供反馈；</li>
+</ul>
+<p><strong>3.记录反馈数据</strong></p>
+<ul>
+<li>将用户问题、原始回答、反馈内容等信息存储下来，形成反馈日志。</li>
+</ul>
+<p><strong>4.分析与学习</strong></p>
+<ul>
+<li>使用模型分析哪些文档和段落产生了高质量的回答；</li>
+<li>调整这些文档在未来的检索权重；</li>
+<li>将高质量问答对加入知识库，用于增强未来的语义理解。</li>
+</ul>
+<p><strong>5.优化下一次回答</strong></p>
+<ul>
+<li>下次遇到类似问题时，系统能更快、更准确地找到最佳答案。</li>
+</ul>
+</blockquote>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> RAG技巧与底层代码剖析 阅读笔记</li>
+        <li><strong>Author:</strong> 寻觅之境</li>
+        <li><strong>Created at
+                :</strong> 2025-06-25 23:03:05</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-06-25 23:04:07
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://example.com/2025/06/25/RAG技巧与底层代码剖析 阅读笔记/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Pytorch/">#Pytorch</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/RAG/">#RAG</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/06/17/minimind%20%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">minimind源码 阅读笔记</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">RAG技巧与底层代码剖析 阅读笔记</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%96%87%E9%93%BE%E6%8E%A5%EF%BC%9ARAG%E6%8A%80%E5%B7%A7%E4%B8%8E%E5%BA%95%E5%B1%82%E4%BB%A3%E7%A0%81%E5%89%96%E6%9E%90"><span class="nav-text">原文链接：RAG技巧与底层代码剖析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E6%98%93-RAG-%E5%AE%9E%E7%8E%B0"><span class="nav-text">一、简易 RAG 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RAG-%E6%B5%81%E7%A8%8B%E5%88%86%E8%A7%A3"><span class="nav-text">RAG 流程分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E4%BA%8E%E8%AF%AD%E4%B9%89%E7%9A%84%E6%96%87%E6%9C%AC%E5%88%86%E5%9D%97"><span class="nav-text">二、基于语义的文本分块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E5%88%86%E7%82%B9%E7%9A%84%E5%88%A4%E5%AE%9A%E6%96%B9%E6%B3%95"><span class="nav-text">切分点的判定方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-text">实际应用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8-RAG-%E4%B8%AD%E5%BC%95%E5%85%A5%E4%B8%8A%E4%B8%8B%E6%96%87%E5%A2%9E%E5%BC%BA%E6%A3%80%E7%B4%A2"><span class="nav-text">三、在 RAG 中引入上下文增强检索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%A2%9E%E5%BC%BA%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B"><span class="nav-text">上下文增强检索流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-1"><span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%B7%BB%E5%8A%A0%E4%B8%8A%E4%B8%8B%E6%96%87%E5%9D%97%E6%A0%87%E9%A2%98"><span class="nav-text">四、添加上下文块标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%9D%97%E6%A0%87%E9%A2%98%E6%B5%81%E7%A8%8B%E5%88%86%E8%A7%A3"><span class="nav-text">上下文块标题流程分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B-1"><span class="nav-text">实际应用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E%E9%97%AE%E9%A2%98%E7%94%9F%E6%88%90%E7%9A%84-RAG"><span class="nav-text">五、基于问题生成的 RAG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%94%9F%E6%88%90%E6%B5%81%E7%A8%8B%E5%88%86%E8%A7%A3"><span class="nav-text">问题生成流程分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B-2"><span class="nav-text">实际应用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81Query-%E6%94%B9%E5%86%99"><span class="nav-text">六、Query 改写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E8%BD%AC%E6%8D%A2%E6%8A%80%E5%B7%A7"><span class="nav-text">查询转换技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E9%87%8D%E6%8E%92%E5%BA%8F"><span class="nav-text">七、重排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%8E%92%E5%BA%8F%E7%9A%84%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B"><span class="nav-text">重排序的核心流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%94%A8%E4%BA%8E%E5%A2%9E%E5%BC%BA-RAG-%E7%9A%84%E7%9B%B8%E5%85%B3%E6%AE%B5%E8%90%BD%E6%8F%90%E5%8F%96"><span class="nav-text">八、用于增强 RAG 的相关段落提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RSE-%E6%B5%81%E7%A8%8B%E5%88%86%E8%A7%A3"><span class="nav-text">RSE 流程分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B-3"><span class="nav-text">实际应用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8E%8B%E7%BC%A9%E6%8A%80%E6%9C%AF"><span class="nav-text">九、上下文压缩技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8E%8B%E7%BC%A9%E6%B5%81%E7%A8%8B%E5%88%86%E8%A7%A3"><span class="nav-text">上下文压缩流程分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B-2"><span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81RAG-%E4%B8%AD%E7%9A%84%E5%8F%8D%E9%A6%88%E6%9C%BA%E5%88%B6"><span class="nav-text">十、RAG 中的反馈机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E9%A6%88%E6%9C%BA%E5%88%B6%E6%B5%81%E7%A8%8B%E5%88%86%E8%A7%A3"><span class="nav-text">反馈机制流程分解</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">寻觅之境</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        21 posts in total
+                    </span>
+                    
+                        <span>
+                            150.7k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Swup.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/utils.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/main.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/lazyload.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/minimasonry.min.js" ></script>
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/masonry.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+	<div id="aplayer"></div>
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/APlayer.min.js" ></script>
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/aplayer.js" ></script>
+
+	
+
+	{% if theme.fireworks %}
+	<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+	<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+	<script type="text/javascript" src="/js/fireworks.js"></script>
+
+</body>
+
+</html>
+
